@@ -11,7 +11,7 @@ apply plugin: 'net.minecraftforge.gradle.forge'
 //Only edit below this line, the above code adds and enables the necessary things for Forge to be setup.
 
 
-version = "1.0"
+version = "0.1"
 group = "com.peatral.embersconstruct" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = "embersconstruct"
 
@@ -45,6 +45,10 @@ repositories {
     maven {
         name = "CurseForge"
         url = "https://minecraft.curseforge.com/api/maven/"
+    }
+    maven {
+        name = "Baubles (for jar)"
+        url = "http://maven.thiakil.com/"
     }
 }
 

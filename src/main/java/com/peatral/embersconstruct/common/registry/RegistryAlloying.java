@@ -23,6 +23,6 @@ public class RegistryAlloying {
                 c++;
             }
         }
-        EmbersConstruct.logger.info("Registered " + c + " alloying recipes from Tinkers'.");
+        // EmbersConstruct.logger.info("Registered " + c + " alloying recipes from Tinkers'.");
     }
 }

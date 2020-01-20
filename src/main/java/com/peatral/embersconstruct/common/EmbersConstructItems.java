@@ -10,8 +10,8 @@ import net.minecraftforge.registries.IForgeRegistry;
 @GameRegistry.ObjectHolder(EmbersConstruct.MODID)
 public class EmbersConstructItems {
 
-    public static final Item Stamp = new ItemStamp();
     public static final Item StampRaw = new ItemStampRaw();
+    public static final Item Stamp = new ItemStamp();
 
     public static void registerItems(IForgeRegistry<Item> registry) {
         registry.register(init(StampRaw, "stamp_raw"));

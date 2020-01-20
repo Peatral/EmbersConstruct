@@ -28,7 +28,7 @@ public class EmbersConstruct {
     public static final String MODID = "embersconstruct";
     public static final String MOD_NAME = "Embers' Construct";
     public static final String NAME = "Embers Construct";
-    public static final String VERSION = "1.0";
+    public static final String VERSION = "0.1";
     public static final String DEPENDENCIES = "required-after:tconstruct; required-after:embers";
 
     @SidedProxy(clientSide = "com.peatral.embersconstruct.client.ClientProxy", serverSide = "com.peatral.embersconstruct.common.CommonProxy")
