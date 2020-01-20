@@ -1,0 +1,16 @@
+[
+{
+  "modid": "embersconstruct",
+  "name": "Embers' Construct",
+  "description": "Do all the tinkers' stuff in embers machinery.",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["Peatral"],
+  "credits": "terrapin47 for the idea and textures.",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": ["required-after:embers", "required-after:tconstruct"]
+}
+]

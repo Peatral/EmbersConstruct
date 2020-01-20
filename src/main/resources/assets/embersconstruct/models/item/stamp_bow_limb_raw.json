@@ -1,0 +1,6 @@
+{
+    "parent": "item/generated",
+    "textures": {
+        "layer0": "embersconstruct:items/stamp_bow_limb_raw"
+    }
+}
