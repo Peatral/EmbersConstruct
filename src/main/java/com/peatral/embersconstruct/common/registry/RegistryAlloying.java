@@ -10,6 +10,10 @@ import teamroots.embers.recipe.RecipeRegistry;
 import java.util.List;
 
 public class RegistryAlloying {
+    public static void main() {
+        registerTinkerRecipes();
+    }
+
     public static void registerTinkerRecipes() {
         List<AlloyRecipe> alloyRecipes = TinkerRegistry.getAlloys();
         int c = 0;
@@ -23,6 +27,6 @@ public class RegistryAlloying {
                 c++;
             }
         }
-        // EmbersConstruct.logger.info("Registered " + c + " alloying recipes from Tinkers'.");
+        EmbersConstruct.logger.info("Registered " + c + " alloying recipes from Tinkers'.");
     }
 }

@@ -64,6 +64,13 @@ item.stamp_tough_tool_rod.name=Tough Tool Rod Stamp
 item.stamp_wide_guard.name=Wide Guard Stamp
 
 #Armorstuff
+item.stamp_armor_plate_raw.name=Raw Armor Plates Stamp
+item.stamp_armor_trim_raw.name=Raw Armor Trim Stamp
+item.stamp_boots_core_raw.name=Raw Boots Core Stamp
+item.stamp_chest_core_raw.name=Raw Chestplate Core Stamp
+item.stamp_helmet_core_raw.name=Raw Helmet Core Stamp
+item.stamp_leggings_core_raw.name=Raw Leggings Core Stamp
+
 item.stamp_armor_plate.name=Armor Plates Stamp
 item.stamp_armor_trim.name=Armor Trim Stamp
 item.stamp_boots_core.name=Boots Core Stamp

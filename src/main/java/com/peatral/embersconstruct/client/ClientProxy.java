@@ -5,6 +5,7 @@ import com.peatral.embersconstruct.common.CommonProxy;
 import com.peatral.embersconstruct.common.EmbersConstruct;
 import com.peatral.embersconstruct.common.EmbersConstructItems;
 import net.minecraft.item.Item;
+import net.minecraftforge.fml.common.Optional;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -12,8 +13,19 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class ClientProxy extends CommonProxy {
     @Override
     public void registerItemRenders() {
+        registerItemRenderers();
+        if (EmbersConstruct.isConarmLoaded) registerItemRenderersConarm();
+    }
+
+    public void registerItemRenderers() {
         registerItemRender(EmbersConstructItems.StampRaw);
         registerItemRender(EmbersConstructItems.Stamp);
+    }
+
+    @Optional.Method(modid="conarm")
+    public void registerItemRenderersConarm() {
+        registerItemRender(EmbersConstructItems.StampRawConarm);
+        registerItemRender(EmbersConstructItems.StampConarm);
     }
 
     public void registerItemRender(Item item) {

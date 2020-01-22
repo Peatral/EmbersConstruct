@@ -1,0 +1,6 @@
+{
+    "parent": "item/generated",
+    "textures": {
+        "layer0": "embersconstruct:items/stamp_boots_core_raw"
+    }
+}

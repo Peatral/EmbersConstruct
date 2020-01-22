@@ -1,8 +1,7 @@
-package com.peatral.embersconstruct.common;
+package com.peatral.embersconstruct.common.lib;
 
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
-import net.minecraft.item.crafting.Ingredient;
 import slimeknights.tconstruct.tools.TinkerTools;
 
 public enum EnumStamps {
@@ -52,16 +51,5 @@ public enum EnumStamps {
 
     public Item getPart() {
         return part;
-    }
-
-    public static EnumStamps fromName(String name) {
-        for (EnumStamps stamp : values()) {
-            if (stamp.name.equals(name)) return stamp;
-        }
-        return null;
-    }
-
-    public Ingredient getIngredient() {
-        return null;
     }
 }
