@@ -1,17 +1,12 @@
 package com.peatral.embersconstruct.common;
 
 import com.peatral.embersconstruct.common.integration.conarm.ConarmIntegration;
-import com.peatral.embersconstruct.common.registry.RegistryMelting;
-import com.peatral.embersconstruct.common.registry.RegistryStamping;
 import net.minecraft.item.Item;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.event.RegistryEvent;
-import net.minecraftforge.fml.common.Loader;
-import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.*;
 import net.minecraftforge.fml.common.Mod.EventHandler;
-import net.minecraftforge.fml.common.Optional;
-import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
@@ -19,7 +14,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-@Mod(modid = EmbersConstruct.MODID, name = EmbersConstruct.NAME, version = EmbersConstruct.VERSION, dependencies = EmbersConstruct.DEPENDENCIES)
+@Mod(modid = EmbersConstruct.MODID, name = EmbersConstruct.NAME, version = EmbersConstruct.VERSION, dependencies = EmbersConstruct.DEPENDENCIES, updateJSON = EmbersConstruct.UPDATE_CHECKER_URL)
 @Mod.EventBusSubscriber
 public class EmbersConstruct {
     public static final String MODID = "embersconstruct";
@@ -31,6 +26,7 @@ public class EmbersConstruct {
             "required-after:embers;" +
             "after:conarm;" +
             "after:pewter";
+    public static final String UPDATE_CHECKER_URL = "https://peatral.github.io/MinecraftMods/embersconstruct/update.json";
 
     @SidedProxy(clientSide = "com.peatral.embersconstruct.client.ClientProxy", serverSide = "com.peatral.embersconstruct.common.CommonProxy")
     public static CommonProxy proxy;
@@ -75,7 +71,6 @@ public class EmbersConstruct {
     @SubscribeEvent
     public static void registerRecipes(RegistryEvent.Register<IRecipe> event) {
     }
-
 
     //Integration handling -----------------------------------------------------------
 

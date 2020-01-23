@@ -80,3 +80,11 @@ item.stamp_leggings_core.name=Leggings Core Stamp
 
 #Tab
 itemGroup.tabEmbersConstruct=Embers' Construct
+
+#Update-Checker
+embersconstruct.outdated=The new version %1$s is available for Embers' Construct.
+embersconstruct.outdated.hover=Click to open download page.
+
+#Config
+embersconstruct.config.section.general=General
+embersconstruct.config.showNewVersionMessage=Show New-Version-Message
