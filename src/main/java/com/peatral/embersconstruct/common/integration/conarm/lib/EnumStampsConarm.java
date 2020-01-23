@@ -1,4 +1,4 @@
-package com.peatral.embersconstruct.common.lib;
+package com.peatral.embersconstruct.common.integration.conarm.lib;
 
 import c4.conarm.common.ConstructsRegistry;
 import net.minecraft.item.Item;

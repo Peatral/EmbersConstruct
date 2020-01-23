@@ -4,7 +4,7 @@ import c4.conarm.lib.armor.ArmorPart;
 import com.peatral.embersconstruct.common.EmbersConstruct;
 import com.peatral.embersconstruct.common.EmbersConstructItems;
 import com.peatral.embersconstruct.common.lib.EnumStamps;
-import com.peatral.embersconstruct.common.lib.EnumStampsConarm;
+import com.peatral.embersconstruct.common.integration.conarm.lib.EnumStampsConarm;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraftforge.fluids.FluidStack;
@@ -21,7 +21,6 @@ public class RegistryStamping {
 
     public static void main() {
         registerTinkerRecipes();
-        if (EmbersConstruct.isConarmLoaded) registerConarmRecipes();
     }
 
     public static void registerTinkerRecipes() {

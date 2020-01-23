@@ -1,6 +1,8 @@
-package com.peatral.embersconstruct.common.item;
+package com.peatral.embersconstruct.common.integration.conarm.item;
 
-import com.peatral.embersconstruct.common.lib.EnumStampsConarm;
+import com.peatral.embersconstruct.common.item.IMetaItem;
+import com.peatral.embersconstruct.common.item.ItemEmbersConstruct;
+import com.peatral.embersconstruct.common.integration.conarm.lib.EnumStampsConarm;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;

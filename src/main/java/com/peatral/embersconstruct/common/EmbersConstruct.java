@@ -1,5 +1,8 @@
 package com.peatral.embersconstruct.common;
 
+import com.peatral.embersconstruct.common.integration.conarm.ConarmIntegration;
+import com.peatral.embersconstruct.common.registry.RegistryMelting;
+import com.peatral.embersconstruct.common.registry.RegistryStamping;
 import net.minecraft.item.Item;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraftforge.client.event.ModelRegistryEvent;
@@ -7,6 +10,7 @@ import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
+import net.minecraftforge.fml.common.Optional;
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
@@ -65,8 +69,6 @@ public class EmbersConstruct {
 
     @SubscribeEvent
     public static void registerModels(ModelRegistryEvent event) {
-        // Register models
-        //proxy.registerBlockRenders();
         proxy.registerItemRenders();
     }
 
@@ -74,6 +76,14 @@ public class EmbersConstruct {
     public static void registerRecipes(RegistryEvent.Register<IRecipe> event) {
     }
 
+
+    //Integration handling -----------------------------------------------------------
+
+    @Optional.Method(modid="conarm")
+    @EventHandler
+    public void postInitConarm(FMLPostInitializationEvent event) {
+        ConarmIntegration.postInit(event);
+    }
 
 }
 

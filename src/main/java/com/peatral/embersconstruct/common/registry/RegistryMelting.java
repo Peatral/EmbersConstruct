@@ -3,7 +3,7 @@ package com.peatral.embersconstruct.common.registry;
 import com.peatral.embersconstruct.common.EmbersConstruct;
 import com.peatral.embersconstruct.common.EmbersConstructItems;
 import com.peatral.embersconstruct.common.lib.EnumStamps;
-import com.peatral.embersconstruct.common.lib.EnumStampsConarm;
+import com.peatral.embersconstruct.common.integration.conarm.lib.EnumStampsConarm;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraftforge.fluids.Fluid;
@@ -39,7 +39,6 @@ public class RegistryMelting {
         registerRecipes();
         //Includes Armorparts #Genius
         registerTinkerRecipes();
-        if (EmbersConstruct.isConarmLoaded) registerConarmRecipes();
     }
 
     public static void registerRecipes() {
