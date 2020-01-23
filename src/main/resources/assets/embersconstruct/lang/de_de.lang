@@ -80,3 +80,11 @@ item.stamp_leggings_core.name=Beinschutz-Kern Stanze
 
 #Tab
 itemGroup.tabEmbersConstruct=Embers' Construct
+
+#Update-Checker
+embersconstruct.outdated=Die neue Version %1$s für Embers' Construct ist verfügbar.
+embersconstruct.outdated.hover=Klicke um die Downloadseite zu öffnen.
+
+#Config
+embersconstruct.config.section.general=Allgemein
+embersconstruct.config.showNewVersionMessage=Zeige Neue-Version-Nachricht
