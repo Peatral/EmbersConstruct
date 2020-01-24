@@ -6,6 +6,7 @@ import com.peatral.embersconstruct.common.lib.EnumStamps;
 import com.peatral.embersconstruct.common.integration.conarm.lib.EnumStampsConarm;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
+import net.minecraftforge.common.crafting.IngredientNBT;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fml.common.Optional;
@@ -66,7 +67,7 @@ public class RegistryMelting {
                 int[] ids = OreDictionary.getOreIDs(repItem);
                 for (int id : ids) {
                     String name = OreDictionary.getOreName(id);
-                    //Unify name to ingot*
+                    //Unify name to k_*
                     for (String type : MELTING_VALUES.keySet()) name = name.replace(type, "k_");
 
                     if (name.startsWith("k_")) {
@@ -102,7 +103,7 @@ public class RegistryMelting {
                 for (IToolPart toolPart : TinkerRegistry.getToolParts()) {
                     if (toolPart instanceof MaterialItem) {
                         ItemStack stack = toolPart.getItemstackWithMaterial(material);
-                        Ingredient ingredient = Ingredient.fromStacks(stack);
+                        Ingredient ingredient = new IngredientNBT(stack) {}; // Why was this so hard to find???
                         RecipeRegistry.meltingRecipes.add(new ItemMeltingRecipe(ingredient, new FluidStack(fluid, toolPart.getCost())));
                         c++;
                     }
