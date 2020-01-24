@@ -1,6 +1,8 @@
-package com.peatral.embersconstruct.common;
+package com.peatral.embersconstruct.common.util;
 
 import com.mojang.realmsclient.gui.ChatFormatting;
+import com.peatral.embersconstruct.common.EmbersConstruct;
+import com.peatral.embersconstruct.common.EmbersConstructConfig;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.util.text.Style;
 import net.minecraft.util.text.TextComponentString;

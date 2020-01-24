@@ -4,6 +4,7 @@ import com.peatral.embersconstruct.common.registry.RegistryAlloying;
 import com.peatral.embersconstruct.common.registry.RegistryMelting;
 import com.peatral.embersconstruct.common.registry.RegistryStamping;
 import net.minecraft.item.Item;
+import net.minecraft.world.World;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
@@ -26,6 +27,14 @@ public class CommonProxy {
         RegistryMelting.main();
         RegistryAlloying.main();
         RegistryStamping.main();
+    }
+
+    public boolean isClient() {
+        return false;
+    }
+
+    public World getClientWorld() {
+        return null;
     }
 
 

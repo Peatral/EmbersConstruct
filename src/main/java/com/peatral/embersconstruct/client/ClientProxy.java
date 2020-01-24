@@ -4,7 +4,9 @@ import com.peatral.embersconstruct.client.render.EmbersConstructRenderer;
 import com.peatral.embersconstruct.common.CommonProxy;
 import com.peatral.embersconstruct.common.EmbersConstruct;
 import com.peatral.embersconstruct.common.EmbersConstructItems;
+import net.minecraft.client.Minecraft;
 import net.minecraft.item.Item;
+import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -17,5 +19,15 @@ public class ClientProxy extends CommonProxy {
 
     public void registerItemRender(Item item) {
         EmbersConstructRenderer.registerItemRender(EmbersConstruct.MODID, item);
+    }
+
+    @Override
+    public boolean isClient() {
+        return true;
+    }
+
+    @Override
+    public World getClientWorld() {
+        return Minecraft.getMinecraft().world;
     }
 }
