@@ -6,17 +6,11 @@ import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.ModelLoader;
-import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
 public class EmbersConstructRenderer {
-
-    public static void init() {
-        MinecraftForge.EVENT_BUS.register(new EmbersConstructRenderer());
-    }
-
     public static void registerItemRender(String domain, Item item) {
         if (item instanceof IMetaItem) {
             IMetaItem metaItem = (IMetaItem) item;

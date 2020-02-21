@@ -8,6 +8,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraftforge.common.crafting.IngredientNBT;
 import net.minecraftforge.fluids.Fluid;
+import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fml.common.Optional;
 import net.minecraftforge.fml.common.registry.GameRegistry;
@@ -59,7 +60,8 @@ public class RegistryMelting {
         int c = 0;
         Collection<Material> materials = TinkerRegistry.getAllMaterials();
         for (Material material : materials) {
-            Fluid fluid = material.getFluid();
+            Fluid fluid = null;
+            if (FluidRegistry.isFluidRegistered(material.identifier)) fluid = FluidRegistry.getFluid(material.identifier);
             if (fluid != null) {
                 ItemStack repItem = material.getRepresentativeItem();
 
