@@ -51,14 +51,14 @@ public class RegistryStamping {
         int c = 0;
         Collection<Material> materials = TinkerRegistry.getAllMaterials();
         for (Material material : materials) {
-            if (material.isCastable()) {
+            if (FluidRegistry.isFluidRegistered(material.identifier)) {
                 for (int i = 0; i < EnumStampsConarm.values().length; i++) {
                     EnumStampsConarm stamp = EnumStampsConarm.values()[i];
                     Ingredient stampIng = Ingredient.fromStacks(new ItemStack(EmbersConstructItems.StampConarm, 1, i));
                     if (stamp.getPart() instanceof ArmorPart) {
 
                         ItemStack result = ((ArmorPart) stamp.getPart()).getItemstackWithMaterial(material);
-                        FluidStack fluid = new FluidStack(material.getFluid(), ((ArmorPart) stamp.getPart()).getCost());
+                        FluidStack fluid = FluidRegistry.getFluidStack(material.identifier, ((ArmorPart) stamp.getPart()).getCost());
 
                         RecipeRegistry.stampingRecipes.add(new ItemStampingRecipe(Ingredient.EMPTY, fluid, stampIng, result));
                         c++;
