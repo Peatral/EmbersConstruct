@@ -1,12 +1,12 @@
 package com.peatral.embersconstruct.common;
 
-import com.peatral.embersconstruct.common.integration.conarm.ConarmIntegration;
 import net.minecraft.item.Item;
-import net.minecraft.item.crafting.IRecipe;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.event.RegistryEvent;
-import net.minecraftforge.fml.common.*;
+import net.minecraftforge.fml.common.Loader;
+import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
+import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
@@ -25,7 +25,8 @@ public class EmbersConstruct {
             "required-after:tconstruct;" +
             "required-after:embers;" +
             "after:conarm;" +
-            "after:pewter";
+            "after:pewter;" +
+            "after:tinkerscompendium";
     public static final String UPDATE_CHECKER_URL = "https://peatral.github.io/MinecraftMods/embersconstruct/update.json";
 
     @SidedProxy(clientSide = "com.peatral.embersconstruct.client.ClientProxy", serverSide = "com.peatral.embersconstruct.common.CommonProxy")
@@ -67,18 +68,5 @@ public class EmbersConstruct {
     public static void registerModels(ModelRegistryEvent event) {
         proxy.registerItemRenders();
     }
-
-    @SubscribeEvent
-    public static void registerRecipes(RegistryEvent.Register<IRecipe> event) {
-    }
-
-    //Integration handling -----------------------------------------------------------
-
-    @Optional.Method(modid="conarm")
-    @EventHandler
-    public void postInitConarm(FMLPostInitializationEvent event) {
-        ConarmIntegration.postInit(event);
-    }
-
 }
 

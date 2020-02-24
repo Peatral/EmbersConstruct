@@ -2,15 +2,14 @@ package com.peatral.embersconstruct.common.registry;
 
 import com.peatral.embersconstruct.common.EmbersConstruct;
 import com.peatral.embersconstruct.common.EmbersConstructItems;
-import com.peatral.embersconstruct.common.lib.EnumStamps;
-import com.peatral.embersconstruct.common.integration.conarm.lib.EnumStampsConarm;
+import com.peatral.embersconstruct.common.util.MeltingValues;
+import com.peatral.embersconstruct.common.util.Stamp;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraftforge.common.crafting.IngredientNBT;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.fml.common.Optional;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.oredict.OreDictionary;
 import slimeknights.tconstruct.library.TinkerRegistry;
@@ -21,43 +20,25 @@ import teamroots.embers.recipe.ItemMeltingRecipe;
 import teamroots.embers.recipe.RecipeRegistry;
 
 import java.util.Collection;
-import java.util.HashMap;
 import java.util.Map;
 
 public class RegistryMelting {
-    private static Map<String, Integer> MELTING_VALUES = new HashMap<>();
 
-    static {
-        MELTING_VALUES.put("ingot", Material.VALUE_Ingot);
-        MELTING_VALUES.put("ore", Material.VALUE_Ore());
-        MELTING_VALUES.put("block", Material.VALUE_Block);
-        MELTING_VALUES.put("nugget", Material.VALUE_Nugget);
-        MELTING_VALUES.put("dust", Material.VALUE_Ingot);
-        MELTING_VALUES.put("shard", Material.VALUE_Shard);
-        MELTING_VALUES.put("plate", Material.VALUE_Ingot);
-    }
+    private static int c = 0;
 
     public static void main() {
         registerRecipes();
-        //Includes Armorparts #Genius
         registerTinkerRecipes();
     }
 
     public static void registerRecipes() {
-        for (int i = 0; i < EnumStamps.values().length; i++) {
+        for (int i = 0; i < RegistryStamps.values().size(); i++) {
             GameRegistry.addSmelting(new ItemStack(EmbersConstructItems.StampRaw,1, i), new ItemStack(EmbersConstructItems.Stamp, 1, i), 1.0f);
         }
     }
 
-    @Optional.Method(modid="conarm")
-    public static void registerConarmRecipes() {
-        for (int i = 0; i < EnumStampsConarm.values().length; i++) {
-            GameRegistry.addSmelting(new ItemStack(EmbersConstructItems.StampRawConarm, 1, i), new ItemStack(EmbersConstructItems.StampConarm, 1, i), 1.0f);
-        }
-    }
-
     public static void registerTinkerRecipes() {
-        int c = 0;
+
         Collection<Material> materials = TinkerRegistry.getAllMaterials();
         for (Material material : materials) {
             Fluid fluid = null;
@@ -65,54 +46,52 @@ public class RegistryMelting {
             if (fluid != null) {
                 ItemStack repItem = material.getRepresentativeItem();
 
-                //OreDictionary Magic
-                int[] ids = OreDictionary.getOreIDs(repItem);
-                for (int id : ids) {
-                    String name = OreDictionary.getOreName(id);
-                    //Unify name to k_*
-                    for (String type : MELTING_VALUES.keySet()) name = name.replace(type, "k_");
+                registerFromOreDict(repItem, fluid);
 
-                    if (name.startsWith("k_")) {
-                        //Add all "variants"
-                        for (String type : MELTING_VALUES.keySet()) {
-                            int am = MELTING_VALUES.get(type);
-                            String k =  name.replace("k_", type);
-
-                            //Register recipes for "variants"
-                            for (ItemStack stack : OreDictionary.getOres(k)) {
-                                RecipeRegistry.meltingRecipes.add(new ItemMeltingRecipe(Ingredient.fromStacks(stack), new FluidStack(fluid, am)));
-                                c++;
-                            }
-                        }
-
-                    } else {
-                        //If that thing isn't an ingot??
-                        for (ItemStack stack : OreDictionary.getOres(name)) {
-                            RecipeRegistry.meltingRecipes.add(new ItemMeltingRecipe(Ingredient.fromStacks(stack), new FluidStack(fluid, Material.VALUE_Ingot)));
-                            c++;
-                        }
-                    }
-                }
-                //If that thing isn't even in the OreDictionary??
-                if (ids.length == 0) {
-                    RecipeRegistry.meltingRecipes.add(new ItemMeltingRecipe(Ingredient.fromStacks(repItem), new FluidStack(fluid, Material.VALUE_Ingot)));
-                    c++;
-                }
-
-
-
-                //Toolpart smelting
                 for (IToolPart toolPart : TinkerRegistry.getToolParts()) {
-                    if (toolPart instanceof MaterialItem) {
-                        ItemStack stack = toolPart.getItemstackWithMaterial(material);
-                        Ingredient ingredient = new IngredientNBT(stack) {}; // Why was this so hard to find???
-                        RecipeRegistry.meltingRecipes.add(new ItemMeltingRecipe(ingredient, new FluidStack(fluid, toolPart.getCost())));
-                        c++;
+                    if (toolPart.canUseMaterial(material)) {
+                        registerBasic(new IngredientNBT(toolPart.getItemstackWithMaterial(material)) {}, new FluidStack(fluid, toolPart.getCost()));
                     }
                 }
             }
         }
 
+        for (Stamp stamp : RegistryStamps.values()) {
+            if (stamp.usesCustomFluid()) {
+                registerFromOreDict(new ItemStack(stamp.getItem()), stamp.getFluid(), stamp.getCost());
+            }
+        }
+
         EmbersConstruct.logger.info("Registered " + c + " melting recipes from Tinkers'.");
+    }
+
+    public static void registerBasic(ItemStack input, Fluid output, int cost) {
+        registerBasic(Ingredient.fromStacks(input), new FluidStack(output, cost));
+    }
+
+    public static void registerBasic(Ingredient input, FluidStack output) {
+        RecipeRegistry.meltingRecipes.add(new ItemMeltingRecipe(input, output));
+        c++;
+    }
+
+    public static void registerFromOreDict(ItemStack item, Fluid fluid) {
+        registerFromOreDict(item, fluid, MeltingValues.INGOT.getValue());
+    }
+
+
+    public static void registerFromOreDict(ItemStack item, Fluid fluid, int fallbackCost) {
+        Map<String, Integer> oreDictVals = MeltingValues.getValuesFromDict(item);
+
+        for (String k : oreDictVals.keySet()) {
+            //Register recipes for "variants"
+            for (ItemStack stack : OreDictionary.getOres(k)) {
+                registerBasic(Ingredient.fromStacks(stack), new FluidStack(fluid, oreDictVals.get(k)));
+            }
+        }
+
+        //If that thing isn't even in the OreDictionary??
+        if (oreDictVals.size() == 0) {
+            registerBasic(item, fluid, fallbackCost);
+        }
     }
 }
