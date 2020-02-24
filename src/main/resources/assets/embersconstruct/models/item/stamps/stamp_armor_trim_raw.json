@@ -1,0 +1,6 @@
+{
+    "parent": "item/generated",
+    "textures": {
+        "layer0": "embersconstruct:items/stamps/stamp_armor_trim_raw"
+    }
+}
