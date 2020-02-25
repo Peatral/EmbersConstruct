@@ -2,26 +2,38 @@ package com.peatral.embersconstruct.common.registry;
 
 import com.peatral.embersconstruct.common.EmbersConstruct;
 import com.peatral.embersconstruct.common.EmbersConstructItems;
+import com.peatral.embersconstruct.common.util.MeltingValues;
 import com.peatral.embersconstruct.common.util.Stamp;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.oredict.OreDictionary;
 import slimeknights.tconstruct.library.TinkerRegistry;
 import slimeknights.tconstruct.library.materials.Material;
 import slimeknights.tconstruct.library.tools.IToolPart;
+import teamroots.embers.RegistryManager;
 import teamroots.embers.recipe.ItemStampingRecipe;
 import teamroots.embers.recipe.RecipeRegistry;
 
 import java.util.Collection;
+import java.util.Map;
 
 public class RegistryStamping {
 
     private static int c = 0;
 
     public static void main() {
+        registerOreDictRecipes();
         registerTinkerRecipes();
+        EmbersConstruct.logger.info("Registered " + c + " stamping recipes.");
+    }
+
+    public static void registerOreDictRecipes() {
+        registerFromOreDict(MeltingValues.INGOT.getName(), new ItemStack(RegistryManager.stamp_bar), MeltingValues.INGOT.getValue());
+        registerFromOreDict(MeltingValues.GEAR.getName(), new ItemStack(RegistryManager.stamp_gear), MeltingValues.GEAR.getValue());
+        registerFromOreDict(MeltingValues.PLATE.getName(), new ItemStack(RegistryManager.stamp_plate), MeltingValues.PLATE.getValue());
     }
 
     public static void registerTinkerRecipes() {
@@ -29,7 +41,7 @@ public class RegistryStamping {
         for (int i = 0; i < RegistryStamps.values().size(); i++) {
             Stamp stamp = RegistryStamps.values().get(i);
             if (stamp.usesCustomFluid()) {
-                registerBasic(new ItemStack(stamp.getItem()), new FluidStack(stamp.getFluid(), stamp.getCost()), i);
+                registerMeta(new ItemStack(stamp.getItem()), new FluidStack(stamp.getFluid(), stamp.getCost()), i);
             } else {
                 for (Material material : materials) {
                     if (FluidRegistry.isFluidRegistered(material.identifier)) {
@@ -41,18 +53,30 @@ public class RegistryStamping {
                             result = new ItemStack(stamp.getItem());
                         }
                         if (result != null) {
-                            registerBasic(result, FluidRegistry.getFluidStack(material.identifier, stamp.getCost()), i);
+                            registerMeta(result, FluidRegistry.getFluidStack(material.identifier, stamp.getCost()), i);
                         }
                     }
                 }
             }
         }
-        EmbersConstruct.logger.info("Registered " + c + " stamping recipes for Tinkers'.");
+
     }
 
-    public static void registerBasic(ItemStack result, FluidStack fluid, int meta) {
-        Ingredient stampIng = Ingredient.fromStacks(new ItemStack(EmbersConstructItems.Stamp, 1, meta));
-        RecipeRegistry.stampingRecipes.add(new ItemStampingRecipe(Ingredient.EMPTY, fluid, stampIng, result));
+    public static void registerFromOreDict(String key, ItemStack stamp, int cost) {
+        Map<String, Fluid> fluids = FluidRegistry.getRegisteredFluids();
+        for (String fluidName : fluids.keySet()) {
+            for (ItemStack result : OreDictionary.getOres(key + Character.toString(fluidName.charAt(0)).toUpperCase() + fluidName.substring(1))) {
+                register(stamp, result, new FluidStack(fluids.get(fluidName), cost));
+            }
+        }
+    }
+
+    public static void registerMeta(ItemStack result, FluidStack fluid, int meta) {
+        register(new ItemStack(EmbersConstructItems.Stamp, 1, meta), result, fluid);
+    }
+
+    public static void register(ItemStack stamp, ItemStack result, FluidStack fluid) {
+        RecipeRegistry.stampingRecipes.add(new ItemStampingRecipe(Ingredient.EMPTY, fluid, Ingredient.fromStacks(stamp), result));
         c++;
     }
 }

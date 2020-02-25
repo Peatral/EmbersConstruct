@@ -14,7 +14,6 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.oredict.OreDictionary;
 import slimeknights.tconstruct.library.TinkerRegistry;
 import slimeknights.tconstruct.library.materials.Material;
-import slimeknights.tconstruct.library.tinkering.MaterialItem;
 import slimeknights.tconstruct.library.tools.IToolPart;
 import teamroots.embers.recipe.ItemMeltingRecipe;
 import teamroots.embers.recipe.RecipeRegistry;
@@ -28,7 +27,9 @@ public class RegistryMelting {
 
     public static void main() {
         registerRecipes();
+        registerOreDictRecipes();
         registerTinkerRecipes();
+        EmbersConstruct.logger.info("Registered " + c + " melting recipes.");
     }
 
     public static void registerRecipes() {
@@ -37,7 +38,16 @@ public class RegistryMelting {
         }
     }
 
+    public static void registerOreDictRecipes() {
+        for (MeltingValues mv : MeltingValues.values()) {
+            registerFromOreDict(mv.getName(), mv.getValue());
+        }
+    }
+
     public static void registerTinkerRecipes() {
+
+        //No plan how to "convert" the RecipeMatch to the Ingredients
+        //for (MeltingRecipe recipe : TinkerRegistry.getAllMeltingRecipies()) registerBasic(???, recipe.output.getFluid(), recipe.output.amount);
 
         Collection<Material> materials = TinkerRegistry.getAllMaterials();
         for (Material material : materials) {
@@ -61,8 +71,6 @@ public class RegistryMelting {
                 registerFromOreDict(new ItemStack(stamp.getItem()), stamp.getFluid(), stamp.getCost());
             }
         }
-
-        EmbersConstruct.logger.info("Registered " + c + " melting recipes from Tinkers'.");
     }
 
     public static void registerBasic(ItemStack input, Fluid output, int cost) {
@@ -70,8 +78,18 @@ public class RegistryMelting {
     }
 
     public static void registerBasic(Ingredient input, FluidStack output) {
-        RecipeRegistry.meltingRecipes.add(new ItemMeltingRecipe(input, output));
-        c++;
+        ItemMeltingRecipe recipe = new ItemMeltingRecipe(input, output);
+        boolean found = false;
+        for (ItemMeltingRecipe test : RecipeRegistry.meltingRecipes) {
+            if (test.input == input && test.fluid == output) {
+                found = true;
+                break;
+            }
+        }
+        if (output.amount <= 1500 && !found) {
+            RecipeRegistry.meltingRecipes.add(recipe);
+            c++;
+        }
     }
 
     public static void registerFromOreDict(ItemStack item, Fluid fluid) {
@@ -81,7 +99,6 @@ public class RegistryMelting {
 
     public static void registerFromOreDict(ItemStack item, Fluid fluid, int fallbackCost) {
         Map<String, Integer> oreDictVals = MeltingValues.getValuesFromDict(item);
-
         for (String k : oreDictVals.keySet()) {
             //Register recipes for "variants"
             for (ItemStack stack : OreDictionary.getOres(k)) {
@@ -92,6 +109,15 @@ public class RegistryMelting {
         //If that thing isn't even in the OreDictionary??
         if (oreDictVals.size() == 0) {
             registerBasic(item, fluid, fallbackCost);
+        }
+    }
+
+    public static void registerFromOreDict(String key, int cost) {
+        Map<String, Fluid> fluids = FluidRegistry.getRegisteredFluids();
+        for (String fluidName : fluids.keySet()) {
+            for (ItemStack result : OreDictionary.getOres(key + Character.toString(fluidName.charAt(0)).toUpperCase() + fluidName.substring(1))) {
+                registerBasic(result, fluids.get(fluidName), cost);
+            }
         }
     }
 }

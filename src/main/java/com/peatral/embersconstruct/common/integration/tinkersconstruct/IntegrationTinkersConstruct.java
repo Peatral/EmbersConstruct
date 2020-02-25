@@ -1,6 +1,7 @@
 package com.peatral.embersconstruct.common.integration.tinkersconstruct;
 
 import com.peatral.embersconstruct.common.integration.Integration;
+import com.peatral.embersconstruct.common.util.MeltingValues;
 import com.peatral.embersconstruct.common.util.Stamp;
 import net.minecraft.init.Items;
 import net.minecraftforge.event.RegistryEvent;
@@ -26,7 +27,7 @@ public class IntegrationTinkersConstruct extends Integration {
         stamps.add(initStamp("bow_string", TinkerTools.bowString));
         stamps.add(initStamp("broad_axe_head", TinkerTools.broadAxeHead));
         stamps.add(initStamp("cross_guard", TinkerTools.crossGuard));
-        stamps.add(initStamp("emerald", Items.EMERALD, 666, FluidRegistry.getFluid("emerald"))); //GEM!!!!
+        stamps.add(initStamp("emerald", Items.EMERALD, MeltingValues.GEM.getValue(), FluidRegistry.getFluid("emerald")));
         stamps.add(initStamp("excavator_head", TinkerTools.excavatorHead));
         stamps.add(initStamp("fletching", TinkerTools.fletching));
         stamps.add(initStamp("hammer_head", TinkerTools.hammerHead));

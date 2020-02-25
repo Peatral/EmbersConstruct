@@ -38,6 +38,5 @@ public class ClientProxy extends CommonProxy {
     @SubscribeEvent
     public static void registerItemColors(ColorHandlerEvent.Item event) {
         event.getItemColors().registerItemColorHandler((stack, tintIndex) -> 14865332, EmbersConstructItems.Stamp);
-        EmbersConstruct.logger.info("color handler event");
     }
 }

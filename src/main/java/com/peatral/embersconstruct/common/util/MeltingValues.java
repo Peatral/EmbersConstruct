@@ -16,7 +16,9 @@ public enum MeltingValues {
     NUGGET("nugget", Material.VALUE_Nugget),
     DUST("dust", Material.VALUE_Ingot),
     SHARD("shard", Material.VALUE_Shard),
-    PLATE("plate", Material.VALUE_Ingot);
+    PLATE("plate", Material.VALUE_Ingot),
+    GEM("gem", Material.VALUE_Gem),
+    GEAR("gear", Material.VALUE_Ingot * 4);
 
     private String name;
     private int value;
@@ -52,13 +54,16 @@ public enum MeltingValues {
         int[] ids = OreDictionary.getOreIDs(stack);
         for (int id : ids) {
             String name = OreDictionary.getOreName(id);
+
+            boolean gem = name.startsWith(GEM.name);
+
             //Unify name to *_*
             for (String type : MeltingValues.names()) name = name.replace(type, "*_");
 
             if (name.startsWith("*_")) {
                 //Add all "variants"
                 for (MeltingValues mv : MeltingValues.values()) {
-                    map.put(name.replace("*_", mv.getName()), mv.getValue());
+                    map.put(name.replace("*_", mv.name), gem && mv != GEM ? mv.value / INGOT.value * GEM.value : mv.value);
                 }
             }
         }
