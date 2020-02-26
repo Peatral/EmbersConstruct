@@ -1,7 +1,11 @@
 package com.peatral.embersconstruct.common;
 
+import com.peatral.embersconstruct.common.integration.conarm.IntegrationConarm;
+import com.peatral.embersconstruct.common.integration.tinkerscompendium.IntegrationTinkersCompendium;
+import com.peatral.embersconstruct.common.integration.tinkersconstruct.IntegrationTinkersConstruct;
 import net.minecraft.item.Item;
 import net.minecraftforge.client.event.ModelRegistryEvent;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.Mod;
@@ -27,6 +31,7 @@ public class EmbersConstruct {
             "after:conarm;" +
             "after:pewter;" +
             "after:tinkerscompendium";
+
     public static final String UPDATE_CHECKER_URL = "https://peatral.github.io/MinecraftMods/embersconstruct/update.json";
 
     @SidedProxy(clientSide = "com.peatral.embersconstruct.client.ClientProxy", serverSide = "com.peatral.embersconstruct.common.CommonProxy")
@@ -41,6 +46,9 @@ public class EmbersConstruct {
 
     public static boolean isConarmLoaded = false;
 
+    public EmbersConstruct() {
+        registerIntegrations();
+    }
 
     @EventHandler
     public void preInit(FMLPreInitializationEvent event) {
@@ -67,6 +75,17 @@ public class EmbersConstruct {
     @SubscribeEvent
     public static void registerModels(ModelRegistryEvent event) {
         proxy.registerItemRenders();
+    }
+
+    private void registerIntegrations() {
+        // If using @Mod.EventBusSubscriber the registration order is not clear
+        registerToEventBus(IntegrationTinkersConstruct.class);
+        registerToEventBus(IntegrationConarm.class);
+        registerToEventBus(IntegrationTinkersCompendium.class);
+    }
+
+    private static void registerToEventBus(Class clazz){
+        MinecraftForge.EVENT_BUS.register(clazz);
     }
 }
 
