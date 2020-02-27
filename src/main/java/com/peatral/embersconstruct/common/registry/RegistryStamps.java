@@ -9,14 +9,12 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.registries.IForgeRegistry;
 import net.minecraftforge.registries.RegistryBuilder;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 @Mod.EventBusSubscriber
 public class RegistryStamps {
 
     public static IForgeRegistry<Stamp> registry;
-    private static List<Stamp> stamps = new ArrayList<>();
 
     @SubscribeEvent
     public static void registerRegistry(RegistryEvent.NewRegistry event) {
@@ -33,10 +31,19 @@ public class RegistryStamps {
 
     public static void register(RegistryEvent<Stamp> event, Stamp stamp) {
         registry.register(stamp);
-        stamps.add(stamp);
     }
 
     public static List<Stamp> values() {
-        return stamps; //registry is unordered or something, it's a mess when I use registry.getValues()
+        return orderCollection(registry.getValuesCollection());
+    }
+
+    public static List<Stamp> orderCollection(Collection<Stamp> stamps) {
+        List<Stamp> out = new ArrayList<>();
+
+        out.addAll(stamps);
+
+        Collections.sort(out, (s1, s2) -> s1.getName().compareToIgnoreCase(s2.getName()));
+
+        return out;
     }
 }

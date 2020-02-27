@@ -6,12 +6,14 @@ import com.peatral.embersconstruct.common.util.Stamp;
 import net.minecraft.init.Items;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fluids.FluidRegistry;
+import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import slimeknights.tconstruct.tools.TinkerTools;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Mod.EventBusSubscriber
 public class IntegrationTinkersConstruct extends Integration {
 
     public static List<Stamp> stamps = new ArrayList<>();

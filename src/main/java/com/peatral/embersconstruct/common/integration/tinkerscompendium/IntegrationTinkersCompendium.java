@@ -4,12 +4,14 @@ import com.peatral.embersconstruct.common.integration.Integration;
 import com.peatral.embersconstruct.common.util.Stamp;
 import lance5057.tDefense.core.parts.TDParts;
 import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Optional;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Mod.EventBusSubscriber
 public class IntegrationTinkersCompendium extends Integration {
 
     public static List<Stamp> stamps = new ArrayList<>();

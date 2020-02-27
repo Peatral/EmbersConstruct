@@ -4,12 +4,14 @@ import c4.conarm.common.ConstructsRegistry;
 import com.peatral.embersconstruct.common.integration.Integration;
 import com.peatral.embersconstruct.common.util.Stamp;
 import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Optional;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Mod.EventBusSubscriber
 public class IntegrationConarm extends Integration {
 
     public static List<Stamp> stamps = new ArrayList<>();

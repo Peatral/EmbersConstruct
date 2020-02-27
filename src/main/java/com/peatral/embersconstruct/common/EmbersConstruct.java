@@ -46,9 +46,7 @@ public class EmbersConstruct {
 
     public static boolean isConarmLoaded = false;
 
-    public EmbersConstruct() {
-        registerIntegrations();
-    }
+    public EmbersConstruct() {}
 
     @EventHandler
     public void preInit(FMLPreInitializationEvent event) {
@@ -75,17 +73,6 @@ public class EmbersConstruct {
     @SubscribeEvent
     public static void registerModels(ModelRegistryEvent event) {
         proxy.registerItemRenders();
-    }
-
-    private void registerIntegrations() {
-        // If using @Mod.EventBusSubscriber the registration order is not clear
-        registerToEventBus(IntegrationTinkersConstruct.class);
-        registerToEventBus(IntegrationConarm.class);
-        registerToEventBus(IntegrationTinkersCompendium.class);
-    }
-
-    private static void registerToEventBus(Class clazz){
-        MinecraftForge.EVENT_BUS.register(clazz);
     }
 }
 
