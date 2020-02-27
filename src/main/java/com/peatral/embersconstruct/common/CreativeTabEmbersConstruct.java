@@ -17,24 +17,28 @@ public class CreativeTabEmbersConstruct extends CreativeTabs {
     int iconIndex = 0;
     TimeTracker iconTracker = new TimeTracker();
 
-    // Currently not in use
+    public CreativeTabEmbersConstruct() {
+        super("tabEmbersConstruct");
+    }
+
     public void updateIcon() {
         World world = EmbersConstruct.proxy.getClientWorld();
         if (EmbersConstruct.proxy.isClient() && iconTracker.hasDelayPassed(world, 80)) {
-            int next = rand.nextInt(RegistryStamps.values().size() - 1);
-            iconIndex = next >= iconIndex ? next + 1 : next;
+            iconIndex = rand.nextInt(RegistryStamps.values().size());
             iconTracker.markTime(world);
         }
     }
 
-    public CreativeTabEmbersConstruct() {
-        super("tabEmbersConstruct");
+    @Override
+    @SideOnly (Side.CLIENT)
+    public ItemStack getIconItemStack() {
+        return getTabIconItem();
     }
 
     @Override
     @SideOnly(Side.CLIENT)
     public ItemStack getTabIconItem() {
-        // updateIcon();
+        updateIcon();
         return new ItemStack(EmbersConstructItems.Stamp, 1, iconIndex);
     }
 }
