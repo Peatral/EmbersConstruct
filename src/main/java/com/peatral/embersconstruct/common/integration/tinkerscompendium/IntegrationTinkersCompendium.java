@@ -27,7 +27,7 @@ public class IntegrationTinkersCompendium extends Integration {
 
     @Optional.Method(modid = "tinkerscompendium")
     @SubscribeEvent
-    public static void registerStamps(RegistryEvent<Stamp> event) {
+    public static void registerStamps(RegistryEvent.Register<Stamp> event) {
         registerAll(event, stamps);
     }
 }

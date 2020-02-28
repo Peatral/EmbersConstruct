@@ -1,7 +1,6 @@
 package com.peatral.embersconstruct.common.integration;
 
 import com.peatral.embersconstruct.common.util.Stamp;
-import com.peatral.embersconstruct.common.registry.RegistryStamps;
 import net.minecraft.item.Item;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fluids.Fluid;
@@ -19,11 +18,11 @@ public class Integration {
         return new Stamp(part, name, cost, fluid).setRegistryName(name);
     }
 
-    public static void registerAll(RegistryEvent<Stamp> event, List<Stamp> stamps) {
+    public static void registerAll(RegistryEvent.Register<Stamp> event, List<Stamp> stamps) {
         for (Stamp stamp : stamps) register(event, stamp);
     }
 
-    public static void register(RegistryEvent<Stamp> event, Stamp stamp) {
-        RegistryStamps.register(event, stamp);
+    public static void register(RegistryEvent.Register<Stamp> event, Stamp stamp) {
+        event.getRegistry().register(stamp);
     }
 }

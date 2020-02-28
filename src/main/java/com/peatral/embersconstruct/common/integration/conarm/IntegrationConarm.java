@@ -27,7 +27,7 @@ public class IntegrationConarm extends Integration {
 
     @Optional.Method(modid = "conarm")
     @SubscribeEvent
-    public static void registerStamps(RegistryEvent<Stamp> event) {
+    public static void registerStamps(RegistryEvent.Register<Stamp> event) {
         registerAll(event, stamps);
     }
 }

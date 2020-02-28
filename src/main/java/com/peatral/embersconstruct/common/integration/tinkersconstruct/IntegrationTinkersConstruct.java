@@ -53,7 +53,7 @@ public class IntegrationTinkersConstruct extends Integration {
 
     //Not optional to provide basic support (because tinkers is the base mod)!!!
     @SubscribeEvent
-    public static void registerStamps(RegistryEvent<Stamp> event) {
+    public static void registerStamps(RegistryEvent.Register<Stamp> event) {
         registerAll(event, stamps);
     }
 

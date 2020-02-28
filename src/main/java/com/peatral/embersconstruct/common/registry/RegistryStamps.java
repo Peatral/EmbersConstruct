@@ -25,14 +25,6 @@ public class RegistryStamps {
         registry = regBuilder.create();
     }
 
-    public static void registerAll(RegistryEvent<Stamp> event, Stamp... stamps) {
-        for (Stamp stamp : stamps) register(event, stamp);
-    }
-
-    public static void register(RegistryEvent<Stamp> event, Stamp stamp) {
-        registry.register(stamp);
-    }
-
     public static List<Stamp> values() {
         return orderCollection(registry.getValuesCollection());
     }
