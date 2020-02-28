@@ -1,6 +1,8 @@
 item.stamp.name=%1$s Stanze
 item.stamp_raw.name=Rohe %1$s Stanze
 
+oredict.name.gem=Edelstein
+
 #Tab
 itemGroup.tabEmbersConstruct=Embers' Construct
 

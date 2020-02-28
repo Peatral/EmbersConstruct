@@ -6,6 +6,7 @@ import com.peatral.embersconstruct.common.util.MeltingValues;
 import com.peatral.embersconstruct.common.util.Stamp;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
+import net.minecraft.util.NonNullList;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
@@ -17,7 +18,9 @@ import teamroots.embers.RegistryManager;
 import teamroots.embers.recipe.ItemStampingRecipe;
 import teamroots.embers.recipe.RecipeRegistry;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 import java.util.Map;
 
 public class RegistryStamping {
@@ -42,6 +45,26 @@ public class RegistryStamping {
             Stamp stamp = RegistryStamps.values().get(i);
             if (stamp.usesCustomFluid()) {
                 registerMeta(new ItemStack(stamp.getItem()), new FluidStack(stamp.getFluid(), stamp.getCost()), i);
+            } else if (stamp.usesOreDictKey()) {
+                for (String oreDictName : OreDictionary.getOreNames()) {
+                    if (oreDictName.startsWith(stamp.getOreDictKey())) {
+                        NonNullList<ItemStack> ores = OreDictionary.getOres(oreDictName);
+                        for (ItemStack ore : ores) {
+                            List<String> names = new ArrayList<>();
+                            for (String fluidName : FluidRegistry.getRegisteredFluids().keySet()) {
+                                System.out.println(fluidName);
+                                for (int oreId : OreDictionary.getOreIDs(ore)) {
+
+                                    if (OreDictionary.getOreName(oreId).replace(stamp.getOreDictKey(), "").toLowerCase().equals(fluidName)) {
+                                        names.add(fluidName);
+                                    }
+                                }
+                            }
+                            for (String name : names) registerMeta(ore, FluidRegistry.getFluidStack(name, stamp.getCost()), i);
+                        }
+                    }
+                }
+
             } else {
                 for (Material material : materials) {
                     if (FluidRegistry.isFluidRegistered(material.identifier)) {

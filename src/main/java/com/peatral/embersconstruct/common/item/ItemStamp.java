@@ -1,6 +1,7 @@
 package com.peatral.embersconstruct.common.item;
 
 import com.peatral.embersconstruct.common.registry.RegistryStamps;
+import com.peatral.embersconstruct.common.util.Stamp;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
@@ -68,8 +69,9 @@ public class ItemStamp extends ItemEmbersConstruct implements IMetaItem {
 
     @Override
     public String getItemStackDisplayName(ItemStack stack) {
-        Item item = RegistryStamps.values().get(stack.getItemDamage()).getItem();
-        String partName = item != null ? item.getItemStackDisplayName(new ItemStack(item)) : "";
-        return I18n.translateToLocalFormatted("item.stamp" + (raw ? "_raw" : "") + ".name", partName).trim();
+        Stamp stamp = RegistryStamps.values().get(stack.getItemDamage());
+        Item item = stamp.getItem();
+        String name = item != null ? item.getItemStackDisplayName(new ItemStack(item)) : (stamp.usesOreDictKey() ? I18n.translateToLocalFormatted("oredict.name." + stamp.getOreDictKey()) : "");
+        return I18n.translateToLocalFormatted("item.stamp" + (raw ? "_raw" : "") + ".name", name).trim();
     }
 }

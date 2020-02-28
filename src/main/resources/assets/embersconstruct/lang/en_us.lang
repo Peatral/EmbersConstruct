@@ -1,6 +1,8 @@
 item.stamp.name=%1$s Stamp
 item.stamp_raw.name=Raw %1$s Stamp
 
+oredict.name.gem=Gem
+
 #Tab
 itemGroup.tabEmbersConstruct=Embers' Construct
 
