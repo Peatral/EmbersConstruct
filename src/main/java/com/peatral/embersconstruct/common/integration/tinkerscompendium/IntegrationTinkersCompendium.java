@@ -16,18 +16,16 @@ public class IntegrationTinkersCompendium extends Integration {
 
     public static List<Stamp> stamps = new ArrayList<>();
 
-    static {
+    @Optional.Method(modid = "tinkerscompendium")
+    @SubscribeEvent
+    public static void registerStamps(RegistryEvent.Register<Stamp> event) {
         stamps.add(initStamp("armor_plate", TDParts.armorPlate));
         //stamps.add(initStamp("fabric", TDParts.fabric));
         stamps.add(initStamp("rivets", TDParts.rivets));
         stamps.add(initStamp("clasp", TDParts.clasp));
         stamps.add(initStamp("chainmail", TDParts.chainmail));
         stamps.add(initStamp("filigree", TDParts.filigree));
-    }
 
-    @Optional.Method(modid = "tinkerscompendium")
-    @SubscribeEvent
-    public static void registerStamps(RegistryEvent.Register<Stamp> event) {
         registerAll(event, stamps);
     }
 }

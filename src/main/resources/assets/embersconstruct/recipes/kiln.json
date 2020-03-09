@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern":
+  [
+    "xxx",
+    "x x",
+    "xxx"
+  ],
+  "key":
+  {
+
+    "x":
+    {
+      "item": "embers:block_caminite_brick",
+      "data": 1
+    }
+  },
+  "result":
+  {
+    "item": "embersconstruct:kiln",
+    "count": 1
+  }
+}

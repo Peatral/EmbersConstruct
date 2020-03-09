@@ -1,0 +1,12 @@
+{
+  "parent": "block/orientable",
+  "textures": {
+    "particle": "embersconstruct:blocks/kiln_top",
+    "up": "embersconstruct:blocks/kiln_top",
+    "down": "embersconstruct:blocks/kiln_bottom",
+    "north": "embersconstruct:blocks/kiln_front_on",
+    "east": "embersconstruct:blocks/kiln_side",
+    "south": "embersconstruct:blocks/kiln_side",
+    "west": "embersconstruct:blocks/kiln_side"
+  }
+}

@@ -3,6 +3,11 @@ item.stamp_raw.name=Rohe %1$s Stanze
 
 oredict.name.gem=Edelstein
 
+tile.kiln.name=Töpferofen
+container.kiln=Töpferofen
+
+gui.jei.category.kiln=Töpferofenrezepte
+
 #Tab
 itemGroup.tabEmbersConstruct=Embers' Construct
 

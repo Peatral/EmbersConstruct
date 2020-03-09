@@ -1,5 +1,6 @@
 package com.peatral.embersconstruct.common;
 
+import com.peatral.embersconstruct.common.registry.KilnRecipes;
 import com.peatral.embersconstruct.common.registry.RegistryAlloying;
 import com.peatral.embersconstruct.common.registry.RegistryMelting;
 import com.peatral.embersconstruct.common.registry.RegistryStamping;
@@ -27,6 +28,7 @@ public class CommonProxy {
         RegistryMelting.main();
         RegistryAlloying.main();
         RegistryStamping.main();
+        KilnRecipes.main();
     }
 
     public boolean isClient() {
@@ -36,7 +38,5 @@ public class CommonProxy {
     public World getClientWorld() {
         return null;
     }
-
-
 
 }

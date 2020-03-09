@@ -1,9 +1,12 @@
 package com.peatral.embersconstruct.client.render;
 
 import com.peatral.embersconstruct.common.item.IMetaItem;
+import com.peatral.embersconstruct.common.item.ITagItem;
 import net.minecraft.client.renderer.block.model.ModelBakery;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemBlock;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.relauncher.Side;
@@ -25,6 +28,22 @@ public class EmbersConstructRenderer {
             }
 
             return;
+        } else if (item instanceof ITagItem) {
+            ITagItem metaItem = (ITagItem) item;
+
+            ModelLoader.setCustomMeshDefinition(item, stack -> new ModelResourceLocation(new ResourceLocation(domain, metaItem.getTexture(stack)), "inventory"));
+
+            for (ItemStack stack : metaItem.getVariants()) {
+                if (metaItem.getTexture(stack) == null) {
+                    continue;
+                }
+                ModelBakery.registerItemVariants(item, new ModelResourceLocation(new ResourceLocation(domain, metaItem.getTexture(stack)), "inventory"));
+            }
+            ModelBakery.registerItemVariants(item, new ModelResourceLocation(new ResourceLocation(domain, metaItem.getTexture(new ItemStack(item))), "inventory"));
+
+            return;
+        } else if (item instanceof ItemBlock) {
+
         }
         ModelLoader.setCustomModelResourceLocation(item, 0, new ModelResourceLocation(item.getRegistryName(), "inventory"));
     }

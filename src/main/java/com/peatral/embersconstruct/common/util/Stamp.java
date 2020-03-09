@@ -1,12 +1,18 @@
 package com.peatral.embersconstruct.common.util;
 
+import com.peatral.embersconstruct.common.registry.RegistryStamps;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.registries.IForgeRegistryEntry;
 import slimeknights.tconstruct.library.tinkering.MaterialItem;
 import slimeknights.tconstruct.library.tools.IToolPart;
 
 public class Stamp extends IForgeRegistryEntry.Impl<Stamp> {
+
+    public static final String STAMP_PATH = "stamp";
+
     private Item item;
     private String name;
     private int cost;
@@ -65,5 +71,11 @@ public class Stamp extends IForgeRegistryEntry.Impl<Stamp> {
         return oreDictKey != null;
     }
 
+    public static Stamp getStampFromStack(ItemStack stack) {
+        if (stack.getTagCompound() != null && stack.getTagCompound().hasKey(STAMP_PATH)) {
+            return RegistryStamps.registry.getValue(new ResourceLocation(stack.getTagCompound().getString(STAMP_PATH)));
+        }
 
+        return null;
+    }
 }

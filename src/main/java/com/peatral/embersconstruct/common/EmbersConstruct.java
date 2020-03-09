@@ -1,11 +1,12 @@
 package com.peatral.embersconstruct.common;
 
-import com.peatral.embersconstruct.common.integration.conarm.IntegrationConarm;
-import com.peatral.embersconstruct.common.integration.tinkerscompendium.IntegrationTinkersCompendium;
-import com.peatral.embersconstruct.common.integration.tinkersconstruct.IntegrationTinkersConstruct;
+import com.peatral.embersconstruct.client.gui.GuiHandler;
+import com.peatral.embersconstruct.common.tileentity.TileEntityKiln;
+import net.minecraft.block.Block;
 import net.minecraft.item.Item;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.event.ModelRegistryEvent;
-import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.Mod;
@@ -15,6 +16,8 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.network.NetworkRegistry;
+import net.minecraftforge.fml.common.registry.GameRegistry;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -24,7 +27,7 @@ public class EmbersConstruct {
     public static final String MODID = "embersconstruct";
     public static final String MOD_NAME = "Embers' Construct";
     public static final String NAME = "Embers Construct";
-    public static final String VERSION = "1.1.2";
+    public static final String VERSION = "1.2.0";
     public static final String DEPENDENCIES =
             "required-after:tconstruct;" +
             "required-after:embers;" +
@@ -58,6 +61,8 @@ public class EmbersConstruct {
     @EventHandler
     public void init(FMLInitializationEvent event) {
         proxy.init(event);
+        NetworkRegistry.INSTANCE.registerGuiHandler(instance, new GuiHandler());
+        registerTileEntities();
     }
 
     @EventHandler
@@ -66,13 +71,27 @@ public class EmbersConstruct {
     }
 
     @SubscribeEvent
+    public static void registerBlocks(RegistryEvent.Register<Block> event) {
+        EmbersConstructBlocks.registerBlocks(event.getRegistry());
+    }
+
+    @SubscribeEvent
     public static void registerItems(RegistryEvent.Register<Item> event) {
         EmbersConstructItems.main(event.getRegistry());
+        EmbersConstructBlocks.registerItemBlocks(event.getRegistry());
     }
 
     @SubscribeEvent
     public static void registerModels(ModelRegistryEvent event) {
         proxy.registerItemRenders();
+    }
+
+    public void registerTileEntities() {
+        registerTileEntity(TileEntityKiln.class, "kiln");
+    }
+
+    private static void registerTileEntity(Class<? extends TileEntity> clazz, String name) {
+        GameRegistry.registerTileEntity(clazz, new ResourceLocation(MODID, name));
     }
 }
 

@@ -3,6 +3,11 @@ item.stamp_raw.name=Raw %1$s Stamp
 
 oredict.name.gem=Gem
 
+tile.kiln.name=Kiln
+container.kiln=Kiln
+
+gui.jei.category.kiln=Pyroprocessing
+
 #Tab
 itemGroup.tabEmbersConstruct=Embers' Construct
 

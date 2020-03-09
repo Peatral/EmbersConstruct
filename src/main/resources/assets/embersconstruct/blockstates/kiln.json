@@ -1,0 +1,13 @@
+{
+  "variants":
+  {
+    "burning=false,facing=north": { "model": "embersconstruct:kiln" },
+    "burning=false,facing=east": { "model": "embersconstruct:kiln", "y": 90 },
+    "burning=false,facing=south": { "model": "embersconstruct:kiln", "y": 180 },
+    "burning=false,facing=west": { "model": "embersconstruct:kiln", "y": 270 },
+    "burning=true,facing=north": { "model": "embersconstruct:lit_kiln" },
+    "burning=true,facing=east": { "model": "embersconstruct:lit_kiln", "y": 90 },
+    "burning=true,facing=south": { "model": "embersconstruct:lit_kiln", "y": 180 },
+    "burning=true,facing=west": { "model": "embersconstruct:lit_kiln", "y":270  }
+  }
+}

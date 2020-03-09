@@ -3,7 +3,6 @@ package com.peatral.embersconstruct.common;
 import com.peatral.embersconstruct.common.item.ItemStamp;
 import net.minecraft.item.Item;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.registries.IForgeRegistry;
 
@@ -21,7 +20,6 @@ public class EmbersConstructItems {
         registerItems(registry);
     }
 
-    @SubscribeEvent
     public static void registerItems(IForgeRegistry<Item> registry) {
         registry.register(init(StampRaw, "stamp_raw"));
         registry.register(init(Stamp, "stamp"));

@@ -1,7 +1,6 @@
 package com.peatral.embersconstruct.common.registry;
 
 import com.peatral.embersconstruct.common.EmbersConstruct;
-import com.peatral.embersconstruct.common.EmbersConstructItems;
 import com.peatral.embersconstruct.common.util.MeltingValues;
 import com.peatral.embersconstruct.common.util.Stamp;
 import net.minecraft.item.ItemStack;
@@ -10,7 +9,6 @@ import net.minecraftforge.common.crafting.IngredientNBT;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.oredict.OreDictionary;
 import slimeknights.tconstruct.library.TinkerRegistry;
 import slimeknights.tconstruct.library.materials.Material;
@@ -32,11 +30,7 @@ public class RegistryMelting {
         EmbersConstruct.logger.info("Registered " + c + " melting recipes.");
     }
 
-    public static void registerRecipes() {
-        for (int i = 0; i < RegistryStamps.values().size(); i++) {
-            GameRegistry.addSmelting(new ItemStack(EmbersConstructItems.StampRaw,1, i), new ItemStack(EmbersConstructItems.Stamp, 1, i), 1.0f);
-        }
-    }
+    public static void registerRecipes() {}
 
     public static void registerOreDictRecipes() {
         for (MeltingValues mv : MeltingValues.values()) {
@@ -66,7 +60,7 @@ public class RegistryMelting {
             }
         }
 
-        for (Stamp stamp : RegistryStamps.values()) {
+        for (Stamp stamp : RegistryStamps.registry.getValuesCollection()) {
             if (stamp.usesCustomFluid()) {
                 registerFromOreDict(new ItemStack(stamp.getItem()), stamp.getFluid(), stamp.getCost());
             }
