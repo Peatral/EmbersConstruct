@@ -7,10 +7,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
-import net.minecraft.inventory.Container;
-import net.minecraft.inventory.IInventory;
-import net.minecraft.inventory.ISidedInventory;
-import net.minecraft.inventory.ItemStackHelper;
+import net.minecraft.inventory.*;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -28,7 +25,7 @@ public class TileEntityKiln extends TileEntityLockable implements ITickable, ISi
     private static final int[] SLOTS_BOTTOM = new int[] {2, 1};
     private static final int[] SLOTS_SIDES = new int[] {1};
     /** The ItemStacks that hold the items currently being used in the kiln */
-    private NonNullList<ItemStack> kilnItemStacks = NonNullList.<ItemStack>withSize(3, ItemStack.EMPTY);
+    private NonNullList<ItemStack> kilnItemStacks = NonNullList.withSize(3, ItemStack.EMPTY);
     /** The number of ticks that the kiln will keep burning */
     private int kilnBurnTime;
     /** The number of ticks that a fresh copy of the currently-burning item would keep the kiln burning for */
@@ -239,7 +236,7 @@ public class TileEntityKiln extends TileEntityLockable implements ITickable, ISi
                 itemstack2.grow(itemstack1.getCount());
             }
 
-            if (itemstack.getItem() == Item.getItemFromBlock(Blocks.SPONGE) && itemstack.getMetadata() == 1 && !this.kilnItemStacks.get(1).isEmpty() && this.kilnItemStacks.get(1).getItem() == Items.BUCKET) {
+            if (itemstack.getItem() == Item.getItemFromBlock(Blocks.SPONGE) && itemstack.getMetadata() == 1 && !((ItemStack)this.kilnItemStacks.get(1)).isEmpty() && ((ItemStack)this.kilnItemStacks.get(1)).getItem() == Items.BUCKET) {
                 this.kilnItemStacks.set(1, new ItemStack(Items.WATER_BUCKET));
             }
 
@@ -276,7 +273,7 @@ public class TileEntityKiln extends TileEntityLockable implements ITickable, ISi
             return true;
         } else {
             ItemStack itemstack = this.kilnItemStacks.get(1);
-            return isItemFuel(stack);
+            return isItemFuel(stack) || SlotFurnaceFuel.isBucket(stack) && itemstack.getItem() != Items.BUCKET;
         }
     }
 
