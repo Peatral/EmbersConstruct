@@ -3,6 +3,7 @@ package com.peatral.embersconstruct.common.util;
 import com.peatral.embersconstruct.common.registry.RegistryStamps;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.registries.IForgeRegistryEntry;
@@ -77,5 +78,14 @@ public class Stamp extends IForgeRegistryEntry.Impl<Stamp> {
         }
 
         return null;
+    }
+
+    public static ItemStack putStamp(ItemStack stack, Stamp stamp) {
+        NBTTagCompound compound;
+        if (stack.getTagCompound() == null) compound = new NBTTagCompound();
+        else compound = stack.getTagCompound();
+        compound.setString(STAMP_PATH, stamp.getRegistryName().toString());
+        stack.setTagCompound(compound);
+        return stack;
     }
 }

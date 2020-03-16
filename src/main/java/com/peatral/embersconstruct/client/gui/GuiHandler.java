@@ -1,5 +1,6 @@
 package com.peatral.embersconstruct.client.gui;
 
+import com.peatral.embersconstruct.common.inventory.ContainerKiln;
 import com.peatral.embersconstruct.common.tileentity.TileEntityKiln;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;

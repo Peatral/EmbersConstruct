@@ -6,6 +6,9 @@ oredict.name.gem=Gem
 tile.kiln.name=Kiln
 container.kiln=Kiln
 
+tile.stamptable.name=Stamp Table
+gui.stamptable.name=Stamp Table
+
 gui.jei.category.kiln=Pyroprocessing
 
 #Tab

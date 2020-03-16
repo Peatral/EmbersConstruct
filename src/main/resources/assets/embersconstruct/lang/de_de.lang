@@ -6,7 +6,10 @@ oredict.name.gem=Edelstein
 tile.kiln.name=Töpferofen
 container.kiln=Töpferofen
 
-gui.jei.category.kiln=Töpferofenrezepte
+tile.stamptable.name=Stanzentisch
+gui.stamptable.name=Stanzentisch
+
+gui.jei.category.kiln=Pyroverarbeitung
 
 #Tab
 itemGroup.tabEmbersConstruct=Embers' Construct

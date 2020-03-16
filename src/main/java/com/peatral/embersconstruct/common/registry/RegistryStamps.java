@@ -1,7 +1,10 @@
 package com.peatral.embersconstruct.common.registry;
 
 import com.peatral.embersconstruct.common.EmbersConstruct;
+import com.peatral.embersconstruct.common.EmbersConstructItems;
+import com.peatral.embersconstruct.common.item.ItemStamp;
 import com.peatral.embersconstruct.common.util.Stamp;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -37,5 +40,13 @@ public class RegistryStamps {
         Collections.sort(out, (s1, s2) -> s1.getName().compareToIgnoreCase(s2.getName()));
 
         return out;
+    }
+
+    public static List<ItemStack> getStampTableCrafting() {
+        List<ItemStack> stacks = new ArrayList<>();
+        for (Stamp stamp : values()) {
+            stacks.add(((ItemStamp) EmbersConstructItems.StampRaw).fromStamp(stamp));
+        }
+        return stacks;
     }
 }

@@ -1,4 +1,4 @@
-package com.peatral.embersconstruct.client.gui;
+package com.peatral.embersconstruct.common.inventory;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;

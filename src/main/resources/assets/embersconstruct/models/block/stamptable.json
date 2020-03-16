@@ -1,0 +1,105 @@
+{
+    "__comment": "Model generated using MrCrayfish's Model Creator (https://mrcrayfish.com/tools?id=mc)",
+    "textures": {
+        "particle": "minecraft:blocks/planks_oak",
+        "table_legs": "embersconstruct:blocks/table_legs",
+        "table_sides": "embersconstruct:blocks/table_sides",
+        "table_top": "embersconstruct:blocks/table_top",
+        "planks_oak": "minecraft:blocks/planks_oak"
+    },
+    "display": {
+        "gui": {
+            "rotation": [ 30, 45, 0 ],
+            "translation": [ 0, 0, 0 ],
+            "scale": [ 0.625, 0.625, 0.625 ]
+        },
+        "ground": {
+            "rotation": [ 0, 0, 0 ],
+            "translation": [ 0, 3, 0 ],
+            "scale": [ 0.25, 0.25, 0.25 ]
+        },
+        "fixed": {
+            "rotation": [ 0, 180, 0 ],
+            "translation": [ 0, 0, 0 ],
+            "scale": [ 1, 1, 1 ]
+        },
+        "head": {
+            "rotation": [ 0, 180, 0 ],
+            "translation": [ 0, 0, 0 ],
+            "scale": [ 1, 1, 1 ]
+        },
+        "firstperson_righthand": {
+            "rotation": [ 0, 315, 0 ],
+            "translation": [ 0, 2.5, 0 ],
+            "scale": [ 0.4, 0.4, 0.4 ]
+        },
+        "thirdperson_righthand": {
+            "rotation": [ 75, 315, 0 ],
+            "translation": [ 0, 2.5, 0 ],
+            "scale": [ 0.375, 0.375, 0.375 ]
+        }
+    },
+    "elements": [
+        {
+            "name": "Leg_1",
+            "from": [ 0, 0, 0 ], 
+            "to": [ 4, 12, 4 ], 
+            "faces": {
+                "north": { "texture": "#table_legs", "uv": [ 4, 4, 8, 16 ] },
+                "east": { "texture": "#table_legs", "uv": [ 0, 4, 4, 16 ] },
+                "south": { "texture": "#table_legs", "uv": [ 8, 4, 12, 16 ] },
+                "west": { "texture": "#table_legs", "uv": [ 12, 4, 16, 16 ] },
+                "down": { "texture": "#table_legs", "uv": [ 4, 0, 8, 4 ] }
+            }
+        },
+        {
+            "name": "Leg_2",
+            "from": [ 12, 0, 0 ], 
+            "to": [ 16, 12, 4 ], 
+            "faces": {
+                "north": { "texture": "#table_legs", "uv": [ 8, 4, 12, 16 ] },
+                "east": { "texture": "#table_legs", "uv": [ 12, 4, 16, 16 ] },
+                "south": { "texture": "#table_legs", "uv": [ 0, 4, 4, 16 ] },
+                "west": { "texture": "#table_legs", "uv": [ 4, 4, 8, 16 ] },
+                "down": { "texture": "#table_legs", "uv": [ 12, 0, 16, 4 ] }
+            }
+        },
+        {
+            "name": "Leg_3",
+            "from": [ 12, 0, 12 ], 
+            "to": [ 16, 12, 16 ], 
+            "faces": {
+                "north": { "texture": "#table_legs", "uv": [ 4, 4, 8, 16 ] },
+                "east": { "texture": "#table_legs", "uv": [ 0, 4, 4, 16 ] },
+                "south": { "texture": "#table_legs", "uv": [ 8, 4, 12, 16 ] },
+                "west": { "texture": "#table_legs", "uv": [ 12, 4, 16, 16 ] },
+                "down": { "texture": "#table_legs", "uv": [ 8, 0, 12, 4 ] }
+            }
+        },
+        {
+            "name": "Leg_4",
+            "from": [ 0, 0, 12 ], 
+            "to": [ 4, 12, 16 ], 
+            "faces": {
+                "north": { "texture": "#table_legs", "uv": [ 0, 4, 4, 16 ] },
+                "east": { "texture": "#table_legs", "uv": [ 12, 4, 16, 16 ] },
+                "south": { "texture": "#table_legs", "uv": [ 0, 4, 4, 16 ] },
+                "west": { "texture": "#table_legs", "uv": [ 8, 4, 12, 16 ] },
+                "down": { "texture": "#table_legs", "uv": [ 0, 0, 4, 4 ] }
+            }
+        },
+        {
+            "name": "TableTop",
+            "from": [ 0, 12, 0 ], 
+            "to": [ 16, 16, 16 ], 
+            "faces": {
+                "north": { "texture": "#table_sides", "uv": [ 0, 0, 16, 4 ], "rotation": 180 },
+                "east": { "texture": "#table_sides", "uv": [ 0, 4, 16, 8 ] },
+                "south": { "texture": "#table_sides", "uv": [ 0, 8, 16, 12 ] },
+                "west": { "texture": "#table_sides", "uv": [ 0, 12, 16, 16 ] },
+                "up": { "texture": "#table_top", "uv": [ 0, 0, 16, 16 ] },
+                "down": { "texture": "#planks_oak", "uv": [ 0, 0, 16, 16 ] }
+            }
+        }
+    ]
+}

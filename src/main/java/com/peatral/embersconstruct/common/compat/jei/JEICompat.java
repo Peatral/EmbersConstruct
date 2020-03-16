@@ -1,6 +1,7 @@
 package com.peatral.embersconstruct.common.compat.jei;
 
-import com.peatral.embersconstruct.client.gui.ContainerKiln;
+import com.peatral.embersconstruct.common.EmbersConstructItems;
+import com.peatral.embersconstruct.common.inventory.ContainerKiln;
 import com.peatral.embersconstruct.client.gui.GuiKiln;
 import com.peatral.embersconstruct.common.EmbersConstructBlocks;
 import com.peatral.embersconstruct.common.compat.jei.categories.KilnRecipeCategory;
@@ -21,6 +22,9 @@ import java.util.IllegalFormatException;
 public class JEICompat implements IModPlugin {
     @Override
     public void registerItemSubtypes(ISubtypeRegistry subtypeRegistry) {
+        StampSubtypeInterpreter stampSubtypeInterpreter = new StampSubtypeInterpreter();
+        subtypeRegistry.registerSubtypeInterpreter(EmbersConstructItems.Stamp, stampSubtypeInterpreter);
+        subtypeRegistry.registerSubtypeInterpreter(EmbersConstructItems.StampRaw, stampSubtypeInterpreter);
     }
 
     @Override

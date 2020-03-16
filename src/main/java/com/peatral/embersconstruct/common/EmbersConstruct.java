@@ -1,7 +1,9 @@
 package com.peatral.embersconstruct.common;
 
 import com.peatral.embersconstruct.client.gui.GuiHandler;
+import com.peatral.embersconstruct.common.network.StampTableSelectionPacket;
 import com.peatral.embersconstruct.common.tileentity.TileEntityKiln;
+import com.peatral.embersconstruct.common.tileentity.TileEntityStampTable;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.tileentity.TileEntity;
@@ -20,6 +22,7 @@ import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import slimeknights.tconstruct.common.TinkerNetwork;
 
 @Mod(modid = EmbersConstruct.MODID, name = EmbersConstruct.NAME, version = EmbersConstruct.VERSION, dependencies = EmbersConstruct.DEPENDENCIES, updateJSON = EmbersConstruct.UPDATE_CHECKER_URL)
 @Mod.EventBusSubscriber
@@ -88,6 +91,7 @@ public class EmbersConstruct {
 
     public void registerTileEntities() {
         registerTileEntity(TileEntityKiln.class, "kiln");
+        registerTileEntity(TileEntityStampTable.class, "stamptable");
     }
 
     private static void registerTileEntity(Class<? extends TileEntity> clazz, String name) {

@@ -1,4 +1,4 @@
-package com.peatral.embersconstruct.client.gui;
+package com.peatral.embersconstruct.common.inventory;
 
 import com.peatral.embersconstruct.common.tileentity.TileEntityKiln;
 import net.minecraft.init.Items;

@@ -10,8 +10,10 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.text.translation.I18n;
 import net.minecraft.world.World;
+import slimeknights.tconstruct.common.config.Config;
 import slimeknights.tconstruct.library.Util;
 import slimeknights.tconstruct.library.materials.Material;
+import slimeknights.tconstruct.library.tools.IPattern;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -63,6 +65,7 @@ public class ItemStamp extends ItemEmbersConstruct implements ITagItem {
     @Override
     public void getSubItems(@Nonnull CreativeTabs tabs, @Nonnull NonNullList<ItemStack> itemList) {
         if (isInCreativeTab(tabs)) {
+            itemList.add(new ItemStack(this));
             for (Stamp s : RegistryStamps.registry.getValuesCollection()) itemList.add(fromStamp(s));
         }
     }
@@ -97,4 +100,18 @@ public class ItemStamp extends ItemEmbersConstruct implements ITagItem {
         stack.setTagCompound(tags);
         return stack;
     }
+
+    public boolean isRaw() {
+        return raw;
+    }
+
+    public boolean isBlank(ItemStack stack) {
+        if(stack.isEmpty() || !(stack.getItem() instanceof ItemStamp)) {
+            return false;
+        }
+
+        return Stamp.getStampFromStack(stack) == null;
+    }
+
+
 }

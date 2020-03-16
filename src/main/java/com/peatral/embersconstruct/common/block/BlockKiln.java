@@ -53,11 +53,7 @@ public class BlockKiln extends BlockEmbersConstruct implements ITileEntityProvid
 
     @Override
     public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
-        if (!worldIn.isRemote) {
-            playerIn.openGui(EmbersConstruct.instance, GuiHandler.GUI_KILN, worldIn, pos.getX(), pos.getY(), pos.getZ());
-        }
-
-        return true;
+        return openGui(playerIn, worldIn, pos);
     }
 
     @Override
@@ -88,6 +84,11 @@ public class BlockKiln extends BlockEmbersConstruct implements ITileEntityProvid
             tileentity.validate();
             world.setTileEntity(pos, tileentity);
         }
+    }
+
+    @Override
+    public int getLightValue(IBlockState state) {
+        return state.getValue(BURNING) ? 13 : super.getLightValue(state);
     }
 
     @Nullable
@@ -178,5 +179,12 @@ public class BlockKiln extends BlockEmbersConstruct implements ITileEntityProvid
                     worldIn.spawnParticle(EnumParticleTypes.FLAME, d0 + d4, d1, d2 + 0.52D, 0.0D, 0.0D, 0.0D);
             }
         }
+    }
+
+    public boolean openGui(EntityPlayer player, World world, BlockPos pos) {
+        if (!world.isRemote) {
+            player.openGui(EmbersConstruct.instance, GuiHandler.GUI_KILN, world, pos.getX(), pos.getY(), pos.getZ());
+        }
+        return true;
     }
 }

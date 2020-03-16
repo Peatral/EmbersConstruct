@@ -1,6 +1,5 @@
 {
-  "variants":
-  {
+  "variants": {
     "burning=false,facing=north": { "model": "embersconstruct:kiln" },
     "burning=false,facing=east": { "model": "embersconstruct:kiln", "y": 90 },
     "burning=false,facing=south": { "model": "embersconstruct:kiln", "y": 180 },

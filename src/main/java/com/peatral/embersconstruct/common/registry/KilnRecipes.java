@@ -1,16 +1,12 @@
 package com.peatral.embersconstruct.common.registry;
 
-import com.google.common.collect.Lists;
 import com.peatral.embersconstruct.common.EmbersConstructItems;
 import com.peatral.embersconstruct.common.item.ItemStamp;
 import com.peatral.embersconstruct.common.util.Stamp;
-import mezz.jei.api.ingredients.IIngredients;
-import mezz.jei.api.recipe.IRecipeWrapper;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraftforge.common.crafting.IngredientNBT;
-import net.minecraftforge.fml.common.Optional;
 import teamroots.embers.RegistryManager;
 
 import java.util.ArrayList;
