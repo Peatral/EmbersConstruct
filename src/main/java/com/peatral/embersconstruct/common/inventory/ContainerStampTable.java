@@ -1,5 +1,6 @@
 package com.peatral.embersconstruct.common.inventory;
 
+import com.peatral.embersconstruct.common.EmbersConstruct;
 import com.peatral.embersconstruct.common.network.StampTableSelectionPacket;
 import com.peatral.embersconstruct.common.registry.RegistryStamps;
 import com.peatral.embersconstruct.common.registry.StampTableRecipes;
@@ -8,6 +9,7 @@ import com.peatral.embersconstruct.common.util.Stamp;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.entity.player.InventoryPlayer;
+import net.minecraft.init.Items;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.InventoryCraftResult;
 import net.minecraft.inventory.Slot;
@@ -54,7 +56,7 @@ public class ContainerStampTable extends ContainerTinkerStation<TileEntityStampT
     public void setOutput(Stamp stamp) {
 
         for(Stamp candidate : RegistryStamps.values()) {
-            if(stamp == candidate) {
+            if(stamp.equals(candidate)) {
                 output = stamp;
                 updateResult();
                 return;
@@ -68,14 +70,12 @@ public class ContainerStampTable extends ContainerTinkerStation<TileEntityStampT
     }
 
     public void updateResult() {
-        if(craftMatrix.getStackInSlot(0).isEmpty() || output == null) {
+        if (craftMatrix.getStackInSlot(0).isEmpty() || output == null) {
             craftResult.setInventorySlotContents(0, ItemStack.EMPTY);
+        } else {
+            craftResult.setInventorySlotContents(0, StampTableRecipes.instance().getResultWithStamp(craftMatrix.getStackInSlot(0), output));
         }
-        else {
-            ItemStack stack = StampTableRecipes.instance().getResult(craftMatrix.getStackInSlot(0));
-            stack = Stamp.putStamp(stack, output);
-            craftResult.setInventorySlotContents(0, stack);
-        }
+
     }
 
     @Override

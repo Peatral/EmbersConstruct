@@ -46,6 +46,12 @@ public class StampTableRecipes {
         return ItemStack.EMPTY;
     }
 
+    public ItemStack getResultWithStamp(ItemStack input, Stamp stamp) {
+        ItemStack stack = getResult(input).copy();
+        if (stack != ItemStack.EMPTY) return Stamp.putStamp(stack, stamp);
+        return stack;
+    }
+
     public List<StampTableRecipes.Recipe> getRecipeList() {
         return this.recipeList;
     }
