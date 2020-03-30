@@ -1,0 +1,23 @@
+item.stamp.name=Poinçon de %1$s
+item.stamp_raw.name=Brut Poinçon de %1$s
+
+oredict.name.gem=Gemme
+
+tile.kiln.name=Four à Poterie
+container.kiln=Four à Poterie
+
+tile.stamptable.name=Table du Poinçon
+gui.stamptable.name=Table du Poinçon
+
+gui.jei.category.kiln=Pyro-Traitement
+
+#Tab
+itemGroup.tabEmbersConstruct=Embers' Construct
+
+#Update-Checker
+embersconstruct.outdated=La version nouvelle %1$s de Embers' Construct est disponible.
+embersconstruct.outdated.hover=Cliquez pour ouvrir la page de téléchargement.
+
+#Config
+embersconstruct.config.section.general=General
+embersconstruct.config.showNewVersionMessage=Envoyer le message de la version nouvelle
