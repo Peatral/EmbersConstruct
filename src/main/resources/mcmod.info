@@ -5,10 +5,10 @@
   "description": "Do all the tinkers' stuff in embers machinery. Also supports Constructs' Armory.",
   "version": "${version}",
   "mcversion": "${mcversion}",
-  "url": "",
+  "url": "https://www.curseforge.com/minecraft/mc-mods/embersconstruct",
   "updateUrl": "",
   "authorList": ["Peatral"],
-  "credits": "terrapin47 for the idea and textures.",
+  "credits": "terrapin47 for the idea and textures and Clefal for the chinese localization.",
   "logoFile": "",
   "screenshots": [],
   "dependencies": ["required-after:embers", "required-after:tconstruct"]
