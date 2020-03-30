@@ -14,7 +14,6 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
-@Mod.EventBusSubscriber
 public class ClientProxy extends CommonProxy {
     @Override
     public void registerItemRenders() {
@@ -33,10 +32,5 @@ public class ClientProxy extends CommonProxy {
     @Override
     public World getClientWorld() {
         return Minecraft.getMinecraft().world;
-    }
-
-    @SubscribeEvent
-    public static void registerItemColors(ColorHandlerEvent.Item event) {
-        event.getItemColors().registerItemColorHandler((stack, tintIndex) -> 14865332, EmbersConstructItems.Stamp);
     }
 }
