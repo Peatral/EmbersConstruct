@@ -80,7 +80,7 @@ public class TileEntityKiln extends TileEntityLockable implements ITickable, ISi
     }
 
     public String getName() {
-        return this.hasCustomName() ? this.kilnCustomName : "container.kiln";
+        return this.hasCustomName() ? this.kilnCustomName : "container.embersconstruct.kiln";
     }
 
     public boolean hasCustomName() {

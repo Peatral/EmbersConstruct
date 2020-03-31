@@ -31,7 +31,7 @@ public class EmbersConstructBlocks {
     }
 
     public static Block init(Block block, String name) {
-        block = block.setUnlocalizedName(name).setRegistryName(new ResourceLocation(EmbersConstruct.MODID, name));
+        block = block.setUnlocalizedName(EmbersConstruct.MODID + "." + name).setRegistryName(new ResourceLocation(EmbersConstruct.MODID, name));
         blocks.add(block);
         return block;
     }

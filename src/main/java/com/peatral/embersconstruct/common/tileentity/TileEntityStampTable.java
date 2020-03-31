@@ -13,7 +13,7 @@ import slimeknights.tconstruct.tools.common.tileentity.TileToolStation;
 
 public class TileEntityStampTable extends TileToolStation {
     public TileEntityStampTable() {
-        this.inventoryTitle = "gui.stamptable.name";
+        this.inventoryTitle = "gui.embersconstruct.stamptable.name";
     }
 
     @SideOnly(Side.CLIENT)

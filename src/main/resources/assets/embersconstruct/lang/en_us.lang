@@ -1,15 +1,16 @@
-item.stamp.name=%1$s Stamp
-item.stamp_raw.name=Raw %1$s Stamp
+item.embersconstruct.stamp.name=%1$s Stamp
+item.embersconstruct.stamp_raw.name=Raw %1$s Stamp
 
 oredict.name.gem=Gem
 
-tile.kiln.name=Kiln
-container.kiln=Kiln
+tile.embersconstruct.kiln.name=Kiln
+container.embersconstruct.kiln=Kiln
 
-tile.stamptable.name=Stamp Table
-gui.stamptable.name=Stamp Table
+tile.embersconstruct.stamptable.name=Stamp Table
+gui.embersconstruct.stamptable.name=Stamp Table
 
 gui.jei.category.kiln=Pyroprocessing
+gui.jei.category.stamptable=Stamp Table
 
 #Tab
 itemGroup.tabEmbersConstruct=Embers' Construct

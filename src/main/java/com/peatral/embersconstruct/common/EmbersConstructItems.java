@@ -26,7 +26,7 @@ public class EmbersConstructItems {
     }
 
     public static Item init(Item item, String name) {
-        item = item.setUnlocalizedName(name).setRegistryName(new ResourceLocation(EmbersConstruct.MODID, name));
+        item = item.setUnlocalizedName(EmbersConstruct.MODID + "." + name).setRegistryName(new ResourceLocation(EmbersConstruct.MODID, name));
         items.add(item);
         return item;
     }

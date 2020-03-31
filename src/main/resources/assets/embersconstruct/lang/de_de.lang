@@ -1,15 +1,16 @@
-item.stamp.name=%1$s Stanze
-item.stamp_raw.name=Rohe %1$s Stanze
+item.embersconstruct.stamp.name=%1$s Stanze
+item.embersconstruct.stamp_raw.name=Rohe %1$s Stanze
 
 oredict.name.gem=Edelstein
 
-tile.kiln.name=Töpferofen
-container.kiln=Töpferofen
+tile.embersconstruct.kiln.name=Töpferofen
+container.embersconstruct.kiln=Töpferofen
 
-tile.stamptable.name=Stanzentisch
-gui.stamptable.name=Stanzentisch
+tile.embersconstruct.stamptable.name=Stanzentisch
+gui.embersconstruct.stamptable.name=Stanzentisch
 
 gui.jei.category.kiln=Pyroverarbeitung
+gui.jei.category.stamptable=Stanzentisch
 
 #Tab
 itemGroup.tabEmbersConstruct=Embers' Construct

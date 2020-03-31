@@ -75,7 +75,7 @@ public class ItemStamp extends ItemEmbersConstruct implements ITagItem {
     public String getUnlocalizedName(ItemStack stack) {
         Stamp stamp = Stamp.getStampFromStack(stack);
         if (stamp != null) {
-            return "item.stamp_" + stamp.getName().toLowerCase(Locale.ROOT) + (raw ? "_raw" : "");
+            return "item.embersconstruct.stamp_" + stamp.getName().toLowerCase(Locale.ROOT) + (raw ? "_raw" : "");
         }
 
         return "Invalid";
@@ -89,7 +89,7 @@ public class ItemStamp extends ItemEmbersConstruct implements ITagItem {
             Item item = stamp.getItem();
             name = item != null ? item.getItemStackDisplayName(new ItemStack(item)) : (stamp.usesOreDictKey() ? I18n.translateToLocalFormatted("oredict.name." + stamp.getOreDictKey()) : "");
         }
-        return I18n.translateToLocalFormatted("item.stamp" + (raw ? "_raw" : "") + ".name", name).trim().replace("  ", " ");
+        return I18n.translateToLocalFormatted("item.embersconstruct.stamp" + (raw ? "_raw" : "") + ".name", name).trim().replace("  ", " ");
 
     }
 
