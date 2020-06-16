@@ -22,3 +22,4 @@ embersconstruct.outdated.hover=Cliquez pour ouvrir la page de téléchargement.
 #Config
 embersconstruct.config.section.general=General
 embersconstruct.config.showNewVersionMessage=Envoyer le message de la version nouvelle
+embersconstruct.config.stampTableNeedBlank=La Table du Poinçon nécessite des poinçons inutilisés

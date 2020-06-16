@@ -1,5 +1,6 @@
 package com.peatral.embersconstruct.common.registry;
 
+import com.peatral.embersconstruct.common.EmbersConstructConfig;
 import com.peatral.embersconstruct.common.EmbersConstructItems;
 import com.peatral.embersconstruct.common.util.IngredientNonMeta;
 import com.peatral.embersconstruct.common.util.Stamp;
@@ -83,8 +84,9 @@ public class StampTableRecipes {
     }
 
     public static void main() {
-        instance().addRecipe(new IngredientNonMeta(new ItemStack(EmbersConstructItems.StampRaw, OreDictionary.WILDCARD_VALUE)), new ItemStack(EmbersConstructItems.StampRaw), true);
-        instance().addRecipe(new IngredientNonMeta(new ItemStack(EmbersConstructItems.Stamp, OreDictionary.WILDCARD_VALUE)), new ItemStack(EmbersConstructItems.Stamp), true);
-        instance().addRecipe(RegistryManager.stamp_flat_raw, new ItemStack(EmbersConstructItems.StampRaw), true);
+        boolean requiresBlank = EmbersConstructConfig.general.stampTableNeedBlank;
+        instance().addRecipe(new IngredientNonMeta(new ItemStack(EmbersConstructItems.StampRaw, OreDictionary.WILDCARD_VALUE)), new ItemStack(EmbersConstructItems.StampRaw), requiresBlank);
+        instance().addRecipe(new IngredientNonMeta(new ItemStack(EmbersConstructItems.Stamp, OreDictionary.WILDCARD_VALUE)), new ItemStack(EmbersConstructItems.Stamp), requiresBlank);
+        instance().addRecipe(RegistryManager.stamp_flat_raw, new ItemStack(EmbersConstructItems.StampRaw), requiresBlank);
     }
 }

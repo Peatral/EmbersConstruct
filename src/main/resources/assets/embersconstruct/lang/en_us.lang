@@ -22,3 +22,4 @@ embersconstruct.outdated.hover=Click to open download page.
 #Config
 embersconstruct.config.section.general=General
 embersconstruct.config.showNewVersionMessage=Show New-Version-Message
+embersconstruct.config.stampTableNeedBlank=Stamp Table needs unused Stamps

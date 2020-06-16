@@ -17,6 +17,10 @@ public class EmbersConstructConfig {
         @Config.LangKey("embersconstruct.config.showNewVersionMessage")
         @Config.Comment("Show the Update-Checker message if new version is available.")
         public boolean showNewVersionMessage = true;
+
+        @Config.LangKey("embersconstruct.config.stampTableNeedBlank")
+        @Config.Comment("Make already made raw stamps non-changeable (Needs restart!)")
+        public boolean stampTableNeedBlank = true;
     }
 
     @Mod.EventBusSubscriber(modid = EmbersConstruct.MODID)

@@ -22,3 +22,4 @@ embersconstruct.outdated.hover=点击以打开下载链接.
 #Config
 embersconstruct.config.section.general=通用设置
 embersconstruct.config.showNewVersionMessage=显示新版本更新信息
+embersconstruct.config.stampTableNeedBlank=Stamp Table needs unused Stamps

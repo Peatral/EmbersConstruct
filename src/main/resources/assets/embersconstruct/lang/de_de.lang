@@ -22,3 +22,4 @@ embersconstruct.outdated.hover=Klicke um die Downloadseite zu öffnen.
 #Config
 embersconstruct.config.section.general=Allgemein
 embersconstruct.config.showNewVersionMessage=Zeige Neue-Version-Nachricht
+embersconstruct.config.stampTableNeedBlank=Stanzentisch benötigt unverwendete Stanzen
