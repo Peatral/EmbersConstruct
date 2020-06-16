@@ -3,6 +3,7 @@ package com.peatral.embersconstruct.common.registry;
 import com.peatral.embersconstruct.common.EmbersConstruct;
 import com.peatral.embersconstruct.common.util.MeltingValues;
 import com.peatral.embersconstruct.common.util.Stamp;
+import com.peatral.embersconstruct.common.util.Util;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraftforge.common.crafting.IngredientNBT;
@@ -41,12 +42,11 @@ public class RegistryMelting {
     public static void registerTinkerRecipes() {
 
         //No plan how to "convert" the RecipeMatch to the Ingredients
-        //for (MeltingRecipe recipe : TinkerRegistry.getAllMeltingRecipies()) registerBasic(???, recipe.output.getFluid(), recipe.output.amount);
+        //for (MeltingRecipe recipe : TinkerRegistry.getAllMeltingRecipes()) registerBasic(???, recipe.output.getFluid(), recipe.output.amount);
 
         Collection<Material> materials = TinkerRegistry.getAllMaterials();
         for (Material material : materials) {
-            Fluid fluid = null;
-            if (FluidRegistry.isFluidRegistered(material.identifier)) fluid = FluidRegistry.getFluid(material.identifier);
+            Fluid fluid = Util.getFluidFromMaterial(material);
             if (fluid != null) {
                 ItemStack repItem = material.getRepresentativeItem();
 

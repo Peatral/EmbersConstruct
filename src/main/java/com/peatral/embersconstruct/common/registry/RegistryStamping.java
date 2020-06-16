@@ -5,6 +5,7 @@ import com.peatral.embersconstruct.common.EmbersConstructItems;
 import com.peatral.embersconstruct.common.item.ItemStamp;
 import com.peatral.embersconstruct.common.util.MeltingValues;
 import com.peatral.embersconstruct.common.util.Stamp;
+import com.peatral.embersconstruct.common.util.Util;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.NonNullList;
@@ -67,7 +68,8 @@ public class RegistryStamping {
 
             } else {
                 for (Material material : materials) {
-                    if (FluidRegistry.isFluidRegistered(material.identifier)) {
+                    Fluid fluid = Util.getFluidFromMaterial(material);
+                    if (fluid != null) {
                         ItemStack result = null;
                         if (stamp.getItem() instanceof IToolPart) {
                             IToolPart part = (IToolPart) stamp.getItem();
@@ -76,7 +78,7 @@ public class RegistryStamping {
                             result = new ItemStack(stamp.getItem());
                         }
                         if (result != null) {
-                            registerMeta(result, FluidRegistry.getFluidStack(material.identifier, stamp.getCost()), stamp);
+                            registerMeta(result, FluidRegistry.getFluidStack(fluid.getName(), stamp.getCost()), stamp);
                         }
                     }
                 }
