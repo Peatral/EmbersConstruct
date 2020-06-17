@@ -12,14 +12,22 @@ gui.embersconstruct.stamptable.name=Table du Poinçon
 gui.jei.category.kiln=Pyro-Traitement
 gui.jei.category.stamptable=Table du Poinçon
 
-#Tab
+# Tab
 itemGroup.tabEmbersConstruct=Embers' Construct
 
-#Update-Checker
+# Update-Checker
 embersconstruct.outdated=La version nouvelle %1$s de Embers' Construct est disponible.
 embersconstruct.outdated.hover=Cliquez pour ouvrir la page de téléchargement.
 
-#Config
+# Config
 embersconstruct.config.section.general=General
 embersconstruct.config.showNewVersionMessage=Envoyer le message de la version nouvelle
+
+embersconstruct.config.section.embersConstructRecipeSettings=Embers' Construct Recipe Settings
 embersconstruct.config.stampTableNeedBlank=La Table du Poinçon nécessite des poinçons inutilisés
+
+embersconstruct.config.section.tinkersConstructRecipeSettings=Tinkers' Construct Recipe Settings
+embersconstruct.config.removeMelting=Remove Melting Recipes
+embersconstruct.config.removeAlloying=Remove Alloying Recipes
+embersconstruct.config.removeTableCasting=Remove Table Casting Recipes
+embersconstruct.config.removeBasinCasting=Remove Basin Casting Recipes

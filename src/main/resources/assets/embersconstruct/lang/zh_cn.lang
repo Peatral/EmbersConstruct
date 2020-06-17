@@ -12,14 +12,22 @@ gui.embersconstruct.stamptable.name=冲模加工桌
 gui.jei.category.kiln=高温加工
 gui.jei.category.stamptable=冲模加工桌
 
-#Tab
+# Tab
 itemGroup.tabEmbersConstruct=余烬匠师
 
-#Update-Checker
+# Update-Checker
 embersconstruct.outdated=余烬匠师已推出新版本 %1$s .
 embersconstruct.outdated.hover=点击以打开下载链接.
 
-#Config
+# Config
 embersconstruct.config.section.general=通用设置
 embersconstruct.config.showNewVersionMessage=显示新版本更新信息
+
+embersconstruct.config.section.embersConstructRecipeSettings=Embers' Construct Recipe Settings
 embersconstruct.config.stampTableNeedBlank=Stamp Table needs unused Stamps
+
+embersconstruct.config.section.tinkersConstructRecipeSettings=Tinkers' Construct Recipe Settings
+embersconstruct.config.removeMelting=Remove Melting Recipes
+embersconstruct.config.removeAlloying=Remove Alloying Recipes
+embersconstruct.config.removeTableCasting=Remove Table Casting Recipes
+embersconstruct.config.removeBasinCasting=Remove Basin Casting Recipes

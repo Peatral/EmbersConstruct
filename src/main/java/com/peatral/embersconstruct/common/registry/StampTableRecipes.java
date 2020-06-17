@@ -84,7 +84,7 @@ public class StampTableRecipes {
     }
 
     public static void main() {
-        boolean requiresBlank = EmbersConstructConfig.general.stampTableNeedBlank;
+        boolean requiresBlank = EmbersConstructConfig.embersConstructSettings.stampTableNeedBlank;
         instance().addRecipe(new IngredientNonMeta(new ItemStack(EmbersConstructItems.StampRaw, OreDictionary.WILDCARD_VALUE)), new ItemStack(EmbersConstructItems.StampRaw), requiresBlank);
         instance().addRecipe(new IngredientNonMeta(new ItemStack(EmbersConstructItems.Stamp, OreDictionary.WILDCARD_VALUE)), new ItemStack(EmbersConstructItems.Stamp), requiresBlank);
         instance().addRecipe(RegistryManager.stamp_flat_raw, new ItemStack(EmbersConstructItems.StampRaw), requiresBlank);

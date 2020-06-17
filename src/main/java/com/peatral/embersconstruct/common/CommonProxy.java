@@ -1,13 +1,18 @@
 package com.peatral.embersconstruct.common;
 
+import com.google.common.collect.Lists;
 import com.peatral.embersconstruct.common.network.StampTableSelectionPacket;
 import com.peatral.embersconstruct.common.registry.*;
+import com.peatral.embersconstruct.common.util.RecipeRemover;
 import net.minecraft.item.Item;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import slimeknights.tconstruct.common.TinkerNetwork;
+import slimeknights.tconstruct.library.TinkerRegistry;
+
+import java.lang.reflect.Field;
 
 public class CommonProxy {
     public void registerItemRenders() {
@@ -29,6 +34,8 @@ public class CommonProxy {
         RegistryStamping.main();
         KilnRecipes.main();
         StampTableRecipes.main();
+
+        RecipeRemover.main();
     }
 
     public boolean isClient() {

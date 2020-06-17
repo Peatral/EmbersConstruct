@@ -12,15 +12,43 @@ public class EmbersConstructConfig {
     @Config.LangKey("embersconstruct.config.section.general")
     public static final General general = new General();
 
+    @Config.LangKey("embersconstruct.config.section.embersConstructRecipeSettings")
+    @Config.Comment("Changes require a restart to come into effect!")
+    public static final ECRecipeSettings embersConstructSettings = new ECRecipeSettings();
+
+    @Config.LangKey("embersconstruct.config.section.tinkersConstructRecipeSettings")
+    @Config.Comment("Changes require a restart to come into effect!")
+    public static final TCRecipeSettings tinkersConstructSettings = new TCRecipeSettings();
+
     public static class General {
 
         @Config.LangKey("embersconstruct.config.showNewVersionMessage")
         @Config.Comment("Show the Update-Checker message if new version is available.")
         public boolean showNewVersionMessage = true;
+    }
 
+    public static class ECRecipeSettings {
         @Config.LangKey("embersconstruct.config.stampTableNeedBlank")
-        @Config.Comment("Make already made raw stamps non-changeable (Needs restart!)")
+        @Config.Comment("Make already made raw stamps non-changeable")
         public boolean stampTableNeedBlank = true;
+    }
+
+    public static class TCRecipeSettings {
+        @Config.LangKey("embersconstruct.config.removeMelting")
+        @Config.Comment("")
+        public boolean removeMelting = false;
+
+        @Config.LangKey("embersconstruct.config.removeAlloying")
+        @Config.Comment("")
+        public boolean removeAlloying = false;
+
+        @Config.LangKey("embersconstruct.config.removeTableCasting")
+        @Config.Comment("")
+        public boolean removeTableCasting = false;
+
+        @Config.LangKey("embersconstruct.config.removeBasinCasting")
+        @Config.Comment("")
+        public boolean removeBasinCasting = false;
     }
 
     @Mod.EventBusSubscriber(modid = EmbersConstruct.MODID)

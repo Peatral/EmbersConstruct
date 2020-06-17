@@ -22,4 +22,12 @@ embersconstruct.outdated.hover=Klicke um die Downloadseite zu öffnen.
 #Config
 embersconstruct.config.section.general=Allgemein
 embersconstruct.config.showNewVersionMessage=Zeige Neue-Version-Nachricht
+
+embersconstruct.config.section.embersConstructRecipeSettings=Embers' Construct Rezept Einstellungen
 embersconstruct.config.stampTableNeedBlank=Stanzentisch benötigt unverwendete Stanzen
+
+embersconstruct.config.section.tinkersConstructRecipeSettings=Tinkers' Construct Rezept Einstellungen
+embersconstruct.config.removeMelting=Entferne Schmelz Rezepte
+embersconstruct.config.removeAlloying=Entferne Legierungs Rezepte
+embersconstruct.config.removeTableCasting=Entferne Tisch-Guss Casting Rezepte
+embersconstruct.config.removeBasinCasting=Entferne Becken-Guss Rezepte

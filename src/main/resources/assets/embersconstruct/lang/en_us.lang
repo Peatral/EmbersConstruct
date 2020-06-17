@@ -22,4 +22,12 @@ embersconstruct.outdated.hover=Click to open download page.
 #Config
 embersconstruct.config.section.general=General
 embersconstruct.config.showNewVersionMessage=Show New-Version-Message
+
+embersconstruct.config.section.embersConstructRecipeSettings=Embers' Construct Recipe Settings
 embersconstruct.config.stampTableNeedBlank=Stamp Table needs unused Stamps
+
+embersconstruct.config.section.tinkersConstructRecipeSettings=Tinkers' Construct Recipe Settings
+embersconstruct.config.removeMelting=Remove Melting Recipes
+embersconstruct.config.removeAlloying=Remove Alloying Recipes
+embersconstruct.config.removeTableCasting=Remove Table Casting Recipes
+embersconstruct.config.removeBasinCasting=Remove Basin Casting Recipes
