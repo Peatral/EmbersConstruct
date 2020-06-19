@@ -1,6 +1,6 @@
 package com.peatral.embersconstruct.common.integration;
 
-import com.peatral.embersconstruct.common.util.MeltingValues;
+import com.peatral.embersconstruct.common.util.OreDictValues;
 import com.peatral.embersconstruct.common.util.Stamp;
 import net.minecraft.item.Item;
 import net.minecraftforge.event.RegistryEvent;
@@ -19,7 +19,7 @@ public class Integration {
         return new Stamp(part, name, cost, fluid).setRegistryName(name);
     }
 
-    public static Stamp initStamp(String name, MeltingValues mv) {
+    public static Stamp initStamp(String name, OreDictValues mv) {
         return initStamp(name, mv.getName(), mv.getValue());
     }
 

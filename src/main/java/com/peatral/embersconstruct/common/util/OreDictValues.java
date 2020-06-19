@@ -9,7 +9,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public enum MeltingValues {
+public enum OreDictValues {
     INGOT("ingot", Material.VALUE_Ingot),
     ORE("ore", Material.VALUE_Ore()),
     BLOCK("block", Material.VALUE_Block),
@@ -21,11 +21,11 @@ public enum MeltingValues {
     GEAR("gear", Material.VALUE_Ingot * 4);
 
     private String name;
-    private int value;
+    private int meltingvalue;
 
-    MeltingValues(String name, int value) {
+    OreDictValues(String name, int meltingvalue) {
         this.name = name;
-        this.value = value;
+        this.meltingvalue = meltingvalue;
     }
 
     public String getName() {
@@ -33,17 +33,17 @@ public enum MeltingValues {
     }
 
     public int getValue() {
-        return value;
+        return meltingvalue;
     }
 
     public static List<String> names() {
         List<String> names = new ArrayList<>();
-        for (MeltingValues m : values()) names.add(m.getName());
+        for (OreDictValues m : values()) names.add(m.getName());
         return names;
     }
 
-    public static MeltingValues getByName(String name) {
-        for (MeltingValues m : values()) if (m.name.equals(name)) return m;
+    public static OreDictValues getByName(String name) {
+        for (OreDictValues m : values()) if (m.name.equals(name)) return m;
         return null;
     }
 
@@ -58,12 +58,12 @@ public enum MeltingValues {
             boolean gem = name.startsWith(GEM.name);
 
             //Unify name to *_*
-            for (String type : MeltingValues.names()) name = name.replace(type, "*_");
+            for (String type : OreDictValues.names()) name = name.replace(type, "*_");
 
             if (name.startsWith("*_")) {
                 //Add all "variants"
-                for (MeltingValues mv : MeltingValues.values()) {
-                    map.put(name.replace("*_", mv.name), gem && mv != GEM ? mv.value / INGOT.value * GEM.value : mv.value);
+                for (OreDictValues mv : OreDictValues.values()) {
+                    map.put(name.replace("*_", mv.name), gem && mv != GEM ? mv.meltingvalue / INGOT.meltingvalue * GEM.meltingvalue : mv.meltingvalue);
                 }
             }
         }

@@ -25,4 +25,8 @@ public class Util {
         }
         return null;
     }
+
+    public static String getOreDictFromFluid(String name) {
+        return name.toLowerCase().replace("_fluid", "").replace("fluid_", "").replace("fluid","");
+    }
 }

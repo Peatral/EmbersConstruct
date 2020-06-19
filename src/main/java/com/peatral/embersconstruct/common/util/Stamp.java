@@ -25,7 +25,7 @@ public class Stamp extends IForgeRegistryEntry.Impl<Stamp> {
     }
 
     public Stamp(MaterialItem item, String name) {
-        this(item, name, item instanceof IToolPart ? ((IToolPart) item).getCost() : MeltingValues.INGOT.getValue());
+        this(item, name, item instanceof IToolPart ? ((IToolPart) item).getCost() : OreDictValues.INGOT.getValue());
     }
 
     public Stamp(Item item, String name, int cost) {

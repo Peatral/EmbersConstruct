@@ -1,7 +1,7 @@
 package com.peatral.embersconstruct.common.registry;
 
 import com.peatral.embersconstruct.common.EmbersConstruct;
-import com.peatral.embersconstruct.common.util.MeltingValues;
+import com.peatral.embersconstruct.common.util.OreDictValues;
 import com.peatral.embersconstruct.common.util.Stamp;
 import com.peatral.embersconstruct.common.util.Util;
 import net.minecraft.item.ItemStack;
@@ -25,16 +25,13 @@ public class RegistryMelting {
     private static int c = 0;
 
     public static void main() {
-        registerRecipes();
         registerOreDictRecipes();
         registerTinkerRecipes();
         EmbersConstruct.logger.info("Registered " + c + " melting recipes.");
     }
 
-    public static void registerRecipes() {}
-
     public static void registerOreDictRecipes() {
-        for (MeltingValues mv : MeltingValues.values()) {
+        for (OreDictValues mv : OreDictValues.values()) {
             registerFromOreDict(mv.getName(), mv.getValue());
         }
     }
@@ -72,27 +69,37 @@ public class RegistryMelting {
     }
 
     public static void registerBasic(Ingredient input, FluidStack output) {
-        ItemMeltingRecipe recipe = new ItemMeltingRecipe(input, output);
         boolean found = false;
         for (ItemMeltingRecipe test : RecipeRegistry.meltingRecipes) {
-            if (test.input == input && test.fluid == output) {
-                found = true;
-                break;
+            if (test.fluid.getFluid().getName() == output.getFluid().getName() && test.fluid.amount == output.amount) {
+                if (test.input == input) {
+                    found = true;
+                    break;
+                } else {
+                    if (test.input.getMatchingStacks().length == input.getMatchingStacks().length && input.getMatchingStacks().length == 1) {
+                        ItemStack testStack = test.input.getMatchingStacks()[0];
+                        ItemStack stack = input.getMatchingStacks()[0];
+                        if (stack.isItemEqual(testStack) && stack.getCount() == testStack.getCount()) {
+                            found = true;
+                            break;
+                        }
+                    }
+                }
             }
         }
         if (output.amount <= 1500 && !found) {
-            RecipeRegistry.meltingRecipes.add(recipe);
+            RecipeRegistry.meltingRecipes.add(new ItemMeltingRecipe(input, output));
             c++;
         }
     }
 
     public static void registerFromOreDict(ItemStack item, Fluid fluid) {
-        registerFromOreDict(item, fluid, MeltingValues.INGOT.getValue());
+        registerFromOreDict(item, fluid, OreDictValues.INGOT.getValue());
     }
 
 
     public static void registerFromOreDict(ItemStack item, Fluid fluid, int fallbackCost) {
-        Map<String, Integer> oreDictVals = MeltingValues.getValuesFromDict(item);
+        Map<String, Integer> oreDictVals = OreDictValues.getValuesFromDict(item);
         for (String k : oreDictVals.keySet()) {
             //Register recipes for "variants"
             for (ItemStack stack : OreDictionary.getOres(k)) {
@@ -109,7 +116,8 @@ public class RegistryMelting {
     public static void registerFromOreDict(String key, int cost) {
         Map<String, Fluid> fluids = FluidRegistry.getRegisteredFluids();
         for (String fluidName : fluids.keySet()) {
-            for (ItemStack result : OreDictionary.getOres(key + Character.toString(fluidName.charAt(0)).toUpperCase() + fluidName.substring(1))) {
+            String oreName = Util.getOreDictFromFluid(fluidName);
+            for (ItemStack result : OreDictionary.getOres(key + Character.toString(oreName.charAt(0)).toUpperCase() + oreName.substring(1))) {
                 registerBasic(result, fluids.get(fluidName), cost);
             }
         }
