@@ -31,6 +31,10 @@ public class EmbersConstructConfig {
         @Config.LangKey("embersconstruct.config.stampTableNeedBlank")
         @Config.Comment("Make already made raw stamps non-changeable")
         public boolean stampTableNeedBlank = true;
+
+        @Config.LangKey("embersconstruct.config.dustStamping")
+        @Config.Comment("Make dusts from ingots via the Stamper")
+        public boolean dustStamping = true;
     }
 
     public static class TCRecipeSettings {

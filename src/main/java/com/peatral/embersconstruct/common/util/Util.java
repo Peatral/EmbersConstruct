@@ -11,7 +11,7 @@ public class Util {
     }
 
     public static Fluid getFluidFromMaterial(Material material) {
-        Fluid fluid = null;
+        Fluid fluid;
         String[] names = new String[]{
                 material.identifier,
                 material.identifier + "fluid",

@@ -12,19 +12,20 @@ gui.embersconstruct.stamptable.name=Stanzentisch
 gui.jei.category.kiln=Pyroverarbeitung
 gui.jei.category.stamptable=Stanzentisch
 
-#Tab
+# Tab
 itemGroup.tabEmbersConstruct=Embers' Construct
 
-#Update-Checker
+# Update-Checker
 embersconstruct.outdated=Die neue Version %1$s für Embers' Construct ist verfügbar.
 embersconstruct.outdated.hover=Klicke um die Downloadseite zu öffnen.
 
-#Config
+# Config
 embersconstruct.config.section.general=Allgemein
 embersconstruct.config.showNewVersionMessage=Zeige Neue-Version-Nachricht
 
 embersconstruct.config.section.embersConstructRecipeSettings=Embers' Construct Rezept Einstellungen
 embersconstruct.config.stampTableNeedBlank=Stanzentisch benötigt unverwendete Stanzen
+embersconstruct.config.dustStamping=Zerstampfe Barren zu Staub
 
 embersconstruct.config.section.tinkersConstructRecipeSettings=Tinkers' Construct Rezept Einstellungen
 embersconstruct.config.removeMelting=Entferne Schmelz Rezepte

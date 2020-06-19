@@ -1,6 +1,7 @@
 package com.peatral.embersconstruct.common.registry;
 
 import com.peatral.embersconstruct.common.EmbersConstruct;
+import com.peatral.embersconstruct.common.EmbersConstructConfig;
 import com.peatral.embersconstruct.common.EmbersConstructItems;
 import com.peatral.embersconstruct.common.item.ItemStamp;
 import com.peatral.embersconstruct.common.util.OreDictValues;
@@ -40,6 +41,7 @@ public class RegistryStamping {
         registerFromOreDict(OreDictValues.INGOT.getName(), new ItemStack(RegistryManager.stamp_bar), OreDictValues.INGOT.getValue());
         registerFromOreDict(OreDictValues.GEAR.getName(), new ItemStack(RegistryManager.stamp_gear), OreDictValues.GEAR.getValue());
         registerFromOreDict(OreDictValues.PLATE.getName(), new ItemStack(RegistryManager.stamp_plate), OreDictValues.PLATE.getValue());
+        if (EmbersConstructConfig.embersConstructSettings.dustStamping) registerItemFromOreDict(OreDictValues.DUST.getName(), OreDictValues.INGOT.getName(), new ItemStack(RegistryManager.stamp_flat), 1);
     }
 
     public static void registerTinkerRecipes() {
@@ -97,18 +99,41 @@ public class RegistryStamping {
         }
     }
 
+    public static void registerItemFromOreDict(String outputkey, String inputkey, ItemStack stamp, int amount) {
+        for (String oreName : OreDictionary.getOreNames()) {
+            if (oreName.startsWith(outputkey)) {
+                String ore = oreName.replace(outputkey, "").toLowerCase();
+                for (ItemStack input : OreDictionary.getOres(inputkey + Character.toString(ore.charAt(0)).toUpperCase() + ore.substring(1))) {
+                    if (OreDictionary.getOres(oreName).size() > 0) {
+                        ItemStack result = OreDictionary.getOres(oreName).get(0);
+                        result.setCount(amount);
+                        register(Ingredient.fromStacks(input), new IngredientNBT(stamp){}, result, null);
+                    }
+                }
+            }
+        }
+    }
+
     public static void registerMeta(ItemStack result, FluidStack fluid, Stamp stamp) {
         register(((ItemStamp)EmbersConstructItems.Stamp).fromStamp(stamp), result, fluid);
     }
 
     public static void register(ItemStack stamp, ItemStack result, FluidStack fluid) {
-        Ingredient input = new IngredientNBT(stamp){};
+        register(Ingredient.EMPTY, new IngredientNBT(stamp){}, result, fluid);
+    }
+
+    public static void register(Ingredient input, Ingredient stamp, ItemStack result, FluidStack fluid) {
         boolean found = false;
         for (ItemStampingRecipe test : RecipeRegistry.stampingRecipes) {
-            if (test.fluid == null) break;
-            if (test.fluid.getFluid().getName() == fluid.getFluid().getName() && test.fluid.amount == fluid.amount) {
-                if (test.result.isItemEqual(result) && test.result.getCount() == result.getCount()) {
-                    if (test.input.getMatchingStacks() == input.getMatchingStacks()) {
+
+            if (test.result.isItemEqual(result) && test.result.getCount() == result.getCount()) {
+                if (test.input.getMatchingStacks() == input.getMatchingStacks()) {
+                    if (test.fluid == null) {
+                        if (fluid == null) {
+                            found = true;
+                            break;
+                        }
+                    } else if (test.fluid.getFluid().getName() == fluid.getFluid().getName() && test.fluid.amount == fluid.amount) {
                         found = true;
                         break;
                     }
@@ -116,7 +141,7 @@ public class RegistryStamping {
             }
         }
         if (!found) {
-            RecipeRegistry.stampingRecipes.add(new ItemStampingRecipe(Ingredient.EMPTY, fluid, input, result));
+            RecipeRegistry.stampingRecipes.add(new ItemStampingRecipe(input, fluid, stamp, result));
             c++;
         }
     }
