@@ -6,13 +6,13 @@ import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 
 public interface IProxy {
-    void registerItemRenders();
+    default void registerItemRenders() {}
 
-    void preInit(FMLPreInitializationEvent event);
+    default void preInit(FMLPreInitializationEvent event) {}
 
-    void init(FMLInitializationEvent event);
+    default void init(FMLInitializationEvent event) {}
 
-    void postInit(FMLPostInitializationEvent event);
+    default void postInit(FMLPostInitializationEvent event) {}
 
     boolean isClient();
 
