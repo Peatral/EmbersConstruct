@@ -1,8 +1,8 @@
 package com.peatral.embersconstruct.client.gui;
 
-import com.peatral.embersconstruct.common.EmbersConstruct;
-import com.peatral.embersconstruct.common.network.StampTableSelectionPacket;
-import com.peatral.embersconstruct.common.tileentity.TileEntityStampTable;
+import com.peatral.embersconstruct.EmbersConstruct;
+import com.peatral.embersconstruct.network.StampTableSelectionPacket;
+import com.peatral.embersconstruct.tileentity.TileEntityStampTable;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;

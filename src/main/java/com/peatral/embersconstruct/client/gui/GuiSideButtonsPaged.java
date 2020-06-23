@@ -1,6 +1,5 @@
 package com.peatral.embersconstruct.client.gui;
 
-import com.peatral.embersconstruct.common.EmbersConstruct;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.inventory.Container;
 import slimeknights.mantle.client.gui.GuiModule;

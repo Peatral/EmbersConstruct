@@ -1,9 +1,9 @@
 package com.peatral.embersconstruct.client.gui;
 
-import com.peatral.embersconstruct.common.inventory.ContainerStampTable;
-import com.peatral.embersconstruct.common.network.StampTableSelectionPacket;
-import com.peatral.embersconstruct.common.registry.RegistryStamps;
-import com.peatral.embersconstruct.common.util.Stamp;
+import com.peatral.embersconstruct.inventory.ContainerStampTable;
+import com.peatral.embersconstruct.network.StampTableSelectionPacket;
+import com.peatral.embersconstruct.registry.RegistryStamps;
+import com.peatral.embersconstruct.util.Stamp;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.inventory.Container;
 import net.minecraft.item.Item;

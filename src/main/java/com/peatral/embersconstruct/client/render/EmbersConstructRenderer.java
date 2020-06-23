@@ -1,7 +1,7 @@
 package com.peatral.embersconstruct.client.render;
 
-import com.peatral.embersconstruct.common.item.IMetaItem;
-import com.peatral.embersconstruct.common.item.ITagItem;
+import com.peatral.embersconstruct.item.IMetaItem;
+import com.peatral.embersconstruct.item.ITagItem;
 import net.minecraft.client.renderer.block.model.ModelBakery;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
