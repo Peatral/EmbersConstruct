@@ -75,17 +75,20 @@ public class EmbersConstruct {
 
         NetworkRegistry.INSTANCE.registerGuiHandler(instance, new GuiHandler());
         registerTileEntities();
+
+        //Embers Construct Recipes
+        KilnRecipes.main();
+        StampTableRecipes.main();
     }
 
     @EventHandler
     public void postInit(FMLPostInitializationEvent event) {
         proxy.postInit(event);
 
+        //Interaction with other mods
         RegistryMelting.main();
         RegistryAlloying.main();
         RegistryStamping.main();
-        KilnRecipes.main();
-        StampTableRecipes.main();
 
         RecipeRemover.main();
     }
