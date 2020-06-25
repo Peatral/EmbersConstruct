@@ -28,9 +28,9 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import javax.annotation.Nullable;
 import java.util.Random;
 
-public class BlockKiln extends BlockEmbersConstruct implements ITileEntityProvider {
+public class BlockKiln extends BlockHorizontal implements ITileEntityProvider {
 
-    public static final PropertyDirection FACING = BlockHorizontal.FACING;
+    //public static final PropertyDirection FACING = BlockHorizontal.FACING;
     public static final PropertyBool BURNING = PropertyBool.create("burning");
 
     public BlockKiln() {
@@ -39,6 +39,7 @@ public class BlockKiln extends BlockEmbersConstruct implements ITileEntityProvid
         this.setDefaultState(this.blockState.getBaseState()
                 .withProperty(FACING, EnumFacing.NORTH)
                 .withProperty(BURNING, false));
+        this.setCreativeTab(EmbersConstruct.tabEmbersConstruct);
     }
 
     @Override
