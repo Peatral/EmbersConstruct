@@ -117,8 +117,10 @@ public class RegistryMelting {
         Map<String, Fluid> fluids = FluidRegistry.getRegisteredFluids();
         for (String fluidName : fluids.keySet()) {
             String oreName = Util.getOreDictFromFluid(fluidName);
-            for (ItemStack result : OreDictionary.getOres(key + Character.toString(oreName.charAt(0)).toUpperCase() + oreName.substring(1))) {
-                registerBasic(result, fluids.get(fluidName), cost);
+            if (fluidName.length() > 0) {
+                for (ItemStack result : OreDictionary.getOres(key + Character.toString(oreName.charAt(0)).toUpperCase() + oreName.substring(1))) {
+                    registerBasic(result, fluids.get(fluidName), cost);
+                }
             }
         }
     }

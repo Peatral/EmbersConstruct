@@ -93,8 +93,10 @@ public class RegistryStamping {
         Map<String, Fluid> fluids = FluidRegistry.getRegisteredFluids();
         for (String fluidName : fluids.keySet()) {
             String oreName = Util.getOreDictFromFluid(fluidName);
-            for (ItemStack result : OreDictionary.getOres(key + Character.toString(oreName.charAt(0)).toUpperCase() + oreName.substring(1))) {
-                register(stamp, result, new FluidStack(fluids.get(fluidName), cost));
+            if (oreName.length() > 0) {
+                for (ItemStack result : OreDictionary.getOres(key + Character.toString(oreName.charAt(0)).toUpperCase() + oreName.substring(1))) {
+                    register(stamp, result, new FluidStack(fluids.get(fluidName), cost));
+                }
             }
         }
     }
@@ -103,11 +105,14 @@ public class RegistryStamping {
         for (String oreName : OreDictionary.getOreNames()) {
             if (oreName.startsWith(outputkey)) {
                 String ore = oreName.replace(outputkey, "").toLowerCase();
-                for (ItemStack input : OreDictionary.getOres(inputkey + Character.toString(ore.charAt(0)).toUpperCase() + ore.substring(1))) {
-                    if (OreDictionary.getOres(oreName).size() > 0) {
-                        ItemStack result = OreDictionary.getOres(oreName).get(0);
-                        result.setCount(amount);
-                        register(Ingredient.fromStacks(input), new IngredientNBT(stamp){}, result, null);
+                if (ore.length() > 0) {
+                    for (ItemStack input : OreDictionary.getOres(inputkey + Character.toString(ore.charAt(0)).toUpperCase() + ore.substring(1))) {
+                        if (OreDictionary.getOres(oreName).size() > 0) {
+                            ItemStack result = OreDictionary.getOres(oreName).get(0);
+                            result.setCount(amount);
+                            register(Ingredient.fromStacks(input), new IngredientNBT(stamp) {
+                            }, result, null);
+                        }
                     }
                 }
             }
