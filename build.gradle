@@ -34,6 +34,9 @@ minecraft {
 }
 
 repositories {
+    flatDir {
+        dirs 'libs'
+    }
     maven {
         name 'DVS1 Maven FS'
         url 'http://dvs1.progwml6.com/files/maven/'
@@ -63,6 +66,7 @@ repositories {
         name "conarm"
         artifactPattern "http://asie.pl/javadeps/[module]-[revision](-[classifier]).[ext]"
     }
+    maven { url 'https://jitpack.io' }
 }
 
 dependencies {
@@ -83,7 +87,15 @@ dependencies {
     provided "pewter:Pewter:release"
     provided "taiga-tinkers-alloying-addon:taiga:release"
     provided "soot:Soot:1.6"
+    provided "tinkersurvival:TinkerSurvival:release"
+
     provided "plusticminusbad:plustic:release"
+    provided "total-tinkers:totaltinkers:release"
+
+    provided name: "libnine-1.12.2-1.1.8"
+    provided name: "tconevo-1.12.2-1.0.28"
+    // provided "tinkers-evolution:tconevo-1.12.2:1.0.28"
+    // provided "com.github.phantamanta44:tinkers-evolution:7883cde716"
 
     //provided "mezz.jei:jei_1.12.2:4.15.0.268"
     //provided "jei-integration:jeiintegration_1.12.2:1.6.0"

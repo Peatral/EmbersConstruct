@@ -46,7 +46,10 @@ public class EmbersConstruct {
             "after:soot;" +
             "after:taiga;" +
             "after:plustic;" +
-            "after:tinkerscompendium";
+            "after:tinkerscompendium;" +
+            "after:tconevo;" +
+            //"after:tinkersurvival;" +
+            "after:totaltinkers";
 
     public static final String UPDATE_CHECKER_URL = "https://peatral.github.io/MinecraftMods/embersconstruct/update.json";
 
@@ -58,9 +61,14 @@ public class EmbersConstruct {
 
     public static Logger logger = LogManager.getLogger(MOD_NAME);
 
+    public static boolean isSootLoaded = false;
+
     public static CreativeTabEmbersConstruct tabEmbersConstruct = new CreativeTabEmbersConstruct();
 
-    public EmbersConstruct() {}
+    public EmbersConstruct() {
+        isSootLoaded = Loader.isModLoaded("soot");
+        if (isSootLoaded) EmbersConstruct.logger.info("Soot is loaded, will add features...");
+    }
 
     @EventHandler
     public void preInit(FMLPreInitializationEvent event) {

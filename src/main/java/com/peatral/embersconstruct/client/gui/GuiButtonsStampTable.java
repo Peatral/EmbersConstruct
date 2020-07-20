@@ -5,6 +5,7 @@ import com.peatral.embersconstruct.network.StampTableSelectionPacket;
 import com.peatral.embersconstruct.registry.RegistryStamps;
 import com.peatral.embersconstruct.util.Stamp;
 import net.minecraft.client.gui.GuiButton;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.inventory.Container;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -42,6 +43,7 @@ public class GuiButtonsStampTable extends GuiSideButtonsPaged {
             ItemStack icon = stack;
             if (i instanceof MaterialItem) icon = ((MaterialItem) i).getItemstackWithMaterial(CustomTextureCreator.guiMaterial);
             GuiButtonItem<Stamp> button = new GuiButtonItem<>(index++, -1, -1, icon, stamp);
+            button.displayString = stack.getDisplayName();
             shiftButton(button, 0, 18);
             addSideButton(button);
 

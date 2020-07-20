@@ -1,5 +1,6 @@
 package com.peatral.embersconstruct.registry;
 
+import com.peatral.embersconstruct.EmbersConstruct;
 import com.peatral.embersconstruct.EmbersConstructItems;
 import com.peatral.embersconstruct.item.ItemStamp;
 import com.peatral.embersconstruct.util.Stamp;
@@ -7,6 +8,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraftforge.common.crafting.IngredientNBT;
+import soot.Registry;
 import teamroots.embers.RegistryManager;
 
 import java.util.ArrayList;
@@ -85,5 +87,7 @@ public class KilnRecipes {
         instance().addRecipe(RegistryManager.stamp_flat_raw, new ItemStack((RegistryManager.stamp_flat)));
         instance().addRecipe(RegistryManager.stamp_plate_raw, new ItemStack((RegistryManager.stamp_plate)));
         instance().addRecipe(RegistryManager.stamp_gear_raw, new ItemStack((RegistryManager.stamp_gear)));
+
+        if (EmbersConstruct.isSootLoaded) instance().addRecipe(Registry.STAMP_NUGGET_RAW, new ItemStack((Registry.STAMP_NUGGET)));
     }
 }
