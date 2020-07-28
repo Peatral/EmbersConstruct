@@ -34,11 +34,12 @@ public class TileEntityKiln extends TileEntityLockable implements ITickable, ISi
     private int totalCookTime;
     private String kilnCustomName;
 
-
+    @Override
     public int getSizeInventory() {
         return this.kilnItemStacks.size();
     }
 
+    @Override
     public boolean isEmpty() {
         for (ItemStack itemstack : this.kilnItemStacks) {
             if (!itemstack.isEmpty()) {
@@ -49,20 +50,22 @@ public class TileEntityKiln extends TileEntityLockable implements ITickable, ISi
         return true;
     }
 
+    @Override
     public ItemStack getStackInSlot(int index) {
         return this.kilnItemStacks.get(index);
     }
 
-
+    @Override
     public ItemStack decrStackSize(int index, int count) {
         return ItemStackHelper.getAndSplit(this.kilnItemStacks, index, count);
     }
 
+    @Override
     public ItemStack removeStackFromSlot(int index) {
         return ItemStackHelper.getAndRemove(this.kilnItemStacks, index);
     }
 
-
+    @Override
     public void setInventorySlotContents(int index, ItemStack stack) {
         ItemStack itemstack = this.kilnItemStacks.get(index);
         boolean flag = !stack.isEmpty() && stack.isItemEqual(itemstack) && ItemStack.areItemStackTagsEqual(stack, itemstack);
@@ -79,10 +82,12 @@ public class TileEntityKiln extends TileEntityLockable implements ITickable, ISi
         }
     }
 
+    @Override
     public String getName() {
         return this.hasCustomName() ? this.kilnCustomName : "container.embersconstruct.kiln";
     }
 
+    @Override
     public boolean hasCustomName() {
         return this.kilnCustomName != null && !this.kilnCustomName.isEmpty();
     }
@@ -91,6 +96,7 @@ public class TileEntityKiln extends TileEntityLockable implements ITickable, ISi
         this.kilnCustomName = customName;
     }
 
+    @Override
     public void readFromNBT(NBTTagCompound compound) {
         super.readFromNBT(compound);
         this.kilnItemStacks = NonNullList.<ItemStack>withSize(this.getSizeInventory(), ItemStack.EMPTY);
@@ -105,6 +111,7 @@ public class TileEntityKiln extends TileEntityLockable implements ITickable, ISi
         }
     }
 
+    @Override
     public NBTTagCompound writeToNBT(NBTTagCompound compound) {
         super.writeToNBT(compound);
         compound.setInteger("BurnTime", (short)this.kilnBurnTime);
@@ -120,6 +127,7 @@ public class TileEntityKiln extends TileEntityLockable implements ITickable, ISi
         return compound;
     }
 
+    @Override
     public int getInventoryStackLimit() {
         return 64;
     }
@@ -133,6 +141,7 @@ public class TileEntityKiln extends TileEntityLockable implements ITickable, ISi
         return inventory.getField(0) > 0;
     }
 
+    @Override
     public void update() {
         boolean flag = this.isBurning();
         boolean flag1 = false;
@@ -236,10 +245,6 @@ public class TileEntityKiln extends TileEntityLockable implements ITickable, ISi
                 itemstack2.grow(itemstack1.getCount());
             }
 
-            if (itemstack.getItem() == Item.getItemFromBlock(Blocks.SPONGE) && itemstack.getMetadata() == 1 && !((ItemStack)this.kilnItemStacks.get(1)).isEmpty() && ((ItemStack)this.kilnItemStacks.get(1)).getItem() == Items.BUCKET) {
-                this.kilnItemStacks.set(1, new ItemStack(Items.WATER_BUCKET));
-            }
-
             itemstack.shrink(1);
         }
     }
@@ -252,6 +257,7 @@ public class TileEntityKiln extends TileEntityLockable implements ITickable, ISi
         return getItemBurnTime(stack) > 0;
     }
 
+    @Override
     public boolean isUsableByPlayer(EntityPlayer player) {
         if (this.world.getTileEntity(this.pos) != this) {
             return false;
@@ -260,12 +266,15 @@ public class TileEntityKiln extends TileEntityLockable implements ITickable, ISi
         }
     }
 
+    @Override
     public void openInventory(EntityPlayer player) {
     }
 
+    @Override
     public void closeInventory(EntityPlayer player) {
     }
 
+    @Override
     public boolean isItemValidForSlot(int index, ItemStack stack) {
         if (index == 2) {
             return false;
@@ -277,6 +286,7 @@ public class TileEntityKiln extends TileEntityLockable implements ITickable, ISi
         }
     }
 
+    @Override
     public int[] getSlotsForFace(EnumFacing side) {
         if (side == EnumFacing.DOWN) {
             return SLOTS_BOTTOM;
@@ -285,10 +295,12 @@ public class TileEntityKiln extends TileEntityLockable implements ITickable, ISi
         }
     }
 
+    @Override
     public boolean canInsertItem(int index, ItemStack itemStackIn, EnumFacing direction) {
         return this.isItemValidForSlot(index, itemStackIn);
     }
 
+    @Override
     public boolean canExtractItem(int index, ItemStack stack, EnumFacing direction) {
         if (direction == EnumFacing.DOWN && index == 1) {
             Item item = stack.getItem();
@@ -301,14 +313,17 @@ public class TileEntityKiln extends TileEntityLockable implements ITickable, ISi
         return true;
     }
 
+    @Override
     public String getGuiID() {
         return "minecraft:kiln";
     }
 
+    @Override
     public Container createContainer(InventoryPlayer playerInventory, EntityPlayer playerIn) {
         return new ContainerKiln(playerInventory, this);
     }
 
+    @Override
     public int getField(int id) {
         switch (id) {
             case 0:
@@ -324,6 +339,7 @@ public class TileEntityKiln extends TileEntityLockable implements ITickable, ISi
         }
     }
 
+    @Override
     public void setField(int id, int value) {
         switch (id) {
             case 0:
@@ -340,10 +356,12 @@ public class TileEntityKiln extends TileEntityLockable implements ITickable, ISi
         }
     }
 
+    @Override
     public int getFieldCount() {
         return 4;
     }
 
+    @Override
     public void clear() {
         this.kilnItemStacks.clear();
     }

@@ -36,11 +36,13 @@ public class ContainerKiln extends Container {
         }
     }
 
+    @Override
     public void addListener(IContainerListener listener) {
         super.addListener(listener);
         listener.sendAllWindowProperties(this, this.tileKiln);
     }
 
+    @Override
     public void detectAndSendChanges() {
         super.detectAndSendChanges();
 
@@ -71,14 +73,17 @@ public class ContainerKiln extends Container {
     }
 
     @SideOnly(Side.CLIENT)
+    @Override
     public void updateProgressBar(int id, int data) {
         this.tileKiln.setField(id, data);
     }
 
+    @Override
     public boolean canInteractWith(EntityPlayer playerIn) {
         return this.tileKiln.isUsableByPlayer(playerIn);
     }
 
+    @Override
     public ItemStack transferStackInSlot(EntityPlayer playerIn, int index) {
         ItemStack itemstack = ItemStack.EMPTY;
         Slot slot = this.inventorySlots.get(index);
