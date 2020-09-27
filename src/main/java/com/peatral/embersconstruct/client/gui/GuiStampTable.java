@@ -3,6 +3,7 @@ package com.peatral.embersconstruct.client.gui;
 import com.peatral.embersconstruct.EmbersConstruct;
 import com.peatral.embersconstruct.network.StampTableSelectionPacket;
 import com.peatral.embersconstruct.tileentity.TileEntityStampTable;
+import net.minecraft.client.gui.GuiButton;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
@@ -11,6 +12,8 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import slimeknights.tconstruct.tools.common.client.GuiTinkerStation;
 import slimeknights.tconstruct.tools.common.inventory.ContainerTinkerStation;
+
+import java.util.Arrays;
 
 @SideOnly(Side.CLIENT)
 public class GuiStampTable extends GuiTinkerStation {
@@ -33,6 +36,16 @@ public class GuiStampTable extends GuiTinkerStation {
         drawBackground(BACKGROUND);
 
         super.drawGuiContainerBackgroundLayer(partialTicks, mouseX, mouseY);
+    }
+
+    @Override
+    public void drawScreen(int mouseX, int mouseY, float partialTicks) {
+        super.drawScreen(mouseX, mouseY, partialTicks);
+        for(GuiButton o : buttons.getButtons()) {
+            if (o.isMouseOver()) {
+                super.drawHoveringText(Arrays.asList(o.displayString), mouseX, mouseY, fontRenderer);
+            }
+        }
     }
 
     public void onSelectionPacket(StampTableSelectionPacket packet) {

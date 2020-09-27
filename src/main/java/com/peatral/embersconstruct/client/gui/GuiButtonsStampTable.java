@@ -1,5 +1,6 @@
 package com.peatral.embersconstruct.client.gui;
 
+import com.peatral.embersconstruct.EmbersConstruct;
 import com.peatral.embersconstruct.inventory.ContainerStampTable;
 import com.peatral.embersconstruct.network.StampTableSelectionPacket;
 import com.peatral.embersconstruct.registry.RegistryStamps;
@@ -16,6 +17,8 @@ import slimeknights.tconstruct.library.tinkering.MaterialItem;
 import slimeknights.tconstruct.tools.common.client.GuiButtonItem;
 
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.List;
 
 public class GuiButtonsStampTable extends GuiSideButtonsPaged {
 
@@ -64,12 +67,11 @@ public class GuiButtonsStampTable extends GuiSideButtonsPaged {
         }
     }
 
-
     @Override
     @SuppressWarnings("unchecked")
     protected void actionPerformed(GuiButton button) throws IOException {
 
-        for(Object o : buttonList) {
+        for(GuiButton o : buttonList) {
             if(o instanceof GuiButtonItem) {
                 ((GuiButtonItem<Stamp>) o).pressed = false;
             }
@@ -93,5 +95,9 @@ public class GuiButtonsStampTable extends GuiSideButtonsPaged {
                 Icons.ICON_ButtonHover.shift(xd, yd),
                 Icons.ICON_ButtonPressed.shift(xd, yd),
                 Icons.ICON);
+    }
+
+    public List<GuiButton> getButtons() {
+        return buttonList;
     }
 }
