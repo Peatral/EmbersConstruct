@@ -11,7 +11,7 @@ apply plugin: 'net.minecraftforge.gradle.forge'
 //Only edit below this line, the above code adds and enables the necessary things for Forge to be setup.
 
 
-version = "1.12.2-1.2.4-hotfix"
+version = "1.12.2-1.3.0"
 group = "com.peatral.embersconstruct" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = "embersconstruct"
 
@@ -91,6 +91,7 @@ dependencies {
 
     provided "plusticminusbad:plustic:release"
     provided "total-tinkers:totaltinkers:release"
+    //provided "aetherworks:AetherWorks:release"
 
     provided name: "libnine-1.12.2-1.1.8"
     provided name: "tconevo-1.12.2-1.0.28"
