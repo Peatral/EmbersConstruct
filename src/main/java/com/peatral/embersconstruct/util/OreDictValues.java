@@ -50,6 +50,9 @@ public enum OreDictValues {
     public static Map<String, Integer> getValuesFromDict(ItemStack stack) {
         Map<String, Integer> map = new HashMap<>();
 
+        if (stack == null || stack.isEmpty())
+            return map;
+
         //OreDictionary Magic
         int[] ids = OreDictionary.getOreIDs(stack);
         for (int id : ids) {
