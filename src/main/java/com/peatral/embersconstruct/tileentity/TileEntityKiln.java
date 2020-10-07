@@ -5,14 +5,12 @@ import com.peatral.embersconstruct.block.BlockKiln;
 import com.peatral.embersconstruct.registry.KilnRecipes;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
-import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.inventory.*;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntityFurnace;
-import net.minecraft.tileentity.TileEntityLockable;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.NonNullList;
@@ -20,28 +18,27 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class TileEntityKiln extends TileEntityLockable implements ITickable, ISidedInventory {
+public class TileEntityKiln extends TileEntityBase implements ITickable {
     private static final int[] SLOTS_TOP = new int[] {0};
     private static final int[] SLOTS_BOTTOM = new int[] {2, 1};
     private static final int[] SLOTS_SIDES = new int[] {1};
     /** The ItemStacks that hold the items currently being used in the kiln */
-    private NonNullList<ItemStack> kilnItemStacks = NonNullList.withSize(3, ItemStack.EMPTY);
+    private NonNullList<ItemStack> itemStacks = NonNullList.withSize(3, ItemStack.EMPTY);
     /** The number of ticks that the kiln will keep burning */
     private int kilnBurnTime;
     /** The number of ticks that a fresh copy of the currently-burning item would keep the kiln burning for */
     private int currentItemBurnTime;
     private int cookTime;
     private int totalCookTime;
-    private String kilnCustomName;
 
     @Override
     public int getSizeInventory() {
-        return this.kilnItemStacks.size();
+        return this.itemStacks.size();
     }
 
     @Override
     public boolean isEmpty() {
-        for (ItemStack itemstack : this.kilnItemStacks) {
+        for (ItemStack itemstack : this.itemStacks) {
             if (!itemstack.isEmpty()) {
                 return false;
             }
@@ -52,24 +49,24 @@ public class TileEntityKiln extends TileEntityLockable implements ITickable, ISi
 
     @Override
     public ItemStack getStackInSlot(int index) {
-        return this.kilnItemStacks.get(index);
+        return this.itemStacks.get(index);
     }
 
     @Override
     public ItemStack decrStackSize(int index, int count) {
-        return ItemStackHelper.getAndSplit(this.kilnItemStacks, index, count);
+        return ItemStackHelper.getAndSplit(this.itemStacks, index, count);
     }
 
     @Override
     public ItemStack removeStackFromSlot(int index) {
-        return ItemStackHelper.getAndRemove(this.kilnItemStacks, index);
+        return ItemStackHelper.getAndRemove(this.itemStacks, index);
     }
 
     @Override
     public void setInventorySlotContents(int index, ItemStack stack) {
-        ItemStack itemstack = this.kilnItemStacks.get(index);
+        ItemStack itemstack = this.itemStacks.get(index);
         boolean flag = !stack.isEmpty() && stack.isItemEqual(itemstack) && ItemStack.areItemStackTagsEqual(stack, itemstack);
-        this.kilnItemStacks.set(index, stack);
+        this.itemStacks.set(index, stack);
 
         if (stack.getCount() > this.getInventoryStackLimit()) {
             stack.setCount(this.getInventoryStackLimit());
@@ -83,46 +80,30 @@ public class TileEntityKiln extends TileEntityLockable implements ITickable, ISi
     }
 
     @Override
-    public String getName() {
-        return this.hasCustomName() ? this.kilnCustomName : "container.embersconstruct.kiln";
-    }
-
-    @Override
-    public boolean hasCustomName() {
-        return this.kilnCustomName != null && !this.kilnCustomName.isEmpty();
-    }
-
-    public void setCustomInventoryName(String customName) {
-        this.kilnCustomName = customName;
+    public String getNameKey() {
+        return "container.embersconstruct.kiln";
     }
 
     @Override
     public void readFromNBT(NBTTagCompound compound) {
         super.readFromNBT(compound);
-        this.kilnItemStacks = NonNullList.<ItemStack>withSize(this.getSizeInventory(), ItemStack.EMPTY);
-        ItemStackHelper.loadAllItems(compound, this.kilnItemStacks);
+        this.itemStacks = NonNullList.<ItemStack>withSize(this.getSizeInventory(), ItemStack.EMPTY);
+        ItemStackHelper.loadAllItems(compound, this.itemStacks);
         this.kilnBurnTime = compound.getInteger("BurnTime");
         this.cookTime = compound.getInteger("CookTime");
         this.totalCookTime = compound.getInteger("CookTimeTotal");
         this.currentItemBurnTime = compound.getInteger("BurnTimeTotal");
-
-        if (compound.hasKey("CustomName", 8)) {
-            this.kilnCustomName = compound.getString("CustomName");
-        }
     }
 
     @Override
     public NBTTagCompound writeToNBT(NBTTagCompound compound) {
         super.writeToNBT(compound);
+
         compound.setInteger("BurnTime", (short)this.kilnBurnTime);
         compound.setInteger("CookTime", (short)this.cookTime);
         compound.setInteger("CookTimeTotal", (short)this.totalCookTime);
         compound.setInteger("BurnTimeTotal", (short)this.currentItemBurnTime);
-        ItemStackHelper.saveAllItems(compound, this.kilnItemStacks);
-
-        if (this.hasCustomName()) {
-            compound.setString("CustomName", this.kilnCustomName);
-        }
+        ItemStackHelper.saveAllItems(compound, this.itemStacks);
 
         return compound;
     }
@@ -153,9 +134,9 @@ public class TileEntityKiln extends TileEntityLockable implements ITickable, ISi
         }
 
         if (!this.world.isRemote) {
-            ItemStack itemstack = this.kilnItemStacks.get(1);
+            ItemStack itemstack = this.itemStacks.get(1);
 
-            if (this.isBurning() || !itemstack.isEmpty() && !this.kilnItemStacks.get(0).isEmpty()) {
+            if (this.isBurning() || !itemstack.isEmpty() && !this.itemStacks.get(0).isEmpty()) {
                 if (!this.isBurning() && this.canSmelt()) {
                     this.kilnBurnTime = getItemBurnTime(itemstack);
                     this.currentItemBurnTime = this.kilnBurnTime;
@@ -169,7 +150,7 @@ public class TileEntityKiln extends TileEntityLockable implements ITickable, ISi
 
                             if (itemstack.isEmpty()) {
                                 ItemStack item1 = item.getContainerItem(itemstack);
-                                this.kilnItemStacks.set(1, item1);
+                                this.itemStacks.set(1, item1);
                             }
                         }
                     }
@@ -180,7 +161,7 @@ public class TileEntityKiln extends TileEntityLockable implements ITickable, ISi
 
                     if (this.cookTime == this.totalCookTime) {
                         this.cookTime = 0;
-                        this.totalCookTime = this.getCookTime(this.kilnItemStacks.get(0));
+                        this.totalCookTime = this.getCookTime(this.itemStacks.get(0));
                         this.smeltItem();
                         flag1 = true;
                     }
@@ -208,17 +189,17 @@ public class TileEntityKiln extends TileEntityLockable implements ITickable, ISi
     }
 
     private boolean canSmelt() {
-        if (this.kilnItemStacks.get(0).isEmpty()) {
+        if (this.itemStacks.get(0).isEmpty()) {
             return false;
         }
         else {
-            ItemStack itemstack = KilnRecipes.instance().getResult(this.kilnItemStacks.get(0));
+            ItemStack itemstack = KilnRecipes.instance().getResult(this.itemStacks.get(0));
 
             if (itemstack.isEmpty()) {
                 return false;
             }
             else {
-                ItemStack itemstack1 = this.kilnItemStacks.get(2);
+                ItemStack itemstack1 = this.itemStacks.get(2);
 
                 if (itemstack1.isEmpty()) {
                     return true;
@@ -235,12 +216,12 @@ public class TileEntityKiln extends TileEntityLockable implements ITickable, ISi
 
     public void smeltItem() {
         if (this.canSmelt()) {
-            ItemStack itemstack = this.kilnItemStacks.get(0);
+            ItemStack itemstack = this.itemStacks.get(0);
             ItemStack itemstack1 = KilnRecipes.instance().getResult(itemstack);
-            ItemStack itemstack2 = this.kilnItemStacks.get(2);
+            ItemStack itemstack2 = this.itemStacks.get(2);
 
             if (itemstack2.isEmpty()) {
-                this.kilnItemStacks.set(2, itemstack1.copy());
+                this.itemStacks.set(2, itemstack1.copy());
             } else if (itemstack2.getItem() == itemstack1.getItem()) {
                 itemstack2.grow(itemstack1.getCount());
             }
@@ -257,22 +238,7 @@ public class TileEntityKiln extends TileEntityLockable implements ITickable, ISi
         return getItemBurnTime(stack) > 0;
     }
 
-    @Override
-    public boolean isUsableByPlayer(EntityPlayer player) {
-        if (this.world.getTileEntity(this.pos) != this) {
-            return false;
-        } else {
-            return player.getDistanceSq((double)this.pos.getX() + 0.5D, (double)this.pos.getY() + 0.5D, (double)this.pos.getZ() + 0.5D) <= 64.0D;
-        }
-    }
 
-    @Override
-    public void openInventory(EntityPlayer player) {
-    }
-
-    @Override
-    public void closeInventory(EntityPlayer player) {
-    }
 
     @Override
     public boolean isItemValidForSlot(int index, ItemStack stack) {
@@ -281,7 +247,7 @@ public class TileEntityKiln extends TileEntityLockable implements ITickable, ISi
         } else if (index != 1) {
             return true;
         } else {
-            ItemStack itemstack = this.kilnItemStacks.get(1);
+            ItemStack itemstack = this.itemStacks.get(1);
             return isItemFuel(stack) || SlotFurnaceFuel.isBucket(stack) && itemstack.getItem() != Items.BUCKET;
         }
     }
@@ -363,7 +329,7 @@ public class TileEntityKiln extends TileEntityLockable implements ITickable, ISi
 
     @Override
     public void clear() {
-        this.kilnItemStacks.clear();
+        this.itemStacks.clear();
     }
 
     net.minecraftforge.items.IItemHandler handlerTop = new net.minecraftforge.items.wrapper.SidedInvWrapper(this, net.minecraft.util.EnumFacing.UP);

@@ -1,15 +1,15 @@
-package com.peatral.embersconstruct.inventory;
+package com.peatral.embersconstruct.inventory.slots;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 
-public class SlotKilnOutput extends Slot {
+public class SlotOutput extends Slot {
     private final EntityPlayer player;
     private int removeCount;
 
-    public SlotKilnOutput(EntityPlayer player, IInventory inventoryIn, int slotIndex, int xPosition, int yPosition) {
+    public SlotOutput(EntityPlayer player, IInventory inventoryIn, int slotIndex, int xPosition, int yPosition) {
         super(inventoryIn, slotIndex, xPosition, yPosition);
         this.player = player;
     }

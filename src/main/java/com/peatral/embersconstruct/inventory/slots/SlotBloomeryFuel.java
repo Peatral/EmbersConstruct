@@ -1,19 +1,20 @@
-package com.peatral.embersconstruct.inventory;
+package com.peatral.embersconstruct.inventory.slots;
 
+import com.peatral.embersconstruct.tileentity.TileEntityBloomery;
 import com.peatral.embersconstruct.tileentity.TileEntityKiln;
 import net.minecraft.init.Items;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 
-public class SlotKilnFuel extends Slot {
-    public SlotKilnFuel(IInventory inventoryIn, int slotIndex, int xPosition, int yPosition) {
+public class SlotBloomeryFuel extends Slot {
+    public SlotBloomeryFuel(IInventory inventoryIn, int slotIndex, int xPosition, int yPosition) {
         super(inventoryIn, slotIndex, xPosition, yPosition);
     }
 
     public boolean isItemValid(ItemStack stack)
     {
-        return TileEntityKiln.isItemFuel(stack) || isBucket(stack);
+        return TileEntityBloomery.isItemFuel(stack) || isBucket(stack);
     }
 
     public int getItemStackLimit(ItemStack stack)

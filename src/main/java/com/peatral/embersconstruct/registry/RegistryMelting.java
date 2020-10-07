@@ -1,6 +1,8 @@
 package com.peatral.embersconstruct.registry;
 
 import com.peatral.embersconstruct.EmbersConstruct;
+import com.peatral.embersconstruct.EmbersConstructItems;
+import com.peatral.embersconstruct.EmbersConstructMaterials;
 import com.peatral.embersconstruct.util.OreDictValues;
 import com.peatral.embersconstruct.util.Stamp;
 import com.peatral.embersconstruct.util.Util;
@@ -14,6 +16,8 @@ import net.minecraftforge.oredict.OreDictionary;
 import slimeknights.tconstruct.library.TinkerRegistry;
 import slimeknights.tconstruct.library.materials.Material;
 import slimeknights.tconstruct.library.tools.IToolPart;
+import slimeknights.tconstruct.shared.TinkerFluids;
+import slimeknights.tconstruct.tools.TinkerMaterials;
 import teamroots.embers.recipe.ItemMeltingRecipe;
 import teamroots.embers.recipe.RecipeRegistry;
 
@@ -51,6 +55,10 @@ public class RegistryMelting {
 
                 for (IToolPart toolPart : TinkerRegistry.getToolParts()) {
                     if (toolPart.canUseMaterial(material)) {
+                        registerBasic(new IngredientNBT(toolPart.getItemstackWithMaterial(material)) {}, new FluidStack(fluid, toolPart.getCost()));
+                    }
+                    if (material == EmbersConstructMaterials.wroughtiron) {
+                        EmbersConstruct.logger.info("Wrought Iron + " + toolPart.toString());
                         registerBasic(new IngredientNBT(toolPart.getItemstackWithMaterial(material)) {}, new FluidStack(fluid, toolPart.getCost()));
                     }
                 }

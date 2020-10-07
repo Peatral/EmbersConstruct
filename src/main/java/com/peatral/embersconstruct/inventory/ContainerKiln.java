@@ -1,10 +1,11 @@
 package com.peatral.embersconstruct.inventory;
 
+import com.peatral.embersconstruct.inventory.slots.SlotKilnFuel;
+import com.peatral.embersconstruct.inventory.slots.SlotOutput;
 import com.peatral.embersconstruct.registry.KilnRecipes;
 import com.peatral.embersconstruct.tileentity.TileEntityKiln;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
-import net.minecraft.inventory.Container;
 import net.minecraft.inventory.IContainerListener;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
@@ -12,34 +13,19 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class ContainerKiln extends Container {
-    private final IInventory tileKiln;
+public class ContainerKiln extends ContainerBase {
     private int cookTime;
     private int totalCookTime;
     private int kilnBurnTime;
     private int currentItemBurnTime;
 
     public ContainerKiln(InventoryPlayer playerInventory, IInventory kilnInventory) {
-        this.tileKiln = kilnInventory;
+        super(playerInventory, kilnInventory);
         this.addSlotToContainer(new Slot(kilnInventory, 0, 56, 17));
         this.addSlotToContainer(new SlotKilnFuel(kilnInventory, 1, 56, 53));
-        this.addSlotToContainer(new SlotKilnOutput(playerInventory.player, kilnInventory, 2, 116, 35));
+        this.addSlotToContainer(new SlotOutput(playerInventory.player, kilnInventory, 2, 116, 35));
 
-        for (int i = 0; i < 3; ++i) {
-            for (int j = 0; j < 9; ++j) {
-                this.addSlotToContainer(new Slot(playerInventory, j + i * 9 + 9, 8 + j * 18, 84 + i * 18));
-            }
-        }
-
-        for (int k = 0; k < 9; ++k) {
-            this.addSlotToContainer(new Slot(playerInventory, k, 8 + k * 18, 142));
-        }
-    }
-
-    @Override
-    public void addListener(IContainerListener listener) {
-        super.addListener(listener);
-        listener.sendAllWindowProperties(this, this.tileKiln);
+        addPlayerInventory(playerInventory);
     }
 
     @Override
@@ -49,38 +35,33 @@ public class ContainerKiln extends Container {
         for (int i = 0; i < this.listeners.size(); ++i) {
             IContainerListener icontainerlistener = this.listeners.get(i);
 
-            if (this.cookTime != this.tileKiln.getField(2)) {
-                icontainerlistener.sendWindowProperty(this, 2, this.tileKiln.getField(2));
+            if (this.cookTime != this.tile.getField(2)) {
+                icontainerlistener.sendWindowProperty(this, 2, this.tile.getField(2));
             }
 
-            if (this.kilnBurnTime != this.tileKiln.getField(0)) {
-                icontainerlistener.sendWindowProperty(this, 0, this.tileKiln.getField(0));
+            if (this.kilnBurnTime != this.tile.getField(0)) {
+                icontainerlistener.sendWindowProperty(this, 0, this.tile.getField(0));
             }
 
-            if (this.currentItemBurnTime != this.tileKiln.getField(1)) {
-                icontainerlistener.sendWindowProperty(this, 1, this.tileKiln.getField(1));
+            if (this.currentItemBurnTime != this.tile.getField(1)) {
+                icontainerlistener.sendWindowProperty(this, 1, this.tile.getField(1));
             }
 
-            if (this.totalCookTime != this.tileKiln.getField(3)) {
-                icontainerlistener.sendWindowProperty(this, 3, this.tileKiln.getField(3));
+            if (this.totalCookTime != this.tile.getField(3)) {
+                icontainerlistener.sendWindowProperty(this, 3, this.tile.getField(3));
             }
         }
 
-        this.cookTime = this.tileKiln.getField(2);
-        this.kilnBurnTime = this.tileKiln.getField(0);
-        this.currentItemBurnTime = this.tileKiln.getField(1);
-        this.totalCookTime = this.tileKiln.getField(3);
+        this.cookTime = this.tile.getField(2);
+        this.kilnBurnTime = this.tile.getField(0);
+        this.currentItemBurnTime = this.tile.getField(1);
+        this.totalCookTime = this.tile.getField(3);
     }
 
     @SideOnly(Side.CLIENT)
     @Override
     public void updateProgressBar(int id, int data) {
-        this.tileKiln.setField(id, data);
-    }
-
-    @Override
-    public boolean canInteractWith(EntityPlayer playerIn) {
-        return this.tileKiln.isUsableByPlayer(playerIn);
+        this.tile.setField(id, data);
     }
 
     @Override

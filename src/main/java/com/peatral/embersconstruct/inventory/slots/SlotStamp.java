@@ -1,4 +1,4 @@
-package com.peatral.embersconstruct.inventory;
+package com.peatral.embersconstruct.inventory.slots;
 
 import com.peatral.embersconstruct.registry.StampTableRecipes;
 import net.minecraft.inventory.IInventory;

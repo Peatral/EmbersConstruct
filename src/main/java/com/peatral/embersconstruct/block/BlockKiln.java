@@ -36,6 +36,7 @@ public class BlockKiln extends BlockHorizontal implements ITileEntityProvider {
     public BlockKiln() {
         super(Material.ROCK);
         this.setSoundType(SoundType.STONE);
+        this.setHardness(1.2f);
         this.setDefaultState(this.blockState.getBaseState()
                 .withProperty(FACING, EnumFacing.NORTH)
                 .withProperty(BURNING, false));
@@ -111,7 +112,7 @@ public class BlockKiln extends BlockHorizontal implements ITileEntityProvider {
     @Override
     public void breakBlock(World worldIn, BlockPos pos, IBlockState state) {
         TileEntityKiln tileentity = (TileEntityKiln) worldIn.getTileEntity(pos);
-        InventoryHelper.dropInventoryItems(worldIn, pos, tileentity);
+        tileentity.breakBlock(worldIn, pos, state, null);
         super.breakBlock(worldIn, pos, state);
     }
 

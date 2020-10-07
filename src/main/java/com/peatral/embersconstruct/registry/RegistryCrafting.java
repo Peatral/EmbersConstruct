@@ -19,6 +19,7 @@ public class RegistryCrafting {
     public static void registerRecipes(RegistryEvent.Register<IRecipe> event) {
         event.getRegistry().register(init( "stamptable", EmbersConstructBlocks.StampTable, " X ", "XOX", " X ", 'X', RegistryManager.plate_caminite, 'O', "workbench"));
         event.getRegistry().register(init( "kiln", EmbersConstructBlocks.Kiln, "XXX", "X X", "XXX", 'X', RegistryManager.block_caminite_brick));
+        event.getRegistry().register(init( "bloomery", EmbersConstructBlocks.Bloomery, "XXX", "XXX", "X X", 'X', RegistryManager.block_caminite_brick));
     }
 
     public static IRecipe init(String name, Block result, Object... recipe) {

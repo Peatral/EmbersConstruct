@@ -1,5 +1,6 @@
 package com.peatral.embersconstruct.util;
 
+import com.peatral.embersconstruct.EmbersConstructMaterials;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
 import slimeknights.tconstruct.library.materials.Material;
@@ -23,6 +24,8 @@ public class Util {
             fluid = getFluidFromString(s);
             if (fluid != null) return fluid;
         }
+        if (material == EmbersConstructMaterials.wroughtiron)
+            return getFluidFromString("iron");
         return null;
     }
 

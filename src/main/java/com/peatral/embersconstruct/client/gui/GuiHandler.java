@@ -1,6 +1,8 @@
 package com.peatral.embersconstruct.client.gui;
 
+import com.peatral.embersconstruct.inventory.ContainerBloomery;
 import com.peatral.embersconstruct.inventory.ContainerKiln;
+import com.peatral.embersconstruct.tileentity.TileEntityBloomery;
 import com.peatral.embersconstruct.tileentity.TileEntityKiln;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
@@ -11,6 +13,7 @@ import net.minecraftforge.fml.common.network.IGuiHandler;
 public class GuiHandler implements IGuiHandler {
 
     public static final int GUI_KILN = 0;
+    public static final int GUI_BLOOMERY = 1;
 
     @Override
     public Object getServerGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
@@ -18,6 +21,8 @@ public class GuiHandler implements IGuiHandler {
         switch (ID) {
             case GuiHandler.GUI_KILN:
                 return new ContainerKiln(player.inventory, (TileEntityKiln) tileEntity);
+            case GuiHandler.GUI_BLOOMERY:
+                return new ContainerBloomery(player.inventory, (TileEntityBloomery) tileEntity);
         }
         return null;
     }
@@ -28,6 +33,8 @@ public class GuiHandler implements IGuiHandler {
         switch (ID) {
             case GuiHandler.GUI_KILN:
                 return new GuiKiln(player.inventory, (TileEntityKiln) tileEntity);
+            case GuiHandler.GUI_BLOOMERY:
+                return  new GuiBloomery(player.inventory, (TileEntityBloomery) tileEntity);
         }
         return null;
     }

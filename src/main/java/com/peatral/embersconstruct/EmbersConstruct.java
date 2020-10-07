@@ -5,10 +5,12 @@ import com.peatral.embersconstruct.network.StampTableSelectionPacket;
 import com.peatral.embersconstruct.proxy.IProxy;
 import com.peatral.embersconstruct.proxy.ServerProxy;
 import com.peatral.embersconstruct.registry.*;
+import com.peatral.embersconstruct.tileentity.TileEntityBloomery;
 import com.peatral.embersconstruct.tileentity.TileEntityKiln;
 import com.peatral.embersconstruct.tileentity.TileEntityStampTable;
 import com.peatral.embersconstruct.util.RecipeRemover;
 import net.minecraft.block.Block;
+import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
@@ -30,6 +32,18 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import slimeknights.tconstruct.common.TinkerNetwork;
+import slimeknights.tconstruct.library.TinkerRegistry;
+import slimeknights.tconstruct.library.materials.ExtraMaterialStats;
+import slimeknights.tconstruct.library.materials.HandleMaterialStats;
+import slimeknights.tconstruct.library.materials.HeadMaterialStats;
+import slimeknights.tconstruct.library.materials.Material;
+import slimeknights.tconstruct.tools.TinkerMaterials;
+
+import static slimeknights.tconstruct.library.materials.MaterialTypes.HEAD;
+import static slimeknights.tconstruct.library.utils.HarvestLevels.DIAMOND;
+import static slimeknights.tconstruct.tools.TinkerMaterials.materials;
+import static slimeknights.tconstruct.tools.TinkerTraits.magnetic;
+import static slimeknights.tconstruct.tools.TinkerTraits.magnetic2;
 
 @Mod(modid = EmbersConstruct.MODID, name = EmbersConstruct.NAME, version = EmbersConstruct.VERSION, dependencies = EmbersConstruct.DEPENDENCIES, updateJSON = EmbersConstruct.UPDATE_CHECKER_URL)
 @Mod.EventBusSubscriber
@@ -75,6 +89,7 @@ public class EmbersConstruct {
         proxy.preInit(event);
 
         TinkerNetwork.instance.registerPacket(StampTableSelectionPacket.class);
+        EmbersConstructMaterials.main();
     }
 
     @EventHandler
@@ -86,6 +101,7 @@ public class EmbersConstruct {
 
         //Embers Construct Recipes
         KilnRecipes.main();
+        BloomeryRecipes.main();
         StampTableRecipes.main();
     }
 
@@ -126,6 +142,7 @@ public class EmbersConstruct {
     public void registerTileEntities() {
         registerTileEntity(TileEntityKiln.class, "kiln");
         registerTileEntity(TileEntityStampTable.class, "stamptable");
+        registerTileEntity(TileEntityBloomery.class, "bloomery");
     }
 
     private static void registerTileEntity(Class<? extends TileEntity> clazz, String name) {

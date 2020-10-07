@@ -1,5 +1,6 @@
 package com.peatral.embersconstruct.inventory;
 
+import com.peatral.embersconstruct.inventory.slots.SlotStamp;
 import com.peatral.embersconstruct.network.StampTableSelectionPacket;
 import com.peatral.embersconstruct.registry.RegistryStamps;
 import com.peatral.embersconstruct.registry.StampTableRecipes;

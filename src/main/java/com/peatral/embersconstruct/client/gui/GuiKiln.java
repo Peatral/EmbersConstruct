@@ -3,7 +3,6 @@ package com.peatral.embersconstruct.client.gui;
 import com.peatral.embersconstruct.inventory.ContainerKiln;
 import com.peatral.embersconstruct.EmbersConstruct;
 import com.peatral.embersconstruct.tileentity.TileEntityKiln;
-import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.IInventory;
@@ -12,36 +11,11 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
-public class GuiKiln extends GuiContainer {
+public class GuiKiln extends GuiBase {
     public static final ResourceLocation KILN_GUI_TEXTURES = new ResourceLocation(EmbersConstruct.MODID,"textures/gui/container/kiln.png");
-    /** The player inventory bound to this GUI. */
-    private final InventoryPlayer playerInventory;
-    private final IInventory tileKiln;
 
     public GuiKiln(InventoryPlayer playerInv, IInventory kilnInv) {
-        super(new ContainerKiln(playerInv, kilnInv));
-        this.playerInventory = playerInv;
-        this.tileKiln = kilnInv;
-    }
-
-    /**
-     * Draws the screen and all the components in it.
-     */
-    @Override
-    public void drawScreen(int mouseX, int mouseY, float partialTicks) {
-        this.drawDefaultBackground();
-        super.drawScreen(mouseX, mouseY, partialTicks);
-        this.renderHoveredToolTip(mouseX, mouseY);
-    }
-
-    /**
-     * Draw the foreground layer for the GuiContainer (everything in front of the items)
-     */
-    @Override
-    protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY) {
-        String s = this.tileKiln.getDisplayName().getUnformattedText();
-        this.fontRenderer.drawString(s, this.xSize / 2 - this.fontRenderer.getStringWidth(s) / 2, 6, 4210752);
-        this.fontRenderer.drawString(this.playerInventory.getDisplayName().getUnformattedText(), 8, this.ySize - 96 + 2, 4210752);
+        super(playerInv, kilnInv, new ContainerKiln(playerInv, kilnInv));
     }
 
     /**
@@ -49,13 +23,12 @@ public class GuiKiln extends GuiContainer {
      */
     @Override
     protected void drawGuiContainerBackgroundLayer(float partialTicks, int mouseX, int mouseY) {
-        GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
-        this.mc.getTextureManager().bindTexture(KILN_GUI_TEXTURES);
-        int i = (this.width - this.xSize) / 2;
-        int j = (this.height - this.ySize) / 2;
-        this.drawTexturedModalRect(i, j, 0, 0, this.xSize, this.ySize);
+        drawBackground(KILN_GUI_TEXTURES);
 
-        if (TileEntityKiln.isBurning(this.tileKiln)) {
+        int i = getHCenter();
+        int j = getVCenter();
+
+        if (TileEntityKiln.isBurning(this.tile)) {
             int k = this.getBurnLeftScaled(13);
             this.drawTexturedModalRect(i + 56, j + 36 + 12 - k, 176, 12 - k, 14, k + 1);
         }
@@ -65,20 +38,20 @@ public class GuiKiln extends GuiContainer {
     }
 
     private int getCookProgressScaled(int pixels) {
-        int i = this.tileKiln.getField(2);
-        int j = this.tileKiln.getField(3);
+        int i = this.tile.getField(2);
+        int j = this.tile.getField(3);
         return j != 0 && i != 0 ? i * pixels / j : 0;
     }
 
     private int getBurnLeftScaled(int pixels)
     {
-        int i = this.tileKiln.getField(1);
+        int i = this.tile.getField(1);
 
         if (i == 0)
         {
             i = 200;
         }
 
-        return this.tileKiln.getField(0) * pixels / i;
+        return this.tile.getField(0) * pixels / i;
     }
 }

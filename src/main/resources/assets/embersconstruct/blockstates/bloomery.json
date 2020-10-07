@@ -1,0 +1,9 @@
+{
+  "forge_marker": 1,
+  "variants": {
+    "burning=false,top=false": { "model": "embersconstruct:bloomery_bottom" },
+    "burning=true,top=false": { "model": "embersconstruct:bloomery_bottom_lit" },
+    "burning=false,top=true": { "model": "embersconstruct:bloomery_top" },
+    "burning=true,top=true": { "model": "embersconstruct:bloomery_top" }
+  }
+}

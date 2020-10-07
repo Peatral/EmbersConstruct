@@ -1,0 +1,6 @@
+{
+    "parent": "embersconstruct:block/bloomery_bottom",
+    "textures": {
+        "bloomery_side": "embersconstruct:blocks/bloomery_side_on"
+    }
+}
