@@ -35,6 +35,18 @@ public class EmbersConstructConfig {
         @Config.LangKey("embersconstruct.config.dustStamping")
         @Config.Comment("Make dusts from ingots via the Stamper")
         public boolean dustStamping = true;
+
+        @Config.LangKey("embersconstruct.config.melter")
+        @Config.Comment("Enable melting recipes")
+        public boolean melter = true;
+
+        @Config.LangKey("embersconstruct.config.mixer")
+        @Config.Comment("Enable mixing recipes")
+        public boolean mixer = true;
+
+        @Config.LangKey("embersconstruct.config.stamper")
+        @Config.Comment("Enable stamping recipes")
+        public boolean stamper = true;
     }
 
     public static class TCRecipeSettings {

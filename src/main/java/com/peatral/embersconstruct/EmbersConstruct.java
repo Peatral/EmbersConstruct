@@ -110,9 +110,9 @@ public class EmbersConstruct {
         proxy.postInit(event);
 
         //Interaction with other mods
-        RegistryMelting.main();
-        RegistryAlloying.main();
-        RegistryStamping.main();
+        if (EmbersConstructConfig.embersConstructSettings.melter) RegistryMelting.main();
+        if (EmbersConstructConfig.embersConstructSettings.mixer) RegistryAlloying.main();
+        if (EmbersConstructConfig.embersConstructSettings.stamper) RegistryStamping.main();
 
         RecipeRemover.main();
     }
