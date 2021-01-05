@@ -81,9 +81,7 @@ public class Stamp extends IForgeRegistryEntry.Impl<Stamp> {
     }
 
     public static ItemStack putStamp(ItemStack stack, Stamp stamp) {
-        NBTTagCompound compound;
-        if (stack.getTagCompound() == null) compound = new NBTTagCompound();
-        else compound = stack.getTagCompound();
+        NBTTagCompound compound = stack.getTagCompound() == null ? new NBTTagCompound() : stack.getTagCompound();
         compound.setString(STAMP_PATH, stamp.getRegistryName().toString());
         stack.setTagCompound(compound);
         return stack;

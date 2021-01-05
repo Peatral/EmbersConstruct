@@ -41,38 +41,38 @@
     "elements": [
         {
             "name": "Cube2",
-            "from": [ 2, 0, 2 ], 
-            "to": [ 14, 6, 14 ], 
+            "from": [ 2, 0, 2 ],
+            "to": [ 14, 6, 14 ],
             "faces": {
-                "north": { "texture": "#bloomery_top", "uv": [ 0, 3, 12, 9 ] },
-                "east": { "texture": "#bloomery_top", "uv": [ 0, 3, 12, 9 ] },
-                "south": { "texture": "#bloomery_top", "uv": [ 0, 3, 12, 9 ] },
-                "west": { "texture": "#bloomery_top", "uv": [ 0, 3, 12, 9 ] },
+                "north": { "texture": "#bloomery_top", "uv": [ 0, 4, 12, 10 ] },
+                "east": { "texture": "#bloomery_top", "uv": [ 0, 4, 12, 10 ] },
+                "south": { "texture": "#bloomery_top", "uv": [ 0, 4, 12, 10 ] },
+                "west": { "texture": "#bloomery_top", "uv": [ 0, 4, 12, 10 ] },
                 "up": { "texture": "#bloomery_top_facing", "uv": [ 2, 2, 14, 14 ] },
                 "down": { "texture": "#kiln_bottom", "uv": [ 2, 2, 14, 14 ] }
             }
         },
         {
             "name": "Cube3",
-            "from": [ 4, 6, 4 ], 
-            "to": [ 12, 11, 12 ], 
+            "from": [ 4, 6, 4 ],
+            "to": [ 12, 11, 12 ],
             "faces": {
-                "north": { "texture": "#bloomery_top", "uv": [ 0, 9, 8, 14 ] },
-                "east": { "texture": "#bloomery_top", "uv": [ 0, 9, 8, 14 ] },
-                "south": { "texture": "#bloomery_top", "uv": [ 0, 9, 8, 14 ] },
-                "west": { "texture": "#bloomery_top", "uv": [ 0, 9, 8, 14 ] },
+                "north": { "texture": "#bloomery_top", "uv": [ 0, 10, 8, 15 ] },
+                "east": { "texture": "#bloomery_top", "uv": [ 0, 10, 8, 15 ] },
+                "south": { "texture": "#bloomery_top", "uv": [ 0, 10, 8, 15 ] },
+                "west": { "texture": "#bloomery_top", "uv": [ 0, 10, 8, 15 ] },
                 "up": { "texture": "#bloomery_top_facing", "uv": [ 4, 4, 12, 12 ] }
             }
         },
         {
             "name": "Cube4",
-            "from": [ 6, 11, 6 ], 
-            "to": [ 10, 15, 10 ], 
+            "from": [ 6, 11, 6 ],
+            "to": [ 10, 16, 10 ],
             "faces": {
-                "north": { "texture": "#bloomery_top", "uv": [ 0, 0, 4, 4 ] },
-                "east": { "texture": "#bloomery_top", "uv": [ 0, 0, 4, 4 ] },
-                "south": { "texture": "#bloomery_top", "uv": [ 0, 0, 4, 4 ] },
-                "west": { "texture": "#bloomery_top", "uv": [ 0, 0, 4, 4 ] },
+                "north": { "texture": "#bloomery_top", "uv": [ 0, 0, 4, 5 ] },
+                "east": { "texture": "#bloomery_top", "uv": [ 0, 0, 4, 5 ] },
+                "south": { "texture": "#bloomery_top", "uv": [ 0, 0, 4, 5 ] },
+                "west": { "texture": "#bloomery_top", "uv": [ 0, 0, 4, 5 ] },
                 "up": { "texture": "#bloomery_top", "uv": [ 4, 0, 8, 4 ] }
             }
         }

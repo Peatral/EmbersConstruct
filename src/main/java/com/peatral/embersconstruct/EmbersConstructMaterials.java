@@ -1,10 +1,7 @@
 package com.peatral.embersconstruct;
 
-import com.google.common.eventbus.Subscribe;
 import com.peatral.embersconstruct.util.OreDictValues;
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import slimeknights.tconstruct.library.MaterialIntegration;
 import slimeknights.tconstruct.library.TinkerRegistry;
 import slimeknights.tconstruct.library.materials.*;
@@ -30,7 +27,7 @@ public class EmbersConstructMaterials {
         materialOreDicts = new Object2ObjectOpenHashMap();
     }
 
-    public static final Material wroughtiron = mat("wroughtiron", 0xcacaca);
+    public static final Material wroughtiron = mat("wroughtiron", 0xd19797);
 
     public static void main() {
         initMaterials();

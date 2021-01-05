@@ -19,6 +19,11 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class TileEntityKiln extends TileEntityBase implements ITickable {
+    /**
+     * 0 = Input
+     * 1 = Fuel
+     * 2 = Output
+     */
     private static final int[] SLOTS_TOP = new int[] {0};
     private static final int[] SLOTS_BOTTOM = new int[] {2, 1};
     private static final int[] SLOTS_SIDES = new int[] {1};

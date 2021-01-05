@@ -1,5 +1,6 @@
 package com.peatral.embersconstruct.registry;
 
+import com.google.common.collect.Lists;
 import com.peatral.embersconstruct.EmbersConstructConfig;
 import com.peatral.embersconstruct.EmbersConstructItems;
 import com.peatral.embersconstruct.util.IngredientNonMeta;
@@ -77,6 +78,14 @@ public class StampTableRecipes {
             return output;
         }
 
+        public List<ItemStack> getOutputWithStamps() {
+            List list = Lists.newArrayList();
+            for (Stamp stamp : RegistryStamps.registry.getValuesCollection()) {
+                list.add(Stamp.putStamp(this.output, stamp));
+            }
+            return list;
+        }
+
         public boolean matches(ItemStack input) {
             if (!requiresBlank) return this.input.apply(input);
             else return this.input.apply(input) && Stamp.getStampFromStack(input) == null;
@@ -85,8 +94,8 @@ public class StampTableRecipes {
 
     public static void main() {
         boolean requiresBlank = EmbersConstructConfig.embersConstructSettings.stampTableNeedBlank;
-        instance().addRecipe(new IngredientNonMeta(new ItemStack(EmbersConstructItems.StampRaw, OreDictionary.WILDCARD_VALUE)), new ItemStack(EmbersConstructItems.StampRaw), requiresBlank);
-        instance().addRecipe(new IngredientNonMeta(new ItemStack(EmbersConstructItems.Stamp, OreDictionary.WILDCARD_VALUE)), new ItemStack(EmbersConstructItems.Stamp), requiresBlank);
+        instance().addRecipe(new IngredientNonMeta(new ItemStack(EmbersConstructItems.StampRaw, 1, OreDictionary.WILDCARD_VALUE)), new ItemStack(EmbersConstructItems.StampRaw), requiresBlank);
+        instance().addRecipe(new IngredientNonMeta(new ItemStack(EmbersConstructItems.Stamp, 1, OreDictionary.WILDCARD_VALUE)), new ItemStack(EmbersConstructItems.Stamp), requiresBlank);
         instance().addRecipe(RegistryManager.stamp_flat_raw, new ItemStack(EmbersConstructItems.StampRaw), requiresBlank);
     }
 }

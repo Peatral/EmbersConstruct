@@ -17,9 +17,15 @@ import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.Optional;
 import net.minecraftforge.oredict.OreDictionary;
+import org.lwjgl.Sys;
 import slimeknights.tconstruct.library.TinkerRegistry;
+import slimeknights.tconstruct.library.materials.ArrowShaftMaterialStats;
 import slimeknights.tconstruct.library.materials.Material;
+import slimeknights.tconstruct.library.tinkering.TinkersItem;
 import slimeknights.tconstruct.library.tools.IToolPart;
+import slimeknights.tconstruct.tools.TinkerTools;
+import slimeknights.tconstruct.tools.ranged.item.Bolt;
+import slimeknights.tconstruct.tools.ranged.item.BoltCore;
 import soot.Registry;
 import teamroots.embers.RegistryManager;
 import teamroots.embers.recipe.ItemStampingRecipe;
@@ -97,6 +103,19 @@ public class RegistryStamping {
             }
         }
 
+        // Registering boltcore recipes
+        for (Material shaftMat : materials) {
+            if (TinkerTools.boltCore.canUseMaterial(shaftMat) && TinkerTools.arrowShaft.canUseMaterial(shaftMat)) {
+                for (Material headMat : materials) {
+                    Fluid fluid = Util.getFluidFromMaterial(headMat);
+                    if (fluid != null && TinkerTools.boltCore.canUseMaterial(headMat)) {
+                        ItemStack inp = TinkerTools.arrowShaft.getItemstackWithMaterial(shaftMat);
+                        ItemStack res = BoltCore.getItemstackWithMaterials(shaftMat, headMat);
+                        register(new IngredientNBT(inp){}, Ingredient.EMPTY, res, new FluidStack(fluid, OreDictValues.INGOT.getValue() * 2));
+                    }
+                }
+            }
+        }
     }
 
     public static void registerFromOreDict(String key, ItemStack stamp, int cost) {
