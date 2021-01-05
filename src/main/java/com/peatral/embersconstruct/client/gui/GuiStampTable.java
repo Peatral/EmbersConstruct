@@ -17,7 +17,7 @@ import java.util.Arrays;
 
 @SideOnly(Side.CLIENT)
 public class GuiStampTable extends GuiTinkerStation {
-    private static final ResourceLocation BACKGROUND = new ResourceLocation(EmbersConstruct.MODID, "textures/gui/container/stamptable.png");
+    public static final ResourceLocation BACKGROUND = new ResourceLocation(EmbersConstruct.MODID, "textures/gui/container/stamptable.png");
 
     public static final int Column_Count = 4;
     public static final int Row_Count = 6;
