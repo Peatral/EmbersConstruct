@@ -1,7 +1,6 @@
 package com.peatral.embersconstruct.registry;
 
 import com.peatral.embersconstruct.EmbersConstruct;
-import com.peatral.embersconstruct.EmbersConstructMaterials;
 import com.peatral.embersconstruct.util.OreDictValues;
 import com.peatral.embersconstruct.util.Stamp;
 import com.peatral.embersconstruct.util.Util;
@@ -54,10 +53,6 @@ public class RegistryMelting {
                     if (toolPart.canUseMaterial(material)) {
                         registerBasic(new IngredientNBT(toolPart.getItemstackWithMaterial(material)) {}, new FluidStack(fluid, toolPart.getCost()));
                     }
-                    if (material == EmbersConstructMaterials.wroughtiron) {
-                        EmbersConstruct.logger.info("Wrought Iron + " + toolPart.toString());
-                        registerBasic(new IngredientNBT(toolPart.getItemstackWithMaterial(material)) {}, new FluidStack(FluidRegistry.getFluid("iron"), toolPart.getCost()));
-                    }
                 }
             }
         }
@@ -77,18 +72,9 @@ public class RegistryMelting {
         boolean found = false;
         for (ItemMeltingRecipe test : RecipeRegistry.meltingRecipes) {
             if (test.fluid.getFluid().getName() == output.getFluid().getName() && test.fluid.amount == output.amount) {
-                if (test.input == input) {
+                if (test.input.equals(input)) {
                     found = true;
                     break;
-                } else {
-                    if (test.input.getMatchingStacks().length == input.getMatchingStacks().length && input.getMatchingStacks().length == 1) {
-                        ItemStack testStack = test.input.getMatchingStacks()[0];
-                        ItemStack stack = input.getMatchingStacks()[0];
-                        if (stack.isItemEqual(testStack) && stack.getCount() == testStack.getCount()) {
-                            found = true;
-                            break;
-                        }
-                    }
                 }
             }
         }
