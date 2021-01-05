@@ -52,8 +52,8 @@ public class EmbersConstructMaterials {
 
     public static void addStats() {
         TinkerRegistry.addMaterialStats(wroughtiron,
-                new HeadMaterialStats(194, 6.00f, 4.00f, HarvestLevels.DIAMOND),
-                new HandleMaterialStats(0.85f, 60),
+                new HeadMaterialStats(180, 6.00f, 4.00f, HarvestLevels.DIAMOND),
+                new HandleMaterialStats(0.85f, 50),
                 new ExtraMaterialStats(32),
                 new BowMaterialStats(0.5f, 1.5f, 7f));
     }
