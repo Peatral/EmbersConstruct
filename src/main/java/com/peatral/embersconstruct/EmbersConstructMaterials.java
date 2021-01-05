@@ -25,9 +25,16 @@ public class EmbersConstructMaterials {
         materialIntegrations = new Object2ObjectOpenHashMap();
         materialIntegrationStages = new Object2ObjectOpenHashMap();
         materialOreDicts = new Object2ObjectOpenHashMap();
+
+        setupMaterials();
     }
 
-    public static final Material wroughtiron = mat("wroughtiron", 0xd19797);
+    public static Material wroughtiron;
+
+    public static void setupMaterials() {
+        wroughtiron = mat("wroughtiron", 0xd19797);
+    }
+
 
     public static void main() {
         initMaterials();
@@ -58,7 +65,7 @@ public class EmbersConstructMaterials {
                     MaterialIntegration mi = new MaterialIntegration(v);
 
                     if (materialOreDicts.containsKey(k)) {
-                        mi.representativeItem = (String)materialOreDicts.get(k);
+                        mi.representativeItem = materialOreDicts.get(k);
                     }
 
                     TinkerRegistry.integrate(mi).preInit();

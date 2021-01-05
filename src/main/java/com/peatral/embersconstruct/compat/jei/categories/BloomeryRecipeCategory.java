@@ -2,11 +2,9 @@ package com.peatral.embersconstruct.compat.jei.categories;
 
 import com.peatral.embersconstruct.EmbersConstruct;
 import com.peatral.embersconstruct.client.gui.GuiBloomery;
-import com.peatral.embersconstruct.client.gui.GuiKiln;
 import com.peatral.embersconstruct.compat.jei.JEICompat;
 import com.peatral.embersconstruct.compat.jei.RecipeCategories;
 import com.peatral.embersconstruct.compat.jei.wrapper.BloomeryRecipeWrapper;
-import com.peatral.embersconstruct.compat.jei.wrapper.KilnRecipeWrapper;
 import mezz.jei.api.IGuiHelper;
 import mezz.jei.api.gui.*;
 import mezz.jei.api.ingredients.IIngredients;

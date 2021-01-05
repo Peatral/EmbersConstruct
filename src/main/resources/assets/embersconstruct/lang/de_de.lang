@@ -1,5 +1,8 @@
 item.embersconstruct.stamp.name=%1$s Stanze
 item.embersconstruct.stamp_raw.name=Rohe %1$s Stanze
+item.embersconstruct.wroughtIronIngot.name=Schmiedeeisenbarren
+
+material.wroughtiron.name=Schmiedeeisen
 
 oredict.name.gem=Edelstein
 
@@ -9,8 +12,12 @@ container.embersconstruct.kiln=Töpferofen
 tile.embersconstruct.stamptable.name=Stanzentisch
 gui.embersconstruct.stamptable.name=Stanzentisch
 
+tile.embersconstruct.bloomery.name=Rennofen
+container.embersconstruct.bloomery=Rennofen
+
 gui.jei.category.kiln=Pyroverarbeitung
 gui.jei.category.stamptable=Stanzentisch
+gui.jei.category.bloomery=Rennofen
 
 # Tab
 itemGroup.tabEmbersConstruct=Embers' Construct
@@ -26,6 +33,9 @@ embersconstruct.config.showNewVersionMessage=Zeige Neue-Version-Nachricht
 embersconstruct.config.section.embersConstructRecipeSettings=Embers' Construct Rezept Einstellungen
 embersconstruct.config.stampTableNeedBlank=Stanzentisch benötigt unverwendete Stanzen
 embersconstruct.config.dustStamping=Zerstampfe Barren zu Staub
+embersconstruct.config.melter=Schmelzrezepte
+embersconstruct.config.mixer=Mixerrezepte
+embersconstruct.config.stamper=Stanzrezepte
 
 embersconstruct.config.section.tinkersConstructRecipeSettings=Tinkers' Construct Rezept Einstellungen
 embersconstruct.config.removeMelting=Entferne Schmelz Rezepte

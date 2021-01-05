@@ -23,14 +23,20 @@ public class EmbersConstructItems {
     }
 
     public static void registerItems(IForgeRegistry<Item> registry) {
-        registry.register(init(StampRaw, "stamp_raw"));
-        registry.register(init(Stamp, "stamp"));
-        registry.register(init(WroughtIronIngot, "wroughtIronIngot"));
+        registerItem(registry, StampRaw, "stamp_raw");
+        registerItem(registry, Stamp, "stamp");
+        registerItem(registry, WroughtIronIngot, "wroughtIronIngot");
     }
 
     public static Item init(Item item, String name) {
         item = item.setUnlocalizedName(EmbersConstruct.MODID + "." + name).setRegistryName(new ResourceLocation(EmbersConstruct.MODID, name));
         items.add(item);
+        return item;
+    }
+
+    public static Item registerItem(IForgeRegistry<Item> registry, Item item, String name) {
+        item = init(item, name);
+        registry.register(item);
         return item;
     }
 }

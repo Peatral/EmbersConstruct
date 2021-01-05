@@ -2,11 +2,7 @@ package com.peatral.embersconstruct.client.gui;
 
 import com.peatral.embersconstruct.EmbersConstruct;
 import com.peatral.embersconstruct.inventory.ContainerBloomery;
-import com.peatral.embersconstruct.inventory.ContainerKiln;
-import com.peatral.embersconstruct.tileentity.TileEntityKiln;
-import net.minecraft.client.gui.Gui;
-import net.minecraft.client.gui.inventory.GuiContainer;
-import net.minecraft.client.renderer.GlStateManager;
+import com.peatral.embersconstruct.tileentity.TileEntityBloomery;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.util.ResourceLocation;
@@ -27,5 +23,34 @@ public class GuiBloomery extends GuiBase {
     @Override
     protected void drawGuiContainerBackgroundLayer(float partialTicks, int mouseX, int mouseY) {
         drawBackground(BLOOMERY_GUI_TEXTURES);
+
+        int i = getHCenter();
+        int j = getVCenter();
+
+        if (TileEntityBloomery.isBurning(this.tile)) {
+            int k = this.getBurnLeftScaled(13);
+            this.drawTexturedModalRect(i + 52, j + 26 + 12 - k, 176, 12 - k, 14, k + 1);
+        }
+
+        int l = this.getTimeProgressScaled(22);
+        this.drawTexturedModalRect(i + 113, j + 38, 176, 14, 8, l);
+    }
+
+    private int getTimeProgressScaled(int pixels) {
+        int i = this.tile.getField(2);
+        int j = this.tile.getField(3);
+        return j != 0 && i != 0 ? i * pixels / j : 0;
+    }
+
+    private int getBurnLeftScaled(int pixels)
+    {
+        int i = this.tile.getField(1);
+
+        if (i == 0)
+        {
+            i = 200;
+        }
+
+        return this.tile.getField(0) * pixels / i;
     }
 }

@@ -2,9 +2,11 @@ package com.peatral.embersconstruct.block;
 
 import com.google.common.collect.Lists;
 import com.peatral.embersconstruct.EmbersConstruct;
+import com.peatral.embersconstruct.EmbersConstructBlocks;
 import com.peatral.embersconstruct.client.gui.GuiHandler;
 import com.peatral.embersconstruct.tileentity.TileEntityBase;
 import com.peatral.embersconstruct.tileentity.TileEntityBloomery;
+import com.peatral.embersconstruct.tileentity.TileEntityBloomeryTop;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -73,6 +75,18 @@ public class BlockBloomery extends BlockEmbersConstruct implements ITileEntityPr
     @Override
     public int getMetaFromState(IBlockState state) {
         return state.getValue(TOP) ? 1 : 0;
+    }
+
+    public static void setState(boolean active, World world, BlockPos pos) {
+        IBlockState state = world.getBlockState(pos);
+        TileEntity tileentity = world.getTileEntity(pos);
+
+        world.setBlockState(pos, EmbersConstructBlocks.Bloomery.getDefaultState().withProperty(BURNING, active), 3);
+
+        if (tileentity != null) {
+            tileentity.validate();
+            world.setTileEntity(pos, tileentity);
+        }
     }
 
     @Override
@@ -145,9 +159,7 @@ public class BlockBloomery extends BlockEmbersConstruct implements ITileEntityPr
     @Nullable
     @Override
     public TileEntity createNewTileEntity(World worldIn, int meta) {
-        TileEntityBloomery tile = new TileEntityBloomery();
-        tile.setIsTop(meta == 1);
-        return tile;
+        return meta == 1 ? new TileEntityBloomeryTop() : new TileEntityBloomery();
     }
 
     /**
@@ -158,11 +170,11 @@ public class BlockBloomery extends BlockEmbersConstruct implements ITileEntityPr
     private static final AxisAlignedBB CUBE1 = new AxisAlignedBB(0.062, 0.5, 0.062, 0.938, 1, 0.938);
     private static final AxisAlignedBB CUBE2 = new AxisAlignedBB(0.125, 0, 0.125, 0.875, 0.375, 0.875);
     private static final AxisAlignedBB CUBE3 = new AxisAlignedBB(0.25, 0.375, 0.25, 0.75, 0.688, 0.75);
-    private static final AxisAlignedBB CUBE4 = new AxisAlignedBB(0.375, 0.688, 0.375, 0.625, 0.938, 0.625);
+    private static final AxisAlignedBB CUBE4 = new AxisAlignedBB(0.375, 0.688, 0.375, 0.625, 1, 0.625);
     private static final List<AxisAlignedBB> COLLISION_BOXES_BOTTOM = Lists.newArrayList(BASE, CUBE1);
     private static final List<AxisAlignedBB> COLLISION_BOXES_TOP = Lists.newArrayList(CUBE2, CUBE3, CUBE4);
     private static final AxisAlignedBB BOUNDING_BOX_BOTTOM = new AxisAlignedBB(0, 0, 0, 1, 1, 1);
-    private static final AxisAlignedBB BOUNDING_BOX_TOP = new AxisAlignedBB(0.125, 0, 0.125, 0.875, 0.938, 0.875);
+    private static final AxisAlignedBB BOUNDING_BOX_TOP = new AxisAlignedBB(0.125, 0, 0.125, 0.875, 1, 0.875);
 
     @Override
     public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)

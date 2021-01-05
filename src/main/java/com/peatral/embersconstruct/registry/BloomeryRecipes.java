@@ -6,7 +6,6 @@ import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
-import net.minecraftforge.common.crafting.IngredientNBT;
 import net.minecraftforge.oredict.OreIngredient;
 
 import java.util.ArrayList;
@@ -36,6 +35,22 @@ public class BloomeryRecipes {
         recipeList.add(recipe);
     }
 
+    public List<ItemStack> getResults(ItemStack itemstack1) {
+        List<ItemStack> list = new ArrayList<>();
+        for (Recipe r : recipeList) {
+            if (r.contains(itemstack1) && !r.getOutput().isEmpty())
+                list.add(r.getOutput());
+        }
+        return list;
+    }
+
+    public ItemStack getResult(ItemStack stackA, ItemStack stackB) {
+        for (Recipe r : recipeList) {
+            if (r.matches(stackA, stackB)) return r.getOutput();
+        }
+        return ItemStack.EMPTY;
+    }
+
     public class Recipe {
 
         private Ingredient inputA;
@@ -59,8 +74,12 @@ public class BloomeryRecipes {
             return output;
         }
 
-        public boolean matches(ItemStack input) {
-            return this.inputA.apply(input);
+        public boolean matches(ItemStack inputA, ItemStack inputB) {
+            return this.inputA.apply(inputA) && this.inputB.apply(inputB) || this.inputA.apply(inputB) && this.inputB.apply(inputA);
+        }
+
+        public boolean contains(ItemStack input) {
+            return this.inputA.apply(input) || this.inputB.apply(input);
         }
     }
 

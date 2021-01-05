@@ -1,12 +1,10 @@
 package com.peatral.embersconstruct.client.gui;
 
-import com.peatral.embersconstruct.EmbersConstruct;
 import com.peatral.embersconstruct.inventory.ContainerStampTable;
 import com.peatral.embersconstruct.network.StampTableSelectionPacket;
 import com.peatral.embersconstruct.registry.RegistryStamps;
 import com.peatral.embersconstruct.util.Stamp;
 import net.minecraft.client.gui.GuiButton;
-import net.minecraft.client.resources.I18n;
 import net.minecraft.inventory.Container;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -17,7 +15,6 @@ import slimeknights.tconstruct.library.tinkering.MaterialItem;
 import slimeknights.tconstruct.tools.common.client.GuiButtonItem;
 
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.List;
 
 public class GuiButtonsStampTable extends GuiSideButtonsPaged {

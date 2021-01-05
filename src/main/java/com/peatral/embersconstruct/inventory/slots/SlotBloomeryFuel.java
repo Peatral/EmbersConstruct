@@ -1,7 +1,6 @@
 package com.peatral.embersconstruct.inventory.slots;
 
 import com.peatral.embersconstruct.tileentity.TileEntityBloomery;
-import com.peatral.embersconstruct.tileentity.TileEntityKiln;
 import net.minecraft.init.Items;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;

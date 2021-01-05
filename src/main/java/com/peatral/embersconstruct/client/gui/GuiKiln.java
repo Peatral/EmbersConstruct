@@ -1,9 +1,8 @@
 package com.peatral.embersconstruct.client.gui;
 
-import com.peatral.embersconstruct.inventory.ContainerKiln;
 import com.peatral.embersconstruct.EmbersConstruct;
+import com.peatral.embersconstruct.inventory.ContainerKiln;
 import com.peatral.embersconstruct.tileentity.TileEntityKiln;
-import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.util.ResourceLocation;

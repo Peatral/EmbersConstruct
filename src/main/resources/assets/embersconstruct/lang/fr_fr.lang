@@ -1,5 +1,8 @@
 item.embersconstruct.stamp.name=Poinçon de %1$s
 item.embersconstruct.stamp_raw.name=Brut Poinçon de %1$s
+item.embersconstruct.wroughtIronIngot.name=Fer Forgé Lingot
+
+material.wroughtiron.name=Fer Forgé
 
 oredict.name.gem=Gemme
 
@@ -9,8 +12,12 @@ container.embersconstruct.kiln=Four à Poterie
 tile.embersconstruct.stamptable.name=Table du Poinçon
 gui.embersconstruct.stamptable.name=Table du Poinçon
 
+tile.embersconstruct.bloomery.name=Bas Fourneau
+container.embersconstruct.bloomery=Bas Fourneau
+
 gui.jei.category.kiln=Pyro-Traitement
 gui.jei.category.stamptable=Table du Poinçon
+gui.jei.category.bloomery=Bas Fourneau
 
 # Tab
 itemGroup.tabEmbersConstruct=Embers' Construct
@@ -26,6 +33,9 @@ embersconstruct.config.showNewVersionMessage=Envoyer le message de la version no
 embersconstruct.config.section.embersConstructRecipeSettings=Embers' Construct Réglages des Recettes
 embersconstruct.config.stampTableNeedBlank=La Table du Poinçon nécessite des poinçons inutilisés
 embersconstruct.config.dustStamping=Poinçonner la poussière des lingots
+embersconstruct.config.melter=Melting recipes
+embersconstruct.config.mixer=Mixing recipes
+embersconstruct.config.stamper=Stamper recipes
 
 embersconstruct.config.section.tinkersConstructRecipeSettings=Tinkers' Construct Réglages des Recettes
 embersconstruct.config.removeMelting=Supprimer des recettes de la fonte

@@ -3,20 +3,20 @@ package com.peatral.embersconstruct;
 import com.peatral.embersconstruct.client.gui.GuiHandler;
 import com.peatral.embersconstruct.network.StampTableSelectionPacket;
 import com.peatral.embersconstruct.proxy.IProxy;
-import com.peatral.embersconstruct.proxy.ServerProxy;
 import com.peatral.embersconstruct.registry.*;
 import com.peatral.embersconstruct.tileentity.TileEntityBloomery;
+import com.peatral.embersconstruct.tileentity.TileEntityBloomeryTop;
 import com.peatral.embersconstruct.tileentity.TileEntityKiln;
 import com.peatral.embersconstruct.tileentity.TileEntityStampTable;
 import com.peatral.embersconstruct.util.RecipeRemover;
 import net.minecraft.block.Block;
-import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.event.ColorHandlerEvent;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
@@ -32,18 +32,6 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import slimeknights.tconstruct.common.TinkerNetwork;
-import slimeknights.tconstruct.library.TinkerRegistry;
-import slimeknights.tconstruct.library.materials.ExtraMaterialStats;
-import slimeknights.tconstruct.library.materials.HandleMaterialStats;
-import slimeknights.tconstruct.library.materials.HeadMaterialStats;
-import slimeknights.tconstruct.library.materials.Material;
-import slimeknights.tconstruct.tools.TinkerMaterials;
-
-import static slimeknights.tconstruct.library.materials.MaterialTypes.HEAD;
-import static slimeknights.tconstruct.library.utils.HarvestLevels.DIAMOND;
-import static slimeknights.tconstruct.tools.TinkerMaterials.materials;
-import static slimeknights.tconstruct.tools.TinkerTraits.magnetic;
-import static slimeknights.tconstruct.tools.TinkerTraits.magnetic2;
 
 @Mod(modid = EmbersConstruct.MODID, name = EmbersConstruct.NAME, version = EmbersConstruct.VERSION, dependencies = EmbersConstruct.DEPENDENCIES, updateJSON = EmbersConstruct.UPDATE_CHECKER_URL)
 @Mod.EventBusSubscriber
@@ -78,6 +66,10 @@ public class EmbersConstruct {
     public static boolean isSootLoaded = false;
 
     public static CreativeTabEmbersConstruct tabEmbersConstruct = new CreativeTabEmbersConstruct();
+
+    static {
+        FluidRegistry.enableUniversalBucket();
+    }
 
     public EmbersConstruct() {
         isSootLoaded = Loader.isModLoaded("soot");
@@ -143,6 +135,7 @@ public class EmbersConstruct {
         registerTileEntity(TileEntityKiln.class, "kiln");
         registerTileEntity(TileEntityStampTable.class, "stamptable");
         registerTileEntity(TileEntityBloomery.class, "bloomery");
+        registerTileEntity(TileEntityBloomeryTop.class, "bloomerytop");
     }
 
     private static void registerTileEntity(Class<? extends TileEntity> clazz, String name) {

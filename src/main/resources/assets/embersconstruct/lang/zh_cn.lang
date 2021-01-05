@@ -1,5 +1,8 @@
 item.embersconstruct.stamp.name=%1$s冲模
 item.embersconstruct.stamp_raw.name=未烧制的%1$s冲模
+item.embersconstruct.wroughtIronIngot.name=Wrought Iron Ingot
+
+material.wroughtiron.name=Wrought Iron
 
 oredict.name.gem=宝石
 
@@ -9,8 +12,12 @@ container.embersconstruct.kiln=方镁矾窑
 tile.embersconstruct.stamptable.name=冲模加工桌
 gui.embersconstruct.stamptable.name=冲模加工桌
 
+tile.embersconstruct.bloomery.name=Bloomery
+container.embersconstruct.bloomery=Bloomery
+
 gui.jei.category.kiln=高温加工
 gui.jei.category.stamptable=冲模加工桌
+gui.jei.category.bloomery=Bloomery
 
 # Tab
 itemGroup.tabEmbersConstruct=余烬匠师
@@ -26,6 +33,9 @@ embersconstruct.config.showNewVersionMessage=显示新版本更新信息
 embersconstruct.config.section.embersConstructRecipeSettings=Embers' Construct Recipe Settings
 embersconstruct.config.stampTableNeedBlank=Stamp Table needs unused Stamps
 embersconstruct.config.dustStamping=Stamp dust from ingots
+embersconstruct.config.melter=Melting recipes
+embersconstruct.config.mixer=Mixing recipes
+embersconstruct.config.stamper=Stamper recipes
 
 embersconstruct.config.section.tinkersConstructRecipeSettings=Tinkers' Construct Recipe Settings
 embersconstruct.config.removeMelting=Remove Melting Recipes

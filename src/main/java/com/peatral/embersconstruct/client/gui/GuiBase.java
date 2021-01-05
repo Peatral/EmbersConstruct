@@ -1,6 +1,5 @@
 package com.peatral.embersconstruct.client.gui;
 
-import com.peatral.embersconstruct.inventory.ContainerKiln;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.player.InventoryPlayer;

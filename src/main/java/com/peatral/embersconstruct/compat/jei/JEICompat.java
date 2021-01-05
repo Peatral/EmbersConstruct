@@ -1,23 +1,17 @@
 package com.peatral.embersconstruct.compat.jei;
 
+import com.peatral.embersconstruct.EmbersConstructBlocks;
 import com.peatral.embersconstruct.EmbersConstructItems;
 import com.peatral.embersconstruct.client.gui.GuiBloomery;
-import com.peatral.embersconstruct.client.gui.GuiStampTable;
+import com.peatral.embersconstruct.client.gui.GuiKiln;
 import com.peatral.embersconstruct.compat.jei.categories.BloomeryRecipeCategory;
-import com.peatral.embersconstruct.compat.jei.categories.StampTableRecipeCategory;
+import com.peatral.embersconstruct.compat.jei.categories.KilnRecipeCategory;
 import com.peatral.embersconstruct.compat.jei.wrapper.BloomeryRecipeWrapper;
-import com.peatral.embersconstruct.compat.jei.wrapper.StampTableRecipeWrapper;
+import com.peatral.embersconstruct.compat.jei.wrapper.KilnRecipeWrapper;
 import com.peatral.embersconstruct.inventory.ContainerBloomery;
 import com.peatral.embersconstruct.inventory.ContainerKiln;
-import com.peatral.embersconstruct.client.gui.GuiKiln;
-import com.peatral.embersconstruct.EmbersConstructBlocks;
-import com.peatral.embersconstruct.compat.jei.categories.KilnRecipeCategory;
-import com.peatral.embersconstruct.compat.jei.wrapper.KilnRecipeWrapper;
-import com.peatral.embersconstruct.inventory.ContainerStampTable;
 import com.peatral.embersconstruct.registry.BloomeryRecipes;
 import com.peatral.embersconstruct.registry.KilnRecipes;
-import com.peatral.embersconstruct.registry.StampTableRecipes;
-import com.peatral.embersconstruct.util.IngredientNonMeta;
 import mezz.jei.api.*;
 import mezz.jei.api.ingredients.IIngredientRegistry;
 import mezz.jei.api.ingredients.IModIngredientRegistration;
@@ -27,7 +21,6 @@ import mezz.jei.api.recipe.transfer.IRecipeTransferRegistry;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.translation.I18n;
 
-import java.util.Collections;
 import java.util.IllegalFormatException;
 
 @JEIPlugin
