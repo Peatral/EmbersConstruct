@@ -1,0 +1,47 @@
+item.embersconstruct.stamp.name=%1$s Pulu
+item.embersconstruct.stamp_raw.name=İşlenmemiş %1$s Pulu
+item.embersconstruct.wroughtIronIngot.name=İşlenmiş Demir Külçesi
+
+material.wroughtiron.name=İşlenmiş Demir
+
+oredict.name.gem=Mücevher
+
+tile.embersconstruct.kiln.name=Tuğla Ocağı
+container.embersconstruct.kiln=Tuğla Ocağı
+
+tile.embersconstruct.stamptable.name=Mühür Masası
+gui.embersconstruct.stamptable.name=Mühür Masası
+
+tile.embersconstruct.bloomery.name=Demirci Ocağı
+container.embersconstruct.bloomery=Demirci Ocağı
+
+gui.jei.category.kiln=Piroişleme
+gui.jei.category.stamptable=Mühür Masası
+gui.jei.category.bloomery=Demirci Ocağı
+
+#Tab
+itemGroup.tabEmbersConstruct=Embers' Construct
+
+#Update-Checker
+embersconstruct.outdated=Embers' Construct için %1$s numaralı yeni sürüm mevcut.
+embersconstruct.outdated.hover=Tıkla ve indirme sayfasına git
+
+#Config
+embersconstruct.config.section.general=Genel
+embersconstruct.config.showNewVersionMessage=Yeni-Sürüm-Mesajı Göster
+embersconstruct.config.stamptable=Mühür Masası
+embersconstruct.config.kiln=Tuğla Ocağı
+embersconstruct.config.bloomery=Demirci Ocağı
+
+embersconstruct.config.section.embersConstructRecipeSettings=Embers' Construct Tarif Ayarları
+embersconstruct.config.stampTableNeedBlank=Mühür Masasının kullanılmamış Mühürlere ihtiyacı var
+embersconstruct.config.dustStamping=Külçelerden mühür tozu çıkar
+embersconstruct.config.melter=Eritme Tarifleri
+embersconstruct.config.mixer=Karıştırma Tarifleri
+embersconstruct.config.stamper=Mühürcü Tarifleri
+
+embersconstruct.config.section.tinkersConstructRecipeSettings=Tinkers' Construct Tarif Ayarları
+embersconstruct.config.removeMelting=Eritme Tariflerini Kaldır
+embersconstruct.config.removeAlloying=Alaşım Tariflerini Kaldır
+embersconstruct.config.removeTableCasting=Masa Döküm Tariflerini Kaldır
+embersconstruct.config.removeBasinCasting=Havza Döküm Tariflerini Kaldır
