@@ -3,10 +3,12 @@ package com.peatral.embersconstruct.block;
 import com.google.common.collect.Lists;
 import com.peatral.embersconstruct.EmbersConstruct;
 import com.peatral.embersconstruct.EmbersConstructBlocks;
+import com.peatral.embersconstruct.EmbersConstructConfig;
 import com.peatral.embersconstruct.client.gui.GuiHandler;
 import com.peatral.embersconstruct.tileentity.TileEntityBase;
 import com.peatral.embersconstruct.tileentity.TileEntityBloomery;
 import com.peatral.embersconstruct.tileentity.TileEntityBloomeryTop;
+import net.minecraft.block.Block;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -33,7 +35,7 @@ import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BlockBloomery extends BlockEmbersConstruct implements ITileEntityProvider {
+public class BlockBloomery extends Block implements ITileEntityProvider {
 
     public static final PropertyBool BURNING = PropertyBool.create("burning");
     public static final PropertyBool TOP = PropertyBool.create("top");
@@ -45,6 +47,9 @@ public class BlockBloomery extends BlockEmbersConstruct implements ITileEntityPr
         this.setDefaultState(this.blockState.getBaseState()
                 .withProperty(BURNING, false)
                 .withProperty(TOP, false));
+
+        if (EmbersConstructConfig.general.bloomery)
+            this.setCreativeTab(EmbersConstruct.tabEmbersConstruct);
     }
 
     @Override

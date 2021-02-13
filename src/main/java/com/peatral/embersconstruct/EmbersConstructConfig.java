@@ -25,6 +25,18 @@ public class EmbersConstructConfig {
         @Config.LangKey("embersconstruct.config.showNewVersionMessage")
         @Config.Comment("Show the Update-Checker message if new version is available.")
         public boolean showNewVersionMessage = true;
+
+        @Config.LangKey("embersconstruct.config.stamptable")
+        @Config.Comment("Enable stamp table")
+        public boolean stamptable = true;
+
+        @Config.LangKey("embersconstruct.config.bloomery")
+        @Config.Comment("Enable bloomery")
+        public boolean bloomery = true;
+
+        @Config.LangKey("embersconstruct.config.kiln")
+        @Config.Comment("Enable kiln")
+        public boolean kiln = true;
     }
 
     public static class ECRecipeSettings {

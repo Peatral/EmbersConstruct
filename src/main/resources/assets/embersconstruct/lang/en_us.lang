@@ -29,6 +29,9 @@ embersconstruct.outdated.hover=Click to open download page.
 #Config
 embersconstruct.config.section.general=General
 embersconstruct.config.showNewVersionMessage=Show New-Version-Message
+embersconstruct.config.stamptable=Stamp Table
+embersconstruct.config.kiln=Kiln
+embersconstruct.config.bloomery=Bloomery
 
 embersconstruct.config.section.embersConstructRecipeSettings=Embers' Construct Recipe Settings
 embersconstruct.config.stampTableNeedBlank=Stamp Table needs unused Stamps

@@ -2,6 +2,7 @@ package com.peatral.embersconstruct.block;
 
 import com.peatral.embersconstruct.EmbersConstruct;
 import com.peatral.embersconstruct.EmbersConstructBlocks;
+import com.peatral.embersconstruct.EmbersConstructConfig;
 import com.peatral.embersconstruct.client.gui.GuiHandler;
 import com.peatral.embersconstruct.tileentity.TileEntityKiln;
 import net.minecraft.block.BlockHorizontal;
@@ -28,7 +29,6 @@ import java.util.Random;
 
 public class BlockKiln extends BlockHorizontal implements ITileEntityProvider {
 
-    //public static final PropertyDirection FACING = BlockHorizontal.FACING;
     public static final PropertyBool BURNING = PropertyBool.create("burning");
 
     public BlockKiln() {
@@ -38,7 +38,9 @@ public class BlockKiln extends BlockHorizontal implements ITileEntityProvider {
         this.setDefaultState(this.blockState.getBaseState()
                 .withProperty(FACING, EnumFacing.NORTH)
                 .withProperty(BURNING, false));
-        this.setCreativeTab(EmbersConstruct.tabEmbersConstruct);
+
+        if (EmbersConstructConfig.general.kiln)
+            this.setCreativeTab(EmbersConstruct.tabEmbersConstruct);
     }
 
     @Override

@@ -39,7 +39,7 @@ public class EmbersConstruct {
     public static final String MODID = "embersconstruct";
     public static final String MOD_NAME = "Embers' Construct";
     public static final String NAME = "Embers Construct";
-    public static final String VERSION = "1.3.1";
+    public static final String VERSION = "1.3.2";
     public static final String DEPENDENCIES =
             "required-after:tconstruct;" +
             "required-after:embers;" +
@@ -92,9 +92,9 @@ public class EmbersConstruct {
         registerTileEntities();
 
         //Embers Construct Recipes
-        KilnRecipes.main();
-        BloomeryRecipes.main();
-        StampTableRecipes.main();
+        if (EmbersConstructConfig.general.kiln) KilnRecipes.main();
+        if (EmbersConstructConfig.general.bloomery) BloomeryRecipes.main();
+        if (EmbersConstructConfig.general.stamptable) StampTableRecipes.main();
     }
 
     @EventHandler

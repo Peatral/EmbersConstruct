@@ -2,6 +2,7 @@ package com.peatral.embersconstruct.registry;
 
 import com.peatral.embersconstruct.EmbersConstruct;
 import com.peatral.embersconstruct.EmbersConstructBlocks;
+import com.peatral.embersconstruct.EmbersConstructConfig;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -17,9 +18,9 @@ import teamroots.embers.RegistryManager;
 public class RegistryCrafting {
     @SubscribeEvent
     public static void registerRecipes(RegistryEvent.Register<IRecipe> event) {
-        event.getRegistry().register(init( "stamptable", EmbersConstructBlocks.StampTable, " X ", "XOX", " X ", 'X', RegistryManager.plate_caminite, 'O', "workbench"));
-        event.getRegistry().register(init( "kiln", EmbersConstructBlocks.Kiln, "XXX", "X X", "XXX", 'X', RegistryManager.block_caminite_brick));
-        event.getRegistry().register(init( "bloomery", EmbersConstructBlocks.Bloomery, "XXX", "XXX", "X X", 'X', RegistryManager.block_caminite_brick));
+        if (EmbersConstructConfig.general.stamptable) event.getRegistry().register(init( "stamptable", EmbersConstructBlocks.StampTable, " X ", "XOX", " X ", 'X', RegistryManager.plate_caminite, 'O', "workbench"));
+        if (EmbersConstructConfig.general.kiln) event.getRegistry().register(init( "kiln", EmbersConstructBlocks.Kiln, "XXX", "X X", "XXX", 'X', RegistryManager.block_caminite_brick));
+        if (EmbersConstructConfig.general.bloomery) event.getRegistry().register(init( "bloomery", EmbersConstructBlocks.Bloomery, "XXX", "XXX", "X X", 'X', RegistryManager.block_caminite_brick));
     }
 
     public static IRecipe init(String name, Block result, Object... recipe) {

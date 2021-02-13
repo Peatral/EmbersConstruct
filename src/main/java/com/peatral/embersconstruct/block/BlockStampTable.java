@@ -1,6 +1,7 @@
 package com.peatral.embersconstruct.block;
 
 import com.peatral.embersconstruct.EmbersConstruct;
+import com.peatral.embersconstruct.EmbersConstructConfig;
 import com.peatral.embersconstruct.tileentity.TileEntityStampTable;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -20,7 +21,9 @@ import javax.annotation.Nonnull;
 public class BlockStampTable extends BlockTable implements ITinkerStationBlock {
     public BlockStampTable() {
         super(Material.WOOD);
-        setCreativeTab(EmbersConstruct.tabEmbersConstruct);
+
+        if (EmbersConstructConfig.general.stamptable)
+            setCreativeTab(EmbersConstruct.tabEmbersConstruct);
 
         setSoundType(SoundType.WOOD);
         setResistance(5f);

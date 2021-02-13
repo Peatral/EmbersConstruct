@@ -29,6 +29,9 @@ embersconstruct.outdated.hover=Cliquez pour ouvrir la page de téléchargement.
 # Config
 embersconstruct.config.section.general=General
 embersconstruct.config.showNewVersionMessage=Envoyer le message de la version nouvelle
+embersconstruct.config.stamptable=Table du Poinçon
+embersconstruct.config.kiln=Four à Poterie
+embersconstruct.config.bloomery=Bas Fourneau
 
 embersconstruct.config.section.embersConstructRecipeSettings=Embers' Construct Réglages des Recettes
 embersconstruct.config.stampTableNeedBlank=La Table du Poinçon nécessite des poinçons inutilisés
