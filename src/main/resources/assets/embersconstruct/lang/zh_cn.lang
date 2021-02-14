@@ -1,8 +1,8 @@
 item.embersconstruct.stamp.name=%1$s冲模
 item.embersconstruct.stamp_raw.name=未烧制的%1$s冲模
-item.embersconstruct.wroughtIronIngot.name=Wrought Iron Ingot
+item.embersconstruct.wroughtIronIngot.name=熟铁锭
 
-material.wroughtiron.name=Wrought Iron
+material.wroughtiron.name=熟铁
 
 oredict.name.gem=宝石
 
@@ -12,12 +12,12 @@ container.embersconstruct.kiln=方镁矾窑
 tile.embersconstruct.stamptable.name=冲模加工桌
 gui.embersconstruct.stamptable.name=冲模加工桌
 
-tile.embersconstruct.bloomery.name=Bloomery
-container.embersconstruct.bloomery=Bloomery
+tile.embersconstruct.bloomery.name=熟铁精炼炉
+container.embersconstruct.bloomery=熟铁精炼炉
 
 gui.jei.category.kiln=高温加工
 gui.jei.category.stamptable=冲模加工桌
-gui.jei.category.bloomery=Bloomery
+gui.jei.category.bloomery=熟铁精炼炉
 
 # Tab
 itemGroup.tabEmbersConstruct=余烬匠师
@@ -29,16 +29,19 @@ embersconstruct.outdated.hover=点击以打开下载链接.
 # Config
 embersconstruct.config.section.general=通用设置
 embersconstruct.config.showNewVersionMessage=显示新版本更新信息
+embersconstruct.config.stamptable=冲模加工桌
+embersconstruct.config.kiln=方镁矾窑
+embersconstruct.config.bloomery=熟铁精炼炉
 
-embersconstruct.config.section.embersConstructRecipeSettings=Embers' Construct Recipe Settings
-embersconstruct.config.stampTableNeedBlank=Stamp Table needs unused Stamps
-embersconstruct.config.dustStamping=Stamp dust from ingots
-embersconstruct.config.melter=Melting recipes
-embersconstruct.config.mixer=Mixing recipes
-embersconstruct.config.stamper=Stamper recipes
+embersconstruct.config.section.embersConstructRecipeSettings=余烬匠师配方设置
+embersconstruct.config.stampTableNeedBlank=冲模加工桌需要未经使用的冲模
+embersconstruct.config.dustStamping=将粉冲制成锭
+embersconstruct.config.melter=冶炼配方
+embersconstruct.config.mixer=混合配方
+embersconstruct.config.stamper=冲模加工桌配方
 
-embersconstruct.config.section.tinkersConstructRecipeSettings=Tinkers' Construct Recipe Settings
-embersconstruct.config.removeMelting=Remove Melting Recipes
-embersconstruct.config.removeAlloying=Remove Alloying Recipes
-embersconstruct.config.removeTableCasting=Remove Table Casting Recipes
-embersconstruct.config.removeBasinCasting=Remove Basin Casting Recipes
+embersconstruct.config.section.tinkersConstructRecipeSettings=匠魂配方设置
+embersconstruct.config.removeMelting=移除冶炼配方
+embersconstruct.config.removeAlloying=移除合金配方
+embersconstruct.config.removeTableCasting=移除浇铸台配方
+embersconstruct.config.removeBasinCasting=移除铸造盆配方
