@@ -1,28 +1,26 @@
 package com.peatral.embersconstruct.integration.plustic;
 
-import com.peatral.embersconstruct.integration.Integration;
+import com.peatral.embersconstruct.modules.EmbersConstructModule;
 import com.peatral.embersconstruct.util.Stamp;
 import landmaster.plustic.modules.ModuleTools;
 import net.minecraftforge.event.RegistryEvent;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.common.Optional;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import slimeknights.mantle.pulsar.pulse.Pulse;
 
-import java.util.ArrayList;
-import java.util.List;
+@Pulse(id = IntegrationPlusTiC.PulseId,
+        modsRequired = IntegrationPlusTiC.modid,
+        defaultEnable = true)
+public class IntegrationPlusTiC extends EmbersConstructModule {
 
-@Mod.EventBusSubscriber
-public class IntegrationPlusTiC extends Integration {
-    public static List<Stamp> stamps = new ArrayList<>();
+    public static final String modid = "plustic";
+    public static final String PulseId = modid + "Integration";
 
-    @Optional.Method(modid = "plustic")
     @SubscribeEvent
-    public static void registerStamps(RegistryEvent.Register<Stamp> event) {
-        stamps.add(initStamp("battery_cell", ModuleTools.battery_cell));
-        stamps.add(initStamp("laser_medium", ModuleTools.laser_medium));
-        stamps.add(initStamp("pipe_piece", ModuleTools.pipe_piece));
-
-        registerAll(event, stamps);
+    public void registerStamps(RegistryEvent.Register<Stamp> event) {
+        registerAll(event,
+                initStamp("battery_cell", ModuleTools.battery_cell),
+                initStamp("laser_medium", ModuleTools.laser_medium),
+                initStamp("pipe_piece", ModuleTools.pipe_piece));
     }
 
 }

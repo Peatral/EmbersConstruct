@@ -38,8 +38,34 @@ public class RegistryMelting {
 
     public static void registerTinkerRecipes() {
 
-        //No plan how to "convert" the RecipeMatch to the Ingredients
-        //for (MeltingRecipe recipe : TinkerRegistry.getAllMeltingRecipes()) registerBasic(???, recipe.output.getFluid(), recipe.output.amount);
+        // All recipes?
+        /*
+        for (MeltingRecipe recipe : TinkerRegistry.getAllMeltingRecipies()) {
+            Material material = null;
+            Collection<Material> materials = TinkerRegistry.getAllMaterials();
+            for (Material mat : materials) {
+                Fluid fluid = Util.getFluidFromMaterial(mat);
+                if (fluid == recipe.output.getFluid()) {
+                    material = mat;
+                    break;
+                }
+            }
+            boolean toolRecipe = false;
+            if (material != null) {
+                for (IToolPart toolPart : TinkerRegistry.getToolParts()) {
+                    if (recipe.input.matches(NonNullList.from(toolPart.getItemstackWithMaterial(material))).isPresent()) {
+                        toolRecipe = true;
+                        break;
+                    }
+                }
+            }
+            if (!toolRecipe) {
+                for (ItemStack input : recipe.input.getInputs())
+                    registerBasic(input, recipe.output.getFluid(), recipe.output.amount);
+            }
+
+        }
+         */
 
         Collection<Material> materials = TinkerRegistry.getAllMaterials();
         for (Material material : materials) {
@@ -69,16 +95,14 @@ public class RegistryMelting {
     }
 
     public static void registerBasic(Ingredient input, FluidStack output) {
-        boolean found = false;
         for (ItemMeltingRecipe test : RecipeRegistry.meltingRecipes) {
-            if (test.fluid.getFluid().getName() == output.getFluid().getName() && test.fluid.amount == output.amount) {
+            if (test.fluid.getFluid().getName().equals(output.getFluid().getName()) && test.fluid.amount == output.amount) {
                 if (test.input.equals(input)) {
-                    found = true;
-                    break;
+                    return;
                 }
             }
         }
-        if (output.amount <= 1500 && !found) {
+        if (output.amount <= 1500) {
             RecipeRegistry.meltingRecipes.add(new ItemMeltingRecipe(input, output));
             c++;
         }

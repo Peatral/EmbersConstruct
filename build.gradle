@@ -70,37 +70,47 @@ repositories {
 }
 
 dependencies {
-    deobfCompile "slimeknights.mantle:Mantle:1.12-1.3.2.25"
-    deobfCompile "slimeknights:TConstruct:1.12.2-2.10.1.91"
+    // --- Core Dependencies
+    // --- --- Tinkers' Construct
+    deobfCompile "slimeknights.mantle:Mantle:1.12-1.3.3.55"
+    deobfCompile "slimeknights:TConstruct:1.12.2-2.13.0.190"
 
-
+    // --- --- Embers Rekindled
     deobfCompile "embers-rekindled:EmbersRekindled:release"
     // deobfCompile "teamroots.embers:EmbersRekindled:1.13:dev"
 
-    deobfProvided name: "conarm", version: "1.12.2-1.0.0"
 
+
+    // --- Optional Dependencies
+    // deobfProvided name: "conarm", version: "1.12.2-1.0.0"
+    provided 'constructs-armory:conarm:1.12.2:1.2.5.4'
     deobfProvided "com.azanor.baubles:Baubles:1.12-1.5.2"
-    deobfProvided "compendium:tinkersdefense:1.4.2.28"
-
-
+    provided "compendium:tinkersdefense:1.4.2.38"
     provided "shadowfacts-forgelin:Forgelin:release"
-    provided "pewter:Pewter:release"
     provided "taiga-tinkers-alloying-addon:taiga:release"
     provided "soot:Soot:1.6"
     provided "tinkersurvival:TinkerSurvival:release"
-
-    provided "plusticminusbad:plustic:release"
+    deobfProvided "plusticminusbad:plustic:8.0.3"
     provided "total-tinkers:totaltinkers:release"
     //provided "aetherworks:AetherWorks:release"
 
+
+
+    // --- Manual Dependency Files because they got renamed on Curse
     provided name: "libnine-1.12.2-1.1.8"
     provided name: "tconevo-1.12.2-1.0.28"
-    // provided "tinkers-evolution:tconevo-1.12.2:1.0.28"
-    // provided "com.github.phantamanta44:tinkers-evolution:7883cde716"
+    provided name: "TinkersComplement-1.12.2-0.4.3"
 
+
+
+    // --- Jei
     provided "mezz.jei:jei_1.12.2:4.15.0.268"
     //provided "jei-integration:jeiintegration_1.12.2:1.6.0"
 
+
+
+    // --- Only For Testing
+    provided "pewter:Pewter:release"
 }
 
 processResources {

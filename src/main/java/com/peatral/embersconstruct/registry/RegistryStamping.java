@@ -2,7 +2,6 @@ package com.peatral.embersconstruct.registry;
 
 import com.peatral.embersconstruct.EmbersConstruct;
 import com.peatral.embersconstruct.EmbersConstructConfig;
-import com.peatral.embersconstruct.EmbersConstructItems;
 import com.peatral.embersconstruct.item.ItemStamp;
 import com.peatral.embersconstruct.util.OreDictValues;
 import com.peatral.embersconstruct.util.Stamp;
@@ -14,14 +13,12 @@ import net.minecraftforge.common.crafting.IngredientNBT;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.fml.common.Optional;
 import net.minecraftforge.oredict.OreDictionary;
 import slimeknights.tconstruct.library.TinkerRegistry;
 import slimeknights.tconstruct.library.materials.Material;
 import slimeknights.tconstruct.library.tools.IToolPart;
 import slimeknights.tconstruct.tools.TinkerTools;
 import slimeknights.tconstruct.tools.ranged.item.BoltCore;
-import soot.Registry;
 import teamroots.embers.RegistryManager;
 import teamroots.embers.recipe.ItemStampingRecipe;
 import teamroots.embers.recipe.RecipeRegistry;
@@ -38,7 +35,6 @@ public class RegistryStamping {
     public static void main() {
         registerOreDictRecipes();
         registerTinkerRecipes();
-        if (EmbersConstruct.isSootLoaded) registerSootRecipes();
         EmbersConstruct.logger.info("Registered " + c + " stamping recipes.");
     }
 
@@ -47,12 +43,6 @@ public class RegistryStamping {
         registerFromOreDict(OreDictValues.GEAR.getName(), new ItemStack(RegistryManager.stamp_gear), OreDictValues.GEAR.getValue());
         registerFromOreDict(OreDictValues.PLATE.getName(), new ItemStack(RegistryManager.stamp_plate), OreDictValues.PLATE.getValue());
         if (EmbersConstructConfig.embersConstructSettings.dustStamping) registerItemFromOreDict(OreDictValues.DUST.getName(), OreDictValues.INGOT.getName(), new ItemStack(RegistryManager.stamp_flat), 1);
-    }
-
-    @Optional.Method(modid = "soot")
-    public static void registerSootRecipes() {
-        registerFromOreDict(OreDictValues.NUGGET.getName(), new ItemStack(Registry.STAMP_NUGGET), OreDictValues.NUGGET.getValue());
-        EmbersConstruct.logger.info("Registered Soot Stamping");
     }
 
     public static void registerTinkerRecipes() {

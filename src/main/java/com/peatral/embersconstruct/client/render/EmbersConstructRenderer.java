@@ -29,17 +29,17 @@ public class EmbersConstructRenderer {
 
             return;
         } else if (item instanceof ITagItem) {
-            ITagItem metaItem = (ITagItem) item;
+            ITagItem tagItem = (ITagItem) item;
 
-            ModelLoader.setCustomMeshDefinition(item, stack -> new ModelResourceLocation(new ResourceLocation(domain, metaItem.getTexture(stack)), "inventory"));
+            ModelLoader.setCustomMeshDefinition(item, stack -> new ModelResourceLocation(new ResourceLocation(domain, tagItem.getTexture(stack)), "inventory"));
 
-            for (ItemStack stack : metaItem.getVariants()) {
-                if (metaItem.getTexture(stack) == null) {
+            for (ItemStack stack : tagItem.getVariants()) {
+                if (tagItem.getTexture(stack) == null) {
                     continue;
                 }
-                ModelBakery.registerItemVariants(item, new ModelResourceLocation(new ResourceLocation(domain, metaItem.getTexture(stack)), "inventory"));
+                ModelBakery.registerItemVariants(item, new ModelResourceLocation(new ResourceLocation(domain, tagItem.getTexture(stack)), "inventory"));
             }
-            ModelBakery.registerItemVariants(item, new ModelResourceLocation(new ResourceLocation(domain, metaItem.getTexture(new ItemStack(item))), "inventory"));
+            ModelBakery.registerItemVariants(item, new ModelResourceLocation(new ResourceLocation(domain, tagItem.getTexture(new ItemStack(item))), "inventory"));
 
             return;
         } else if (item instanceof ItemBlock) {

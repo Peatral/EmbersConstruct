@@ -1,31 +1,42 @@
 package com.peatral.embersconstruct.integration.conarm;
 
 import c4.conarm.common.ConstructsRegistry;
-import com.peatral.embersconstruct.integration.Integration;
+import c4.conarm.lib.materials.CoreMaterialStats;
+import c4.conarm.lib.materials.PlatesMaterialStats;
+import c4.conarm.lib.materials.TrimMaterialStats;
+import com.peatral.embersconstruct.EmbersConstructMaterials;
+import com.peatral.embersconstruct.modules.EmbersConstructModule;
 import com.peatral.embersconstruct.util.Stamp;
+import net.minecraft.item.Item;
 import net.minecraftforge.event.RegistryEvent;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.common.Optional;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import slimeknights.mantle.pulsar.pulse.Pulse;
+import slimeknights.tconstruct.library.TinkerRegistry;
 
-import java.util.ArrayList;
-import java.util.List;
+@Pulse(id = IntegrationConarm.PulseId,
+        modsRequired = IntegrationConarm.modid,
+        defaultEnable = true)
+public class IntegrationConarm extends EmbersConstructModule {
 
-@Mod.EventBusSubscriber
-public class IntegrationConarm extends Integration {
+    public static final String modid = "conarm";
+    public static final String PulseId = modid + "Integration";
 
-    public static List<Stamp> stamps = new ArrayList<>();
-
-    @Optional.Method(modid = "conarm")
     @SubscribeEvent
-    public static void registerStamps(RegistryEvent.Register<Stamp> event) {
-        stamps.add(initStamp("armor_plates", ConstructsRegistry.armorPlate));
-        stamps.add(initStamp("armor_trim", ConstructsRegistry.armorTrim));
-        stamps.add(initStamp("boots_core", ConstructsRegistry.bootsCore));
-        stamps.add(initStamp("chest_core", ConstructsRegistry.chestCore));
-        stamps.add(initStamp("helmet_core", ConstructsRegistry.helmetCore));
-        stamps.add(initStamp("leggings_core", ConstructsRegistry.leggingsCore));
+    public void registerStamps(RegistryEvent.Register<Stamp> event) {
+        registerAll(event,
+                initStamp("armor_plates", ConstructsRegistry.armorPlate),
+                initStamp("armor_trim", ConstructsRegistry.armorTrim),
+                initStamp("boots_core", ConstructsRegistry.bootsCore),
+                initStamp("chest_core", ConstructsRegistry.chestCore),
+                initStamp("helmet_core", ConstructsRegistry.helmetCore),
+                initStamp("leggings_core", ConstructsRegistry.leggingsCore));
+    }
 
-        registerAll(event, stamps);
+    @SubscribeEvent
+    public void registerItems(RegistryEvent.Register<Item> event) {
+        TinkerRegistry.addMaterialStats(EmbersConstructMaterials.wroughtiron,
+                new CoreMaterialStats(9, 15),
+                new PlatesMaterialStats(0.85F, 3, 0),
+                new TrimMaterialStats(2.5F));
     }
 }
