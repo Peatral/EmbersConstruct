@@ -1,6 +1,5 @@
 package com.peatral.embersconstruct.registry;
 
-import com.peatral.embersconstruct.EmbersConstruct;
 import com.peatral.embersconstruct.EmbersConstructItems;
 import com.peatral.embersconstruct.item.ItemStamp;
 import com.peatral.embersconstruct.util.Stamp;
@@ -8,7 +7,6 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraftforge.common.crafting.IngredientNBT;
-import soot.Registry;
 import teamroots.embers.RegistryManager;
 
 import java.util.ArrayList;
