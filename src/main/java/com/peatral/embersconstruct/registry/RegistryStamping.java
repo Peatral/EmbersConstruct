@@ -2,6 +2,7 @@ package com.peatral.embersconstruct.registry;
 
 import com.peatral.embersconstruct.EmbersConstruct;
 import com.peatral.embersconstruct.EmbersConstructConfig;
+import com.peatral.embersconstruct.EmbersConstructItems;
 import com.peatral.embersconstruct.item.ItemStamp;
 import com.peatral.embersconstruct.util.OreDictValues;
 import com.peatral.embersconstruct.util.Stamp;
@@ -134,7 +135,7 @@ public class RegistryStamping {
     }
 
     public static void registerMeta(ItemStack result, FluidStack fluid, Stamp stamp) {
-        register(((ItemStamp)EmbersConstructItems.Stamp).fromStamp(stamp), result, fluid);
+        register(((ItemStamp) EmbersConstructItems.Stamp).fromStamp(stamp), result, fluid);
     }
 
     public static void register(ItemStack stamp, ItemStack result, FluidStack fluid) {
