@@ -87,7 +87,5 @@ public class KilnRecipes {
         instance().addRecipe(RegistryManager.stamp_flat_raw, new ItemStack((RegistryManager.stamp_flat)));
         instance().addRecipe(RegistryManager.stamp_plate_raw, new ItemStack((RegistryManager.stamp_plate)));
         instance().addRecipe(RegistryManager.stamp_gear_raw, new ItemStack((RegistryManager.stamp_gear)));
-
-        if (EmbersConstruct.isSootLoaded) instance().addRecipe(Registry.STAMP_NUGGET_RAW, new ItemStack((Registry.STAMP_NUGGET)));
     }
 }
