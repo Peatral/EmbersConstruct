@@ -35,6 +35,16 @@ public class BloomeryRecipes {
         recipeList.add(recipe);
     }
 
+    public void removeRecipe(Recipe recipe) {
+        recipeList.remove(recipe);
+    }
+
+    public void removeAll(List<Recipe> recipes) {
+        for (Recipe r : recipes) {
+            removeRecipe(r);
+        }
+    }
+
     public List<ItemStack> getResults(ItemStack itemstack1) {
         List<ItemStack> list = new ArrayList<>();
         for (Recipe r : recipeList) {
@@ -51,7 +61,7 @@ public class BloomeryRecipes {
         return ItemStack.EMPTY;
     }
 
-    public class Recipe {
+    public static class Recipe {
 
         private Ingredient inputA;
         private Ingredient inputB;

@@ -13,6 +13,10 @@ public class IngredientNonMeta extends Ingredient {
 
     @Override
     public boolean apply(@Nullable ItemStack stack) {
-        return getMatchingStacks()[0].getItem().equals(stack.getItem());
+        for (ItemStack stack1 : getMatchingStacks()) {
+            if (stack1.getItem() == stack.getItem())
+                return true;
+        }
+        return false;
     }
 }

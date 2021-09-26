@@ -33,7 +33,21 @@ public class KilnRecipes {
     }
 
     public void addRecipe(Ingredient input, ItemStack output) {
-        this.recipeList.add(new Recipe(input, output));
+        addRecipe(new Recipe(input, output));
+    }
+
+    public void addRecipe(Recipe recipe) {
+        this.recipeList.add(recipe);
+    }
+
+    public void removeRecipe(Recipe recipe) {
+        recipeList.remove(recipe);
+    }
+
+    public void removeAll(List<Recipe> recipes) {
+        for (Recipe r : recipes) {
+            removeRecipe(r);
+        }
     }
 
     public ItemStack getResult(ItemStack input) {
@@ -50,7 +64,7 @@ public class KilnRecipes {
         return this.recipeList;
     }
 
-    public class Recipe {
+    public static class Recipe {
 
         private Ingredient input;
         private ItemStack output;

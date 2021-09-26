@@ -94,7 +94,7 @@ dependencies {
     provided "total-tinkers:totaltinkers:release"
     //provided "aetherworks:AetherWorks:release"
 
-
+    compile "CraftTweaker2:CraftTweaker2-MC1120-Main:1.12-4.1.9.6"
 
     // --- Manual Dependency Files because they got renamed on Curse
     provided name: "libnine-1.12.2-1.1.8"

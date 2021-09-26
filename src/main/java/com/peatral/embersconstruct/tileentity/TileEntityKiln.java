@@ -198,23 +198,26 @@ public class TileEntityKiln extends TileEntityBase implements ITickable {
             return false;
         }
         else {
-            ItemStack itemstack = KilnRecipes.instance().getResult(this.itemStacks.get(0));
+            ItemStack outputInRecipe = KilnRecipes.instance().getResult(this.itemStacks.get(0));
 
-            if (itemstack.isEmpty()) {
+            if (outputInRecipe.isEmpty()) {
                 return false;
             }
             else {
-                ItemStack itemstack1 = this.itemStacks.get(2);
+                ItemStack outputInSlot = this.itemStacks.get(2);
 
-                if (itemstack1.isEmpty()) {
+                if (outputInSlot.isEmpty()) {
                     return true;
-                } else if (!itemstack1.isItemEqual(itemstack)) {
+                } else if (!outputInSlot.isItemEqual(outputInRecipe)) {
                     return false;
-                } else if (itemstack1.getCount() + itemstack.getCount() <= this.getInventoryStackLimit() && itemstack1.getCount() + itemstack.getCount() <= itemstack1.getMaxStackSize()) {
-                    return true;
-                } else {
-                    return itemstack1.getCount() + itemstack.getCount() <= itemstack.getMaxStackSize(); // Forge fix: make kiln respect stack sizes in kiln recipes
+                } else if (ItemStack.areItemStackShareTagsEqual(outputInRecipe, outputInSlot)){
+                    if (outputInSlot.getCount() + outputInRecipe.getCount() <= this.getInventoryStackLimit() && outputInSlot.getCount() + outputInRecipe.getCount() <= outputInSlot.getMaxStackSize()) {
+                        return true;
+                    } else {
+                        return outputInSlot.getCount() + outputInRecipe.getCount() <= outputInRecipe.getMaxStackSize(); // Forge fix: make kiln respect stack sizes in kiln recipes
+                    }
                 }
+                return false;
             }
         }
     }
