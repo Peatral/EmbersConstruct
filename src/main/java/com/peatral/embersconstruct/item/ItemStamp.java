@@ -1,5 +1,6 @@
 package com.peatral.embersconstruct.item;
 
+import com.peatral.embersconstruct.EmbersConstruct;
 import com.peatral.embersconstruct.registry.RegistryStamps;
 import com.peatral.embersconstruct.util.Stamp;
 import net.minecraft.client.util.ITooltipFlag;
@@ -19,11 +20,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
-public class ItemStamp extends ItemEmbersConstruct implements ITagItem {
+public class ItemStamp extends Item implements ITagItem {
 
     private boolean raw;
-
-
 
     public ItemStamp() {
         this(false);
@@ -32,6 +31,7 @@ public class ItemStamp extends ItemEmbersConstruct implements ITagItem {
     public ItemStamp(boolean raw) {
         super();
         setHasSubtypes(true);
+        setCreativeTab(EmbersConstruct.tabEmbersConstruct);
         this.raw = raw;
     }
 

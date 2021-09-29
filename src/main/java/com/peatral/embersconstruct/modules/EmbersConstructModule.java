@@ -23,6 +23,8 @@ import java.util.List;
 public class EmbersConstructModule {
 
 
+    /** Blocks **/
+
     public static void registerBlockItem(IForgeRegistry<Item> registry, Block block) {
         registry.register(EmbersConstructItems.init(new ItemBlock(block), block.getRegistryName().getResourcePath()));
     }
@@ -38,6 +40,8 @@ public class EmbersConstructModule {
         return block;
     }
 
+    /** Items **/
+
     public static Item initItem(Item item, String name) {
         item = item.setUnlocalizedName(EmbersConstruct.MODID + "." + name).setRegistryName(new ResourceLocation(EmbersConstruct.MODID, name));
         return item;
@@ -48,6 +52,8 @@ public class EmbersConstructModule {
         registry.register(item);
         return item;
     }
+
+    /** Stamps **/
 
     public static Stamp initStamp(String name, MaterialItem part) {
         return new Stamp(part, name).setRegistryName(name);
@@ -77,9 +83,13 @@ public class EmbersConstructModule {
         event.getRegistry().register(stamp);
     }
 
+    /** Tile Entities **/
+
     public static void registerTileEntity(Class<? extends TileEntity> clazz, String name) {
         GameRegistry.registerTileEntity(clazz, new ResourceLocation(EmbersConstruct.MODID, name));
     }
+
+    /** Recipes **/
 
     public static IRecipe initRecipe(String name, Block result, Object... recipe) {
         return initRecipe(name, Item.getItemFromBlock(result), recipe);

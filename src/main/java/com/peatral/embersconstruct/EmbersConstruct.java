@@ -129,6 +129,8 @@ public class EmbersConstruct {
         if (EmbersConstructConfig.embersConstructSettings.mixer) RegistryAlloying.main();
         if (EmbersConstructConfig.embersConstructSettings.stamper) RegistryStamping.main();
 
+        RegistryResearch.main();
+
         RecipeRemover.main();
     }
 

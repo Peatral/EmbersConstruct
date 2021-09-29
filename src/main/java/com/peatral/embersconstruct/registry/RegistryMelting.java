@@ -11,8 +11,10 @@ import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.oredict.OreDictionary;
+import org.jetbrains.annotations.NotNull;
 import slimeknights.tconstruct.library.TinkerRegistry;
 import slimeknights.tconstruct.library.materials.Material;
+import slimeknights.tconstruct.library.smeltery.MeltingRecipe;
 import slimeknights.tconstruct.library.tools.IToolPart;
 import teamroots.embers.recipe.ItemMeltingRecipe;
 import teamroots.embers.recipe.RecipeRegistry;
@@ -38,35 +40,6 @@ public class RegistryMelting {
 
     public static void registerTinkerRecipes() {
 
-        // All recipes?
-        /*
-        for (MeltingRecipe recipe : TinkerRegistry.getAllMeltingRecipies()) {
-            Material material = null;
-            Collection<Material> materials = TinkerRegistry.getAllMaterials();
-            for (Material mat : materials) {
-                Fluid fluid = Util.getFluidFromMaterial(mat);
-                if (fluid == recipe.output.getFluid()) {
-                    material = mat;
-                    break;
-                }
-            }
-            boolean toolRecipe = false;
-            if (material != null) {
-                for (IToolPart toolPart : TinkerRegistry.getToolParts()) {
-                    if (recipe.input.matches(NonNullList.from(toolPart.getItemstackWithMaterial(material))).isPresent()) {
-                        toolRecipe = true;
-                        break;
-                    }
-                }
-            }
-            if (!toolRecipe) {
-                for (ItemStack input : recipe.input.getInputs())
-                    registerBasic(input, recipe.output.getFluid(), recipe.output.amount);
-            }
-
-        }
-         */
-
         Collection<Material> materials = TinkerRegistry.getAllMaterials();
         for (Material material : materials) {
             Fluid fluid = Util.getFluidFromMaterial(material);
@@ -83,28 +56,15 @@ public class RegistryMelting {
             }
         }
 
+        for (MeltingRecipe recipe : TinkerRegistry.getAllMeltingRecipies()) {
+            for (ItemStack input : recipe.input.getInputs())
+                registerBasic(input, recipe.output.getFluid(), recipe.output.amount);
+        }
+
         for (Stamp stamp : RegistryStamps.registry.getValuesCollection()) {
             if (stamp.usesCustomFluid()) {
                 registerFromOreDict(new ItemStack(stamp.getItem()), stamp.getFluid(), stamp.getCost());
             }
-        }
-    }
-
-    public static void registerBasic(ItemStack input, Fluid output, int cost) {
-        registerBasic(Ingredient.fromStacks(input), new FluidStack(output, cost));
-    }
-
-    public static void registerBasic(Ingredient input, FluidStack output) {
-        for (ItemMeltingRecipe test : RecipeRegistry.meltingRecipes) {
-            if (test.fluid.getFluid().getName().equals(output.getFluid().getName()) && test.fluid.amount == output.amount) {
-                if (test.input.equals(input)) {
-                    return;
-                }
-            }
-        }
-        if (output.amount <= 1500) {
-            RecipeRegistry.meltingRecipes.add(new ItemMeltingRecipe(input, output));
-            c++;
         }
     }
 
@@ -138,5 +98,28 @@ public class RegistryMelting {
                 }
             }
         }
+    }
+
+    public static void registerBasic(ItemStack input, Fluid output, int cost) {
+        registerBasic(Ingredient.fromStacks(input), new FluidStack(output, cost));
+    }
+
+    public static void registerBasic(Ingredient input, FluidStack output) {
+        registerBasic(new ItemMeltingRecipe(input, output));
+    }
+
+    public static void registerBasic(ItemMeltingRecipe recipe) {
+        if (RecipeRegistry.meltingRecipes.stream().anyMatch(test -> isRecipeTechnicallySame(test, recipe)))
+            return;
+
+        if (recipe.getFluid().amount <= 1500) {
+            RecipeRegistry.meltingRecipes.add(recipe);
+            c++;
+        }
+    }
+
+    public static boolean isRecipeTechnicallySame(@NotNull ItemMeltingRecipe a, @NotNull ItemMeltingRecipe b) {
+        return a.fluid.getFluid().getName().equals(b.getFluid().getFluid().getName()) && a.fluid.amount == b.getFluid().amount &&
+                a.input.getValidItemStacksPacked().equals(b.getInput().getValidItemStacksPacked());
     }
 }

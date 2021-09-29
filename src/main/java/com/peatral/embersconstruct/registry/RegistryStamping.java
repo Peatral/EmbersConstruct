@@ -9,14 +9,17 @@ import com.peatral.embersconstruct.util.Stamp;
 import com.peatral.embersconstruct.util.Util;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
-import net.minecraft.util.NonNullList;
 import net.minecraftforge.common.crafting.IngredientNBT;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.oredict.OreDictionary;
+import org.jetbrains.annotations.NotNull;
 import slimeknights.tconstruct.library.TinkerRegistry;
 import slimeknights.tconstruct.library.materials.Material;
+import slimeknights.tconstruct.library.smeltery.CastingRecipe;
+import slimeknights.tconstruct.library.smeltery.ICast;
+import slimeknights.tconstruct.library.smeltery.ICastingRecipe;
 import slimeknights.tconstruct.library.tools.IToolPart;
 import slimeknights.tconstruct.tools.TinkerTools;
 import slimeknights.tconstruct.tools.ranged.item.BoltCore;
@@ -24,10 +27,7 @@ import teamroots.embers.RegistryManager;
 import teamroots.embers.recipe.ItemStampingRecipe;
 import teamroots.embers.recipe.RecipeRegistry;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class RegistryStamping {
 
@@ -49,32 +49,29 @@ public class RegistryStamping {
     public static void registerTinkerRecipes() {
         Collection<Material> materials = TinkerRegistry.getAllMaterials();
         for (Stamp stamp : RegistryStamps.registry.getValuesCollection()) {
+            // if it uses custom fluid register here
             if (stamp.usesCustomFluid()) {
                 registerMeta(new ItemStack(stamp.getItem()), new FluidStack(stamp.getFluid(), stamp.getCost()), stamp);
+            // else go on
+            // if ore dict recipe
             } else if (stamp.usesOreDictKey()) {
-                for (String oreDictName : OreDictionary.getOreNames()) {
-                    if (oreDictName.startsWith(stamp.getOreDictKey())) {
-                        NonNullList<ItemStack> ores = OreDictionary.getOres(oreDictName);
-                        for (ItemStack ore : ores) {
-                            List<String> names = new ArrayList<>();
-                            for (String fluidName : FluidRegistry.getRegisteredFluids().keySet()) {
-                                for (int oreId : OreDictionary.getOreIDs(ore)) {
-
-                                    if (OreDictionary.getOreName(oreId).replace(stamp.getOreDictKey(), "").toLowerCase().equals(Util.getOreDictFromFluid(fluidName))) {
-                                        names.add(fluidName);
-                                    }
-                                }
-                            }
-                            for (String name : names) registerMeta(ore, FluidRegistry.getFluidStack(name, stamp.getCost()), stamp);
-                        }
-                    }
-                }
-
+                Arrays.stream(OreDictionary.getOreNames())
+                        .filter(oreDictName -> oreDictName.startsWith(stamp.getOreDictKey()))
+                        .flatMap(name -> OreDictionary.getOres(name).stream())
+                        .flatMap(stack -> FluidRegistry.getRegisteredFluids().keySet().stream().filter(fluidName -> Arrays.stream(OreDictionary.getOreIDs(stack))
+                                .anyMatch(oreId -> OreDictionary.getOreName(oreId)
+                                        .replace(stamp.getOreDictKey(), "")
+                                        .toLowerCase()
+                                        .equals(Util.getOreDictFromFluid(fluidName))))
+                                .map(name -> new AbstractMap.SimpleEntry<>(name, stack)))
+                        .forEach(map -> registerMeta(map.getValue(), FluidRegistry.getFluidStack(map.getKey(), stamp.getCost()), stamp));
+            // generic non-oredict recipe
             } else {
                 for (Material material : materials) {
                     Fluid fluid = Util.getFluidFromMaterial(material);
                     if (fluid != null) {
                         ItemStack result = null;
+                        // set material of toolpart if possible
                         if (stamp.getItem() instanceof IToolPart) {
                             IToolPart part = (IToolPart) stamp.getItem();
                             if (part.canUseMaterial(material)) result = part.getItemstackWithMaterial(material);
@@ -91,15 +88,52 @@ public class RegistryStamping {
 
         // Registering boltcore recipes
         for (Material shaftMat : materials) {
+            // is this a valid material for bolts/arrows?
             if (TinkerTools.boltCore.canUseMaterial(shaftMat) && TinkerTools.arrowShaft.canUseMaterial(shaftMat)) {
                 for (Material headMat : materials) {
                     Fluid fluid = Util.getFluidFromMaterial(headMat);
+                    // has this material be used for the tip?
                     if (fluid != null && TinkerTools.boltCore.canUseMaterial(headMat)) {
                         ItemStack inp = TinkerTools.arrowShaft.getItemstackWithMaterial(shaftMat);
                         ItemStack res = BoltCore.getItemstackWithMaterials(shaftMat, headMat);
-                        register(new IngredientNBT(inp){}, Ingredient.EMPTY, res, new FluidStack(fluid, OreDictValues.INGOT.getValue() * 2));
+                        register(new IngredientNBT(inp){}, Ingredient.fromItems(RegistryManager.stamp_flat), res, new FluidStack(fluid, OreDictValues.INGOT.getValue() * 2));
                     }
                 }
+            }
+        }
+
+        for (ICastingRecipe iCastingRecipe : TinkerRegistry.getAllTableCastingRecipes()) {
+            // only if "normal" recipe
+            if (iCastingRecipe instanceof CastingRecipe) {
+                CastingRecipe recipe = (CastingRecipe) iCastingRecipe;
+
+                Ingredient stamp = Ingredient.fromItems(RegistryManager.stamp_flat);
+                ItemStack result = recipe.getResult();
+                FluidStack fluid = new FluidStack(recipe.getFluid(), recipe.getFluidAmount());
+
+                // No cast here
+                if (recipe.cast == null) {
+                    register(Ingredient.EMPTY, stamp, result, fluid);
+                    continue;
+                }
+
+                // No casts allowed here
+                if (recipe.cast.getInputs().stream().anyMatch(stack -> stack.getItem() instanceof ICast) || recipe.getResult().getItem() instanceof ICast)
+                    continue;
+
+                // Don't consume cast (hopefully)
+                if (!recipe.consumesCast()) {
+                    register(new ItemStampingRecipe(Ingredient.fromStacks(recipe.cast.getInputs().toArray(new ItemStack[0])), fluid, stamp, result) {
+                        @Override
+                        public int getInputConsumed() {
+                            return 0;
+                        }
+                    });
+                    continue;
+                }
+
+                // ok normal recipe
+                register(Ingredient.fromStacks(recipe.cast.getInputs().toArray(new ItemStack[0])), stamp, result, fluid);
             }
         }
     }
@@ -143,26 +177,20 @@ public class RegistryStamping {
     }
 
     public static void register(Ingredient input, Ingredient stamp, ItemStack result, FluidStack fluid) {
-        boolean found = false;
-        for (ItemStampingRecipe test : RecipeRegistry.stampingRecipes) {
+        register(new ItemStampingRecipe(input, fluid, stamp, result));
+    }
 
-            if (test.result.isItemEqual(result) && test.result.getCount() == result.getCount()) {
-                if (test.input.getMatchingStacks() == input.getMatchingStacks()) {
-                    if (test.fluid == null) {
-                        if (fluid == null) {
-                            found = true;
-                            break;
-                        }
-                    } else if (test.fluid.getFluid().getName() == fluid.getFluid().getName() && test.fluid.amount == fluid.amount) {
-                        found = true;
-                        break;
-                    }
-                }
-            }
-        }
-        if (!found) {
-            RecipeRegistry.stampingRecipes.add(new ItemStampingRecipe(input, fluid, stamp, result));
-            c++;
-        }
+    public static void register(ItemStampingRecipe recipe) {
+        if (RecipeRegistry.stampingRecipes.stream().anyMatch(test -> isRecipeTechnicallySame(test, recipe)))
+            return;
+
+        RecipeRegistry.stampingRecipes.add(recipe);
+        c++;
+    }
+
+    public static boolean isRecipeTechnicallySame(@NotNull ItemStampingRecipe a, @NotNull ItemStampingRecipe b) {
+        return a.result.isItemEqual(b.result) && a.result.getCount() == b.result.getCount() &&
+                a.input.getValidItemStacksPacked().equals(b.input.getValidItemStacksPacked()) &&
+                (a.fluid == null && b.fluid == null || a.fluid.getFluid().getName().equals(b.fluid.getFluid().getName()) && a.fluid.amount == b.fluid.amount);
     }
 }

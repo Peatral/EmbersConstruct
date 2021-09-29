@@ -1,5 +1,6 @@
 package com.peatral.embersconstruct;
 
+import com.google.common.collect.Lists;
 import com.peatral.embersconstruct.block.BlockBloomery;
 import com.peatral.embersconstruct.block.BlockKiln;
 import com.peatral.embersconstruct.block.BlockStampTable;
@@ -7,24 +8,27 @@ import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.registries.IForgeRegistry;
 
-import java.util.ArrayList;
 import java.util.List;
 
-@GameRegistry.ObjectHolder(EmbersConstruct.MODID)
-public class EmbersConstructBlocks {
-    public static List<Block> blocks = new ArrayList<>();
+import static net.minecraftforge.fml.common.registry.GameRegistry.ObjectHolder;
 
-    public static final Block Kiln = new BlockKiln();
-    public static final Block StampTable = new BlockStampTable();
-    public static final Block Bloomery = new BlockBloomery();
+@ObjectHolder(EmbersConstruct.MODID)
+public class EmbersConstructBlocks {
+    public static List<Block> blocks = Lists.newLinkedList();
+
+    @ObjectHolder("kiln")
+    public static final Block Kiln = null;
+    @ObjectHolder("stamptable")
+    public static final Block StampTable = null;
+    @ObjectHolder("bloomery")
+    public static final Block Bloomery = null;
 
     public static void registerBlocks(IForgeRegistry<Block> registry) {
-        registerBlock(registry, Kiln, "kiln");
-        registerBlock(registry, StampTable, "stamptable");
-        registerBlock(registry, Bloomery, "bloomery");
+        registerBlock(registry, new BlockKiln(), "kiln");
+        registerBlock(registry, new BlockStampTable(), "stamptable");
+        registerBlock(registry, new BlockBloomery(), "bloomery");
     }
 
     public static void registerItemBlocks(IForgeRegistry<Item> registry) {

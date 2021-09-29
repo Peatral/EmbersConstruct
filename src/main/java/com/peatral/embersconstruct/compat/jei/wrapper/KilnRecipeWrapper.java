@@ -3,7 +3,7 @@ package com.peatral.embersconstruct.compat.jei.wrapper;
 import com.google.common.collect.Lists;
 import com.peatral.embersconstruct.registry.KilnRecipes;
 import mezz.jei.api.ingredients.IIngredients;
-import net.minecraft.item.ItemStack;
+import mezz.jei.api.ingredients.VanillaTypes;
 
 public class KilnRecipeWrapper extends BaseRecipeWrapper<KilnRecipes.Recipe> {
     public KilnRecipeWrapper(KilnRecipes.Recipe recipe) {
@@ -12,7 +12,7 @@ public class KilnRecipeWrapper extends BaseRecipeWrapper<KilnRecipes.Recipe> {
 
     @Override
     public void getIngredients(IIngredients ingredients) {
-        ingredients.setInputs(ItemStack.class, Lists.newArrayList(recipe.getInput().getMatchingStacks()));
-        ingredients.setOutput(ItemStack.class, recipe.getOutput());
+        ingredients.setInputs(VanillaTypes.ITEM, Lists.newArrayList(recipe.getInput().getMatchingStacks()));
+        ingredients.setOutput(VanillaTypes.ITEM, recipe.getOutput());
     }
 }

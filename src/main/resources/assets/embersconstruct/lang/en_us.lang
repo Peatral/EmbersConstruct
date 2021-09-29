@@ -1,6 +1,6 @@
 item.embersconstruct.stamp.name=%1$s Stamp
 item.embersconstruct.stamp_raw.name=Raw %1$s Stamp
-item.embersconstruct.wroughtIronIngot.name=Wrought Iron Ingot
+item.embersconstruct.wroughtironingot.name=Wrought Iron Ingot
 
 material.wroughtiron.name=Wrought Iron
 
@@ -45,3 +45,16 @@ embersconstruct.config.removeMelting=Remove Melting Recipes
 embersconstruct.config.removeAlloying=Remove Alloying Recipes
 embersconstruct.config.removeTableCasting=Remove Table Casting Recipes
 embersconstruct.config.removeBasinCasting=Remove Basin Casting Recipes
+
+
+#Research
+embers.research.page.bloomery=Bloomery
+embers.research.page.bloomery.title=Another kind of furnace...
+embers.research.page.bloomery.desc=By building a small chimney out of caminite bricks you get a bloomery. It is a special kind of furnace that lets you combine and process certain resources und heat and pressure.
+embers.research.page.wrought_iron.desc=Combining iron ore and charcoal in the bloomery you get wrought iron. This special kind of iron is softer and more malleable than under normal circumstances. But this of course means it is less durable...
+
+embers.research.page.stamps=Stamps
+embers.research.page.stamps.title=Too many stamps!!!
+embers.research.page.stamps.desc=Okay, we could do much more with the stamper but are limited by our clumsyness. What if we use a plain, flat stamp as a base and carve different shapes out? We just need the right tool station for this task...
+embers.research.page.stamping_table.desc=There are too many stamps which require more high-fidelity work. The stamping table allows you to create a wider variety of stamps with more precision.
+embers.research.page.kiln.desc=It is possible to make a furnace out of caminite, although it is too hot to use for normal cooking. But it would meet the perfect temperatures to harden our stamps without damaging them. Fueling it with ember would be overkill so let's better stay with oldschool fuels.
