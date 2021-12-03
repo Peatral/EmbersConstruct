@@ -3,6 +3,7 @@ package com.peatral.embersconstruct.registry;
 import com.peatral.embersconstruct.EmbersConstructBlocks;
 import com.peatral.embersconstruct.EmbersConstructItems;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
 import teamroots.embers.RegistryManager;
 import teamroots.embers.research.ResearchBase;
 import teamroots.embers.research.ResearchCategory;
@@ -20,6 +21,9 @@ public class RegistryResearch {
     public static void main() {
         ResearchCategory categoryWorld = ResearchManager.categoryWorld;
         ResearchCategory categoryMechanisms = ResearchManager.categoryMechanisms;
+
+        ResearchCategory categoryTest = new ResearchCategory("test", new ResourceLocation("embers", "textures/gui/codex_index.png"), 192.0D, 16.0D);
+        ResearchManager.researches.add(categoryTest);
 
         bloomery = new ResearchShowItem("bloomery", new ItemStack(EmbersConstructBlocks.Bloomery), 6, 0).addItem(new ResearchShowItem.DisplayItem(new ItemStack(EmbersConstructBlocks.Bloomery))).addAncestor(ResearchManager.caminite);
         bloomery.addPage(new ResearchShowItem("wrought_iron", ItemStack.EMPTY, 0, 0).addItem(new ResearchShowItem.DisplayItem(new ItemStack(EmbersConstructItems.WroughtIronIngot))));

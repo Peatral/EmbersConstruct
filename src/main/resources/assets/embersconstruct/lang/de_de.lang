@@ -1,10 +1,13 @@
 item.embersconstruct.stamp.name=%1$s Stanze
 item.embersconstruct.stamp_raw.name=Rohe %1$s Stanze
-item.embersconstruct.wroughtironingot.name=Schmiedeeisenbarren
+item.embersconstruct.wrought_iron_ingot.name=Schmiedeeisenbarren
+item.embersconstruct.wrought_iron_nugget.name=Schmiedeeisenklumpen
 
 material.wroughtiron.name=Schmiedeeisen
 
 oredict.name.gem=Edelstein
+
+tile.embersconstruct.wrought_iron_block.name=Schmiedeeisen Block
 
 tile.embersconstruct.kiln.name=Töpferofen
 container.embersconstruct.kiln=Töpferofen
@@ -47,7 +50,7 @@ embersconstruct.config.removeTableCasting=Entferne Tisch-Guss Casting Rezepte
 embersconstruct.config.removeBasinCasting=Entferne Becken-Guss Rezepte
 
 
-#Research
+# Research
 embers.research.page.bloomery=Rennofen
 embers.research.page.bloomery.title=Ein anderer Ofen...
 embers.research.page.bloomery.desc=Indem man einen kleinen Schornstein aus Caminitziegeln errichtet erhält man einen Rennofen. Dies ist ein spezieller Ofen in dem sich spezielle Ressourcen unter Druck und Hitze kombinieren oder verarbeiten lassen.
@@ -58,5 +61,3 @@ embers.research.page.stamps.title=Zu viele Stanzen!!!
 embers.research.page.stamps.desc=Okay, wir könnten viel mehr mit dem Stampfer machen, werden aber von unserer eigenen Ungeschicklichkeit in Grenzen gehalten. Was wenn wir eine einfache, flache Stanze als Ausgangspunkt nehmen und verschieden Formen herausschnitzen? Wir brauchen aber natürlich die richtige Werkbank für diese Aufgabe...
 embers.research.page.stamping_table.desc=Es gibt zu viele Stanzen welche mehr und mehr Feinarbeit benötigen. Der Stanzentisch ermöglicht es einem eine größer Auswahl an Stenzen mit größerer PRäzision herzustellen.
 embers.research.page.kiln.desc=Es ist möglich einen Ofen aus Caminit zu machen, auch wenn er zu heiß für normales Kochen ist. Allerdings würde er die perfekten Temperaturen treffen um die Stanzen brennen und härten ohne sie zu beschädigen. Das ganze mit Ember zu betreiben würde wahrscheinlich nach hinten losgehen, bleiben wir lieber bei handelsüblichen Brennstoffen.
-
-

@@ -20,8 +20,10 @@ public class EmbersConstructItems {
     @ObjectHolder("stamp")
     public static final Item Stamp = null;
 
-    @ObjectHolder("wroughtironingot")
+    @ObjectHolder("wrought_iron_ingot")
     public static final Item WroughtIronIngot = null;
+    @ObjectHolder("wrought_iron_nugget")
+    public static final Item WroughtIronNugget = null;
 
     public static void main(IForgeRegistry<Item> registry) {
         registerItems(registry);
@@ -30,7 +32,8 @@ public class EmbersConstructItems {
     public static void registerItems(IForgeRegistry<Item> registry) {
         registerItem(registry, new ItemStamp(true), "stamp_raw");
         registerItem(registry, new ItemStamp(), "stamp");
-        registerItem(registry, new ItemEmbersConstruct(), "wroughtironingot");
+        registerItem(registry, new ItemEmbersConstruct(), "wrought_iron_ingot");
+        registerItem(registry, new ItemEmbersConstruct(), "wrought_iron_nugget");
     }
 
     public static Item init(Item item, String name) {

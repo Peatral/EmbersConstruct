@@ -43,7 +43,7 @@ public class EmbersConstructRenderer {
 
             return;
         } else if (item instanceof ItemBlock) {
-
+            System.out.println("Registered ItemBlock " + item.getRegistryName());
         }
         ModelLoader.setCustomModelResourceLocation(item, 0, new ModelResourceLocation(item.getRegistryName(), "inventory"));
     }

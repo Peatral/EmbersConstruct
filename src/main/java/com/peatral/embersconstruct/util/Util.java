@@ -4,6 +4,7 @@ import com.peatral.embersconstruct.EmbersConstructMaterials;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
 import slimeknights.tconstruct.library.materials.Material;
+import slimeknights.tconstruct.shared.TinkerFluids;
 
 public class Util {
     public static Fluid getFluidFromString(String s) {
@@ -25,7 +26,7 @@ public class Util {
             if (fluid != null) return fluid;
         }
         if (material == EmbersConstructMaterials.wroughtiron)
-            return getFluidFromString("iron");
+            return TinkerFluids.iron;
         return null;
     }
 

@@ -1,10 +1,13 @@
 item.embersconstruct.stamp.name=%1$s Stamp
 item.embersconstruct.stamp_raw.name=Raw %1$s Stamp
-item.embersconstruct.wroughtironingot.name=Wrought Iron Ingot
+item.embersconstruct.wrought_iron_ingot.name=Wrought Iron Ingot
+item.embersconstruct.wrought_iron_nugget.name=Wrought Iron Nugget
 
 material.wroughtiron.name=Wrought Iron
 
 oredict.name.gem=Gem
+
+tile.embersconstruct.wrought_iron_block.name=Wrought Iron Block
 
 tile.embersconstruct.kiln.name=Kiln
 container.embersconstruct.kiln=Kiln

@@ -76,7 +76,7 @@ dependencies {
     deobfCompile "slimeknights:TConstruct:1.12.2-2.13.0.190"
 
     // --- --- Embers Rekindled
-    deobfCompile "embers-rekindled:EmbersRekindled:release"
+    deobfCompile "embers-rekindled:EmbersRekindled:1.18"
     // deobfCompile "teamroots.embers:EmbersRekindled:1.13:dev"
 
 

@@ -4,6 +4,7 @@ import com.google.common.collect.Lists;
 import com.peatral.embersconstruct.block.BlockBloomery;
 import com.peatral.embersconstruct.block.BlockKiln;
 import com.peatral.embersconstruct.block.BlockStampTable;
+import com.peatral.embersconstruct.block.BlockWroughtIron;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
@@ -24,11 +25,14 @@ public class EmbersConstructBlocks {
     public static final Block StampTable = null;
     @ObjectHolder("bloomery")
     public static final Block Bloomery = null;
+    @ObjectHolder("wrought_iron_block")
+    public static final Block WroughtIronBlock = null;
 
     public static void registerBlocks(IForgeRegistry<Block> registry) {
         registerBlock(registry, new BlockKiln(), "kiln");
         registerBlock(registry, new BlockStampTable(), "stamptable");
         registerBlock(registry, new BlockBloomery(), "bloomery");
+        registerBlock(registry, new BlockWroughtIron(), "wrought_iron_block");
     }
 
     public static void registerItemBlocks(IForgeRegistry<Item> registry) {

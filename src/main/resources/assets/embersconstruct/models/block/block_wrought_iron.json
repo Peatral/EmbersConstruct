@@ -1,0 +1,7 @@
+{
+  "parent": "block/cube_all",
+  "textures": {
+    "all": "embersconstruct:blocks/block_wrought_iron",
+    "particle": "embersconstruct:blocks/block_wrought_iron"
+  }
+}

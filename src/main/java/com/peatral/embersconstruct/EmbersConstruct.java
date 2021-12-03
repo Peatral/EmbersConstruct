@@ -36,6 +36,7 @@ import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import net.minecraftforge.oredict.OreDictionary;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import slimeknights.mantle.pulsar.config.ForgeCFG;
@@ -128,6 +129,11 @@ public class EmbersConstruct {
         if (EmbersConstructConfig.embersConstructSettings.melter) RegistryMelting.main();
         if (EmbersConstructConfig.embersConstructSettings.mixer) RegistryAlloying.main();
         if (EmbersConstructConfig.embersConstructSettings.stamper) RegistryStamping.main();
+
+
+        OreDictionary.registerOre("blockWroughtIron", EmbersConstructBlocks.WroughtIronBlock);
+        OreDictionary.registerOre("ingotWroughtIron", EmbersConstructItems.WroughtIronIngot);
+        OreDictionary.registerOre("nuggetWroughtIron", EmbersConstructItems.WroughtIronNugget);
 
         RegistryResearch.main();
 

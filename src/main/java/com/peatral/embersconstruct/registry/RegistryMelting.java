@@ -1,6 +1,8 @@
 package com.peatral.embersconstruct.registry;
 
 import com.peatral.embersconstruct.EmbersConstruct;
+import com.peatral.embersconstruct.EmbersConstructBlocks;
+import com.peatral.embersconstruct.EmbersConstructItems;
 import com.peatral.embersconstruct.util.OreDictValues;
 import com.peatral.embersconstruct.util.Stamp;
 import com.peatral.embersconstruct.util.Util;
@@ -16,6 +18,8 @@ import slimeknights.tconstruct.library.TinkerRegistry;
 import slimeknights.tconstruct.library.materials.Material;
 import slimeknights.tconstruct.library.smeltery.MeltingRecipe;
 import slimeknights.tconstruct.library.tools.IToolPart;
+import slimeknights.tconstruct.shared.TinkerFluids;
+import slimeknights.tconstruct.smeltery.TinkerSmeltery;
 import teamroots.embers.recipe.ItemMeltingRecipe;
 import teamroots.embers.recipe.RecipeRegistry;
 
@@ -29,6 +33,11 @@ public class RegistryMelting {
     public static void main() {
         registerOreDictRecipes();
         registerTinkerRecipes();
+
+        registerFromOreDict(new ItemStack(EmbersConstructItems.WroughtIronIngot), TinkerFluids.iron, OreDictValues.INGOT.getValue());
+        registerFromOreDict(new ItemStack(EmbersConstructItems.WroughtIronNugget), TinkerFluids.iron, OreDictValues.NUGGET.getValue());
+        registerFromOreDict(new ItemStack(EmbersConstructBlocks.WroughtIronBlock), TinkerFluids.iron, OreDictValues.BLOCK.getValue());
+
         EmbersConstruct.logger.info("Registered " + c + " melting recipes.");
     }
 
