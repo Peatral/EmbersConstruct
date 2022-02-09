@@ -17,7 +17,6 @@ public class Stamp extends IForgeRegistryEntry.Impl<Stamp> {
     private Item item;
     private String name;
     private int cost;
-    private Fluid fluid;
     private String oreDictKey;
 
     public Stamp(String oreDict, String name, int cost) {
@@ -32,15 +31,10 @@ public class Stamp extends IForgeRegistryEntry.Impl<Stamp> {
         this(item, name, cost, null, null);
     }
 
-    public Stamp(Item item, String name, int cost, Fluid fluid) {
-        this(item, name, cost, fluid, null);
-    }
-
     public Stamp(Item item, String name, int cost, Fluid fluid, String oreDict) {
         this.item = item;
         this.name = name;
         this.cost = cost;
-        this.fluid = fluid;
         this.oreDictKey = oreDict;
     }
 
@@ -54,14 +48,6 @@ public class Stamp extends IForgeRegistryEntry.Impl<Stamp> {
 
     public int getCost() {
         return cost;
-    }
-
-    public Fluid getFluid() {
-        return fluid;
-    }
-
-    public boolean usesCustomFluid() {
-        return fluid != null;
     }
 
     public String getOreDictKey() {

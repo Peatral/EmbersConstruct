@@ -59,10 +59,6 @@ public class EmbersConstructModule {
         return new Stamp(part, name).setRegistryName(name);
     }
 
-    public static Stamp initStamp(String name, Item part, int cost, Fluid fluid) {
-        return new Stamp(part, name, cost, fluid).setRegistryName(name);
-    }
-
     public static Stamp initStamp(String name, OreDictValues mv) {
         return initStamp(name, mv.getName(), mv.getValue());
     }

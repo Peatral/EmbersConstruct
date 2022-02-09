@@ -4,7 +4,6 @@ import com.peatral.embersconstruct.EmbersConstruct;
 import com.peatral.embersconstruct.EmbersConstructBlocks;
 import com.peatral.embersconstruct.EmbersConstructItems;
 import com.peatral.embersconstruct.util.OreDictValues;
-import com.peatral.embersconstruct.util.Stamp;
 import com.peatral.embersconstruct.util.Util;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
@@ -19,10 +18,10 @@ import slimeknights.tconstruct.library.materials.Material;
 import slimeknights.tconstruct.library.smeltery.MeltingRecipe;
 import slimeknights.tconstruct.library.tools.IToolPart;
 import slimeknights.tconstruct.shared.TinkerFluids;
-import slimeknights.tconstruct.smeltery.TinkerSmeltery;
 import teamroots.embers.recipe.ItemMeltingRecipe;
 import teamroots.embers.recipe.RecipeRegistry;
 
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.Map;
 
@@ -49,9 +48,12 @@ public class RegistryMelting {
 
     public static void registerTinkerRecipes() {
 
+        // For all materials, register toolpart melting
         Collection<Material> materials = TinkerRegistry.getAllMaterials();
         for (Material material : materials) {
+
             Fluid fluid = Util.getFluidFromMaterial(material);
+
             if (fluid != null) {
                 ItemStack repItem = material.getRepresentativeItem();
 
@@ -65,15 +67,10 @@ public class RegistryMelting {
             }
         }
 
+        // Clone melting recipes from tinkers
         for (MeltingRecipe recipe : TinkerRegistry.getAllMeltingRecipies()) {
             for (ItemStack input : recipe.input.getInputs())
                 registerBasic(input, recipe.output.getFluid(), recipe.output.amount);
-        }
-
-        for (Stamp stamp : RegistryStamps.registry.getValuesCollection()) {
-            if (stamp.usesCustomFluid()) {
-                registerFromOreDict(new ItemStack(stamp.getItem()), stamp.getFluid(), stamp.getCost());
-            }
         }
     }
 
@@ -118,8 +115,9 @@ public class RegistryMelting {
     }
 
     public static void registerBasic(ItemMeltingRecipe recipe) {
-        if (RecipeRegistry.meltingRecipes.stream().anyMatch(test -> isRecipeTechnicallySame(test, recipe)))
+        if (RecipeRegistry.meltingRecipes.stream().anyMatch(test -> haveSameInput(test, recipe))) {
             return;
+        }
 
         if (recipe.getFluid().amount <= 1500) {
             RecipeRegistry.meltingRecipes.add(recipe);
@@ -127,8 +125,8 @@ public class RegistryMelting {
         }
     }
 
-    public static boolean isRecipeTechnicallySame(@NotNull ItemMeltingRecipe a, @NotNull ItemMeltingRecipe b) {
-        return a.fluid.getFluid().getName().equals(b.getFluid().getFluid().getName()) && a.fluid.amount == b.getFluid().amount &&
-                a.input.getValidItemStacksPacked().equals(b.getInput().getValidItemStacksPacked());
+    public static boolean haveSameInput(@NotNull ItemMeltingRecipe a, @NotNull ItemMeltingRecipe b) {
+        return Arrays.stream(a.input.getMatchingStacks()).allMatch(stack -> b.input.apply(stack))
+                && Arrays.stream(b.input.getMatchingStacks()).allMatch(stack -> a.input.apply(stack));
     }
 }

@@ -31,6 +31,7 @@ public class IntegrationSoot extends EmbersConstructModule {
 
     public void registerKilnRecipes() {
         KilnRecipes.instance().addRecipe(Registry.STAMP_NUGGET_RAW, new ItemStack((Registry.STAMP_NUGGET)));
+        KilnRecipes.instance().addRecipe(Registry.STAMP_TEXT_RAW, new ItemStack((Registry.STAMP_TEXT)));
     }
 
     public void registerStampingRecipes() {

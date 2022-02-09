@@ -27,7 +27,7 @@ public class IntegrationTinkersConstruct extends EmbersConstructModule {
                 initStamp("bow_string", TinkerTools.bowString),
                 initStamp("broad_axe_head", TinkerTools.broadAxeHead),
                 initStamp("cross_guard", TinkerTools.crossGuard),
-                initStamp("gem", OreDictValues.GEM),
+                initStamp("gem", OreDictValues.GEM), // Still a bit janky, I am not happy with it
                 initStamp("excavator_head", TinkerTools.excavatorHead),
                 initStamp("fletching", TinkerTools.fletching),
                 initStamp("hammer_head", TinkerTools.hammerHead),
@@ -38,7 +38,7 @@ public class IntegrationTinkersConstruct extends EmbersConstructModule {
                 initStamp("large_sword_blade", TinkerTools.largeSwordBlade),
                 initStamp("pan_head", TinkerTools.panHead),
                 initStamp("pick_head", TinkerTools.pickHead),
-                //initStamp("polishing_kit", ),
+                // initStamp("polishing_kit", ), // No material item
                 initStamp("scythe_head", TinkerTools.scytheHead),
                 initStamp("shard", TinkerTools.shard),
                 initStamp("sharpening_kit", TinkerTools.sharpeningKit),

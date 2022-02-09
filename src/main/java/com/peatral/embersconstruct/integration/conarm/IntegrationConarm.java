@@ -11,6 +11,7 @@ import com.peatral.embersconstruct.EmbersConstructMaterials;
 import com.peatral.embersconstruct.modules.EmbersConstructModule;
 import com.peatral.embersconstruct.util.Stamp;
 import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.fml.common.Optional;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -27,6 +28,8 @@ public class IntegrationConarm extends EmbersConstructModule {
     public static final String modid = "conarm";
     public static final String PulseId = modid + "Integration";
 
+    // This optional is very sketchy but it works and prevents a crash
+    @Optional.Method(modid = modid)
     @SubscribeEvent
     public void registerStamps(RegistryEvent.Register<Stamp> event) {
         registerAll(event,

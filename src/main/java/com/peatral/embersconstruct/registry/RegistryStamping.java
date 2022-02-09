@@ -49,12 +49,8 @@ public class RegistryStamping {
     public static void registerTinkerRecipes() {
         Collection<Material> materials = TinkerRegistry.getAllMaterials();
         for (Stamp stamp : RegistryStamps.registry.getValuesCollection()) {
-            // if it uses custom fluid register here
-            if (stamp.usesCustomFluid()) {
-                registerMeta(new ItemStack(stamp.getItem()), new FluidStack(stamp.getFluid(), stamp.getCost()), stamp);
-            // else go on
             // if ore dict recipe
-            } else if (stamp.usesOreDictKey()) {
+            if (stamp.usesOreDictKey()) {
                 Arrays.stream(OreDictionary.getOreNames())
                         .filter(oreDictName -> oreDictName.startsWith(stamp.getOreDictKey()))
                         .flatMap(name -> OreDictionary.getOres(name).stream())
