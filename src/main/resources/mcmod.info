@@ -11,6 +11,6 @@
   "credits": "terrapin47 for the idea and textures and Clefal for the chinese localization.",
   "logoFile": "",
   "screenshots": [],
-  "dependencies": ["required-after:embers", "required-after:tconstruct"]
+  "dependencies": ["required-after:embers", "required-after:tconstruct", "required-after:mantle"]
 }
 ]
