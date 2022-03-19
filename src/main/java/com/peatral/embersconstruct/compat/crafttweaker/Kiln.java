@@ -29,12 +29,12 @@ public class Kiln {
     }
 
     @ZenMethod
-    public static void removeInput(IItemStack output) {
-        CraftTweaker.LATE_ACTIONS.add(new RemoveByInput(CraftTweakerMC.getIngredient(output)));
+    public static void removeByInput(IItemStack input) {
+        CraftTweaker.LATE_ACTIONS.add(new RemoveByInput(CraftTweakerMC.getIngredient(input)));
     }
 
     @ZenMethod
-    public static void removeOutput(IItemStack output) {
+    public static void removeByOutput(IItemStack output) {
         CraftTweaker.LATE_ACTIONS.add(new RemoveByOutput(CraftTweakerMC.getItemStack(output)));
     }
 
