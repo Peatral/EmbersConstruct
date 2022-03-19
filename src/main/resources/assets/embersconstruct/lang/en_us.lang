@@ -2,6 +2,7 @@ item.embersconstruct.stamp.name=%1$s Stamp
 item.embersconstruct.stamp_raw.name=Raw %1$s Stamp
 item.embersconstruct.wrought_iron_ingot.name=Wrought Iron Ingot
 item.embersconstruct.wrought_iron_nugget.name=Wrought Iron Nugget
+item.embersconstruct.wrought_iron_plate.name=Wrought Iron Plate
 
 material.wroughtiron.name=Wrought Iron
 

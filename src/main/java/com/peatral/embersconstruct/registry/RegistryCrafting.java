@@ -25,9 +25,10 @@ public class RegistryCrafting {
         if (EmbersConstructConfig.general.bloomery) event.getRegistry().register(init( "bloomery", EmbersConstructBlocks.Bloomery, "XXX", "XXX", "X X", 'X', RegistryManager.block_caminite_brick));
 
         event.getRegistry().register(init( "wrought_iron_block", EmbersConstructBlocks.WroughtIronBlock, "XXX", "XXX", "XXX", 'X', EmbersConstructItems.WroughtIronIngot));
-        event.getRegistry().register(initShapeless( "wrought_iron_from_block", new ItemStack(EmbersConstructItems.WroughtIronIngot, 9), EmbersConstructBlocks.WroughtIronBlock));event.getRegistry().register(init( "wrought_iron_block", EmbersConstructBlocks.WroughtIronBlock, "XXX", "XXX", "XXX", 'X', EmbersConstructItems.WroughtIronIngot));
+        event.getRegistry().register(initShapeless( "wrought_iron_from_block", new ItemStack(EmbersConstructItems.WroughtIronIngot, 9), EmbersConstructBlocks.WroughtIronBlock));
         event.getRegistry().register(init( "wrought_iron_ingot", EmbersConstructItems.WroughtIronIngot, "XXX", "XXX", "XXX", 'X', EmbersConstructItems.WroughtIronNugget));
         event.getRegistry().register(initShapeless( "wrought_iron_nugget", new ItemStack(EmbersConstructItems.WroughtIronNugget, 9), EmbersConstructItems.WroughtIronIngot));
+        event.getRegistry().register(initShapeless( "wrought_iron_plate", new ItemStack(EmbersConstructItems.WroughtIronPlate, 1), EmbersConstructItems.WroughtIronIngot, EmbersConstructItems.WroughtIronIngot, RegistryManager.tinker_hammer));
     }
 
     public static IRecipe init(String name, Block result, Object... recipe) {

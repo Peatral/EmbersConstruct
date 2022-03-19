@@ -2,6 +2,7 @@ item.embersconstruct.stamp.name=%1$s Stanze
 item.embersconstruct.stamp_raw.name=Rohe %1$s Stanze
 item.embersconstruct.wrought_iron_ingot.name=Schmiedeeisenbarren
 item.embersconstruct.wrought_iron_nugget.name=Schmiedeeisenklumpen
+item.embersconstruct.wrought_iron_plate.name=Schmiedeeisenplatte
 
 material.wroughtiron.name=Schmiedeeisen
 

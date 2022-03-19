@@ -1,6 +1,5 @@
 package com.peatral.embersconstruct;
 
-import com.peatral.embersconstruct.util.OreDictValues;
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap;
 import slimeknights.tconstruct.library.MaterialIntegration;
 import slimeknights.tconstruct.library.TinkerRegistry;
@@ -43,8 +42,7 @@ public class EmbersConstructMaterials {
     }
 
     public static void initMaterials() {
-        //wroughtiron.addCommonItems("Iron");
-        wroughtiron.addItem(EmbersConstructItems.WroughtIronIngot, 1, OreDictValues.INGOT.getValue());
+        wroughtiron.addCommonItems("WroughtIron");
         wroughtiron.setRepresentativeItem(EmbersConstructItems.WroughtIronIngot);
         wroughtiron.addTrait(TinkerTraits.magnetic2, MaterialTypes.HEAD).addTrait(TinkerTraits.magnetic);
         wroughtiron.setCraftable(true);

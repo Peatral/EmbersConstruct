@@ -35,6 +35,7 @@ public class RegistryMelting {
 
         registerFromOreDict(new ItemStack(EmbersConstructItems.WroughtIronIngot), TinkerFluids.iron, OreDictValues.INGOT.getValue());
         registerFromOreDict(new ItemStack(EmbersConstructItems.WroughtIronNugget), TinkerFluids.iron, OreDictValues.NUGGET.getValue());
+        registerFromOreDict(new ItemStack(EmbersConstructItems.WroughtIronPlate), TinkerFluids.iron, OreDictValues.INGOT.getValue());
         registerFromOreDict(new ItemStack(EmbersConstructBlocks.WroughtIronBlock), TinkerFluids.iron, OreDictValues.BLOCK.getValue());
 
         EmbersConstruct.logger.info("Registered " + c + " melting recipes.");
