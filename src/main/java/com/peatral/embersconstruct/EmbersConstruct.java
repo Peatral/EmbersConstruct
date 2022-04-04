@@ -49,7 +49,7 @@ public class EmbersConstruct {
     public static final String MODID = "embersconstruct";
     public static final String MOD_NAME = "Embers' Construct";
     public static final String NAME = "Embers Construct";
-    public static final String VERSION = "1.3.4";
+    public static final String VERSION = "1.3.5";
     public static final String DEPENDENCIES =
             "required-after:mantle;" +
             "required-after:tconstruct;" +
