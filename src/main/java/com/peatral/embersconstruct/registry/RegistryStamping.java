@@ -243,7 +243,7 @@ public class RegistryStamping {
     public static boolean recipeSameInputs(@NotNull ItemStampingRecipe a, @NotNull ItemStampingRecipe b, boolean checkFluidAmount) {
         return a.input.getValidItemStacksPacked().equals(b.input.getValidItemStacksPacked()) &&
                 (a.fluid == null && b.fluid == null
-                        || a.fluid.getFluid().getName().equals(b.fluid.getFluid().getName()) &&
+                        || a.fluid != null && b.fluid != null && a.fluid.getFluid().getName().equals(b.fluid.getFluid().getName()) &&
                         (a.fluid.amount == b.fluid.amount || !checkFluidAmount));
     }
 }
