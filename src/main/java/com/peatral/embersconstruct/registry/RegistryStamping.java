@@ -27,18 +27,31 @@ import teamroots.embers.RegistryManager;
 import teamroots.embers.recipe.ItemStampingRecipe;
 import teamroots.embers.recipe.RecipeRegistry;
 
-import java.util.*;
+import java.util.AbstractMap;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Map;
 
+/**
+ * This is where the recipe registration for the stamper happens.
+ */
 public class RegistryStamping {
 
+    /** Tracks how many recipes were registered **/
     private static int c = 0;
 
+    /**
+     * The main "entry point" for stamper recipe registration
+     */
     public static void main() {
         registerOreDictRecipes();
         registerTinkerRecipes();
         EmbersConstruct.logger.info("Registered " + c + " stamping recipes.");
     }
 
+    /**
+     * Registers recipes using the ore dictionary
+     */
     public static void registerOreDictRecipes() {
         registerFromOreDict(OreDictValues.INGOT.getName(), new ItemStack(RegistryManager.stamp_bar), OreDictValues.INGOT.getValue());
         registerFromOreDict(OreDictValues.GEAR.getName(), new ItemStack(RegistryManager.stamp_gear), OreDictValues.GEAR.getValue());
@@ -46,6 +59,9 @@ public class RegistryStamping {
         if (EmbersConstructConfig.embersConstructSettings.dustStamping) registerItemFromOreDict(OreDictValues.DUST.getName(), OreDictValues.INGOT.getName(), new ItemStack(RegistryManager.stamp_flat), 1);
     }
 
+    /**
+     * Registers recipes by copying the ones from tinkers
+     */
     public static void registerTinkerRecipes() {
         Collection<Material> materials = TinkerRegistry.getAllMaterials();
         for (Stamp stamp : RegistryStamps.registry.getValuesCollection()) {
@@ -134,6 +150,13 @@ public class RegistryStamping {
         }
     }
 
+    /**
+     * Registers all recipes using the ore dictionary.
+     *
+     * @param key the fluid name of the ore
+     * @param stamp the stamp to use
+     * @param cost the fluid cost
+     */
     public static void registerFromOreDict(String key, ItemStack stamp, int cost) {
         Map<String, Fluid> fluids = FluidRegistry.getRegisteredFluids();
         for (String fluidName : fluids.keySet()) {
@@ -172,10 +195,23 @@ public class RegistryStamping {
         register(Ingredient.EMPTY, new IngredientNBT(stamp){}, result, fluid);
     }
 
+    /**
+     * Registers a recipe using an input ingredient, a stamp, a resulting itemstack and a fluid stack.
+     *
+     * @param input the input
+     * @param stamp the stamp
+     * @param result the resulting stack
+     * @param fluid the fluidstack
+     */
     public static void register(Ingredient input, Ingredient stamp, ItemStack result, FluidStack fluid) {
         register(new ItemStampingRecipe(input, fluid, stamp, result));
     }
 
+    /**
+     * Registers an ItemStampingRecipe but checks beforehand if it overlaps with something else.
+     *
+     * @param recipe the recipe
+     */
     public static void register(ItemStampingRecipe recipe) {
         if (RecipeRegistry.stampingRecipes.stream().anyMatch(test -> isRecipeTechnicallySame(test, recipe)))
             return;
@@ -184,9 +220,30 @@ public class RegistryStamping {
         c++;
     }
 
+    /**
+     * Checks if too recipes are technically the same. Includes item & stacksize for output, matching inputs and fluid type.
+     * Doesn't check fluid amount so that certain double recipes don't get added.
+     * (if output is the same and inputs are the same, there is no need to add a recipe only because the fluid amount is different)
+     *
+     * Alternatively if the result is different but the inputs match 100% they are also the same (we don't want any overlaps)
+     *
+     * @param a the first recipe
+     * @param b the second recipe
+     * @return true if they are technically the same
+     */
     public static boolean isRecipeTechnicallySame(@NotNull ItemStampingRecipe a, @NotNull ItemStampingRecipe b) {
-        return a.result.isItemEqual(b.result) && a.result.getCount() == b.result.getCount() &&
-                a.input.getValidItemStacksPacked().equals(b.input.getValidItemStacksPacked()) &&
-                (a.fluid == null && b.fluid == null || a.fluid.getFluid().getName().equals(b.fluid.getFluid().getName()) && a.fluid.amount == b.fluid.amount);
+        return recipeSameOutput(a, b) && recipeSameInputs(a, b, false)
+                || !recipeSameOutput(a, b) && recipeSameInputs(a, b, true);
+    }
+
+    public static boolean recipeSameOutput(@NotNull ItemStampingRecipe a, @NotNull ItemStampingRecipe b) {
+        return a.result.isItemEqual(b.result) && a.result.getCount() == b.result.getCount();
+    }
+
+    public static boolean recipeSameInputs(@NotNull ItemStampingRecipe a, @NotNull ItemStampingRecipe b, boolean checkFluidAmount) {
+        return a.input.getValidItemStacksPacked().equals(b.input.getValidItemStacksPacked()) &&
+                (a.fluid == null && b.fluid == null
+                        || a.fluid.getFluid().getName().equals(b.fluid.getFluid().getName()) &&
+                        (a.fluid.amount == b.fluid.amount || !checkFluidAmount));
     }
 }
