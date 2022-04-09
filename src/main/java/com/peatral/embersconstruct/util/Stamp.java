@@ -10,28 +10,34 @@ import net.minecraftforge.registries.IForgeRegistryEntry;
 import slimeknights.tconstruct.library.tinkering.MaterialItem;
 import slimeknights.tconstruct.library.tools.IToolPart;
 
+import java.util.function.Supplier;
+
 public class Stamp extends IForgeRegistryEntry.Impl<Stamp> {
 
     public static final String STAMP_PATH = "stamp";
 
     private Item item;
     private String name;
-    private int cost;
+    private Supplier<Integer> cost;
     private String oreDictKey;
 
     public Stamp(String oreDict, String name, int cost) {
-        this(null, name, cost, null, oreDict);
+        this(null, name, cost, oreDict);
     }
 
     public Stamp(MaterialItem item, String name) {
-        this(item, name, item instanceof IToolPart ? ((IToolPart) item).getCost() : OreDictValues.INGOT.getValue());
+        this(item, name, item instanceof IToolPart ? ((IToolPart) item)::getCost : OreDictValues.INGOT::getValue, null);
     }
 
     public Stamp(Item item, String name, int cost) {
-        this(item, name, cost, null, null);
+        this(item, name, cost, null);
     }
 
-    public Stamp(Item item, String name, int cost, Fluid fluid, String oreDict) {
+    public Stamp(Item item, String name, int cost, String oreDict) {
+        this(item, name, () -> cost, oreDict);
+    }
+
+    public Stamp(Item item, String name, Supplier<Integer> cost, String oreDict) {
         this.item = item;
         this.name = name;
         this.cost = cost;
@@ -47,7 +53,7 @@ public class Stamp extends IForgeRegistryEntry.Impl<Stamp> {
     }
 
     public int getCost() {
-        return cost;
+        return cost.get();
     }
 
     public String getOreDictKey() {

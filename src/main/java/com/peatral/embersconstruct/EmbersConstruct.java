@@ -63,7 +63,8 @@ public class EmbersConstruct {
             "after:tconevo;" +
             //"after:tinkersurvival;" +
             "after:totaltinkers;" +
-            "after:tcomplement";
+            "after:tcomplement;" +
+            "after:tweakersconstruct;";
 
     public static final String UPDATE_CHECKER_URL = "https://www.peatral.xyz/MinecraftMods/embersconstruct/update.json";
 

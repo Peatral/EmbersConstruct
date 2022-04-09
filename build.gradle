@@ -92,6 +92,7 @@ dependencies {
     provided "tinkersurvival:TinkerSurvival:release"
     deobfProvided "plusticminusbad:plustic:8.0.3"
     provided "total-tinkers:totaltinkers:release"
+    provided "tweakers-construct:tweakersconstruct:release"
     //provided "aetherworks:AetherWorks:release"
 
     compile "CraftTweaker2:CraftTweaker2-MC1120-Main:1.12-4.1.9.6"
