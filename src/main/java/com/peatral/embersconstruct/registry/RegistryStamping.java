@@ -225,24 +225,25 @@ public class RegistryStamping {
      * Doesn't check fluid amount so that certain double recipes don't get added.
      * (if output is the same and inputs are the same, there is no need to add a recipe only because the fluid amount is different)
      *
-     * Alternatively if the result is different but the inputs match 100% they are also the same (we don't want any overlaps)
+     * Does not check NBT of inputs. Two different stamps making the same item with the same fluid is therefore currently impossible.
      *
      * @param a the first recipe
      * @param b the second recipe
      * @return true if they are technically the same
      */
     public static boolean isRecipeTechnicallySame(@NotNull ItemStampingRecipe a, @NotNull ItemStampingRecipe b) {
-        return recipeSameOutput(a, b) && recipeSameInputs(a, b, false)
-                || !recipeSameOutput(a, b) && recipeSameInputs(a, b, true);
+        return recipeSameOutput(a, b) && recipeSameInputs(a, b, false);
+                //|| !recipeSameOutput(a, b) && recipeSameInputs(a, b, true);
+                // does actually not work with nbt ingredients which obviously breaks stamping :facepalm:
     }
 
     public static boolean recipeSameOutput(@NotNull ItemStampingRecipe a, @NotNull ItemStampingRecipe b) {
-        return a.result.isItemEqual(b.result) && a.result.getCount() == b.result.getCount();
+        return ItemStack.areItemStacksEqual(a.result, b.result);
     }
 
     public static boolean recipeSameInputs(@NotNull ItemStampingRecipe a, @NotNull ItemStampingRecipe b, boolean checkFluidAmount) {
-        return a.input.getValidItemStacksPacked().equals(b.input.getValidItemStacksPacked()) &&
-                (a.fluid == null && b.fluid == null
+        return a.input.getValidItemStacksPacked().equals(b.input.getValidItemStacksPacked())
+                && (a.fluid == null && b.fluid == null
                         || a.fluid != null && b.fluid != null && a.fluid.getFluid().getName().equals(b.fluid.getFluid().getName()) &&
                         (a.fluid.amount == b.fluid.amount || !checkFluidAmount));
     }
