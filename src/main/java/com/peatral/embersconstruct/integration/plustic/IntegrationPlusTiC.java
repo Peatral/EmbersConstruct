@@ -4,6 +4,7 @@ import com.peatral.embersconstruct.modules.EmbersConstructModule;
 import com.peatral.embersconstruct.util.Stamp;
 import landmaster.plustic.modules.ModuleTools;
 import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.fml.common.Optional;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import slimeknights.mantle.pulsar.pulse.Pulse;
 

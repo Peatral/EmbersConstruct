@@ -56,6 +56,8 @@ public class EmbersConstructModule {
     /** Stamps **/
 
     public static Stamp initStamp(String name, MaterialItem part) {
+        if (part == null)
+            return null;
         return new Stamp(part, name).setRegistryName(name);
     }
 
@@ -76,6 +78,8 @@ public class EmbersConstructModule {
     }
 
     public static void register(RegistryEvent.Register<Stamp> event, Stamp stamp) {
+        if (stamp == null)
+            return;
         event.getRegistry().register(stamp);
     }
 

@@ -28,8 +28,6 @@ public class IntegrationConarm extends EmbersConstructModule {
     public static final String modid = "conarm";
     public static final String PulseId = modid + "Integration";
 
-    // This optional is very sketchy but it works and prevents a crash
-    @Optional.Method(modid = modid)
     @SubscribeEvent
     public void registerStamps(RegistryEvent.Register<Stamp> event) {
         registerAll(event,

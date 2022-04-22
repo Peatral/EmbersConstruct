@@ -213,6 +213,10 @@ public class RegistryStamping {
      * @param recipe the recipe
      */
     public static void register(ItemStampingRecipe recipe) {
+        // The base can only hold 1500mb of any fluid
+        if (recipe != null && recipe.fluid != null && recipe.fluid.amount > 1500)
+            return;
+
         if (RecipeRegistry.stampingRecipes.stream().anyMatch(test -> isRecipeTechnicallySame(test, recipe)))
             return;
 

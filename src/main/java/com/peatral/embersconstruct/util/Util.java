@@ -13,13 +13,21 @@ public class Util {
     }
 
     public static Fluid getFluidFromMaterial(Material material) {
+        String identifier = material.identifier;
+        if (identifier.contains(".")) {
+            identifier = identifier.split("\\.")[1];
+        }
         Fluid fluid;
         String[] names = new String[]{
-                material.identifier,
-                material.identifier + "fluid",
-                material.identifier + "_fluid",
-                "fluid" + material.identifier,
-                "fluid_" + material.identifier
+                identifier,
+                identifier + "fluid",
+                identifier + "_fluid",
+                "fluid" + identifier,
+                "fluid_" + identifier,
+                identifier + "liquid",
+                identifier + "_liquid",
+                "liquid" + identifier,
+                "liquid_" + identifier
         };
         for (String s : names) {
             fluid = getFluidFromString(s);
@@ -31,6 +39,12 @@ public class Util {
     }
 
     public static String getOreDictFromFluid(String name) {
-        return name.toLowerCase().replace("_fluid", "").replace("fluid_", "").replace("fluid","");
+        return name.toLowerCase()
+                .replace("_fluid", "")
+                .replace("fluid_", "")
+                .replace("fluid","")
+                .replace("_liquid", "")
+                .replace("liquid_", "")
+                .replace("liquid","");
     }
 }

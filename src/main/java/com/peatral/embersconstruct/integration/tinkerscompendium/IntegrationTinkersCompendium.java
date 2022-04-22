@@ -16,16 +16,17 @@ public class IntegrationTinkersCompendium extends EmbersConstructModule {
     public static final String modid = "tinkerscompendium";
     public static final String PulseId = modid + "Integration";
 
-    // This optional is very sketchy but it works and prevents a crash
-    @Optional.Method(modid = modid)
     @SubscribeEvent
     public void registerStamps(RegistryEvent.Register<Stamp> event) {
         registerAll(event,
-                initStamp("armor_plate", TDParts.armorPlate),
+                //initStamp("wire", TDParts.wire),
                 //initStamp("fabric", TDParts.fabric),
+                initStamp("armor_plate", TDParts.armorPlate),
                 initStamp("rivets", TDParts.rivets),
                 initStamp("clasp", TDParts.clasp),
                 initStamp("chainmail", TDParts.chainmail),
+                initStamp("ring_shank", TDParts.ringShank),
+                initStamp("setting", TDParts.setting),
                 initStamp("filigree", TDParts.filigree));
     }
 }
